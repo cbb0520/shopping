@@ -1,0 +1,4 @@
+# Project exclude paths
+/crmsystem-dao/target/
+/crmsystem-service/target/
+/crmsystem-web/target/

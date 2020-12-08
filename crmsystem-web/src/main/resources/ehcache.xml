@@ -1,0 +1,55 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<ehcache name="shirocache">
+
+    <!-- 磁盘的存储目录-->
+    <diskStore path="java.io.tmpdir"/>
+
+    <defaultCache
+            maxElementsInMemory="2000"
+            eternal="true"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            overflowToDisk="true"/>
+
+
+    <cache name="passwordRetryCache"
+           maxElementsInMemory="2000"
+           eternal="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="0"
+           overflowToDisk="false">
+    </cache>
+
+    <cache name="authorizationCache"
+           maxElementsInMemory="2000"
+           eternal="false"
+           timeToIdleSeconds="1800"
+           timeToLiveSeconds="0"
+           overflowToDisk="false">
+    </cache>
+
+    <cache name="authenticationCache"
+           maxElementsInMemory="2000"
+           eternal="false"
+           timeToIdleSeconds="1800"
+           timeToLiveSeconds="0"
+           overflowToDisk="false">
+    </cache>
+
+    <cache name="shiro-activeSessionCache"
+           maxElementsInMemory="2000"
+           eternal="false"
+           timeToIdleSeconds="1800"
+           timeToLiveSeconds="0"
+           overflowToDisk="false">
+    </cache>
+    <!--
+    “diskStore path=”java.io.tmpdir”：磁盘的存储目录；
+    “name=”xxx””：对要进行缓存的项进行一个标注；
+    “maxElementsInMemory=”2000”：可以缓存的最大的对象个数；
+    “eternal=”false”：是否允许自动失效（如果某一个对象长时间不使用）；
+    “timeToIdleSeconds=”1800”：最小的失效时间，1800秒；
+    “timeToLiveSeconds=”0”：最大的保存时间，单位是秒；
+    “overflowToDisk=”false”：如果容量过多，可以将其保存在磁盘
+-->
+</ehcache>
