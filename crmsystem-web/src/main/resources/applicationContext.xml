@@ -104,9 +104,10 @@
                 /img/**=anon
                 /themes/**=anon
                 /login*=anon
-                /employeeLogin*=anon
+                /staffLogin*=anon
+                /**=anon
                 <!--/**=authc --> <!--根路径下的资源 都需要认证了才能访问-->
-                /**=user<!--根路径下的资源 都需要认证或者rememberme=true了才能访问-->
+            <!--    /**=user--><!--根路径下的资源 都需要认证或者rememberme=true了才能访问-->
             </value>
         </property>
 

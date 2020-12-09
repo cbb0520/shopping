@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.StaffDao">
+	<select id="staffLogin" resultType="staff">
+		SELECT * FROM staff
+        WHERE `account` =  #{account}
+	</select>
+
+
+	<!--<select id="queryEmployee" parameterType="Employee" resultType="Employee">
+
+		select * from employee
+		<where>
+			<if test="ename!=null and ename!=''">and ename like concat('%',#{ename},'%')</if>
+			<if test="address!=null and address!=''">and address like concat('%',#{address},'%') </if>
+			<if test="account!=null">and account like concat('%',#{account},'%') </if>
+		</where>
+
+		order by eid DESC
+	</select>
+
+	<select id="querycontu" parameterType="list" resultType="int">
+
+		select count(*) from employee
+		<where>
+			<if test="ename!=null and ename!=''">and ename like concat('%',#{ename},'%')</if>
+			<if test="address!=null and address!=''">and address like concat('%',#{address},'%') </if>
+			<if test="account!=null">and account like concat('%',#{account},'%') </if>
+		</where>
+	</select>
+
+	<select id="empaccount" parameterType="Employee" resultType="employee">
+		select * from employee where  account=#{account}
+	</select>
+
+	<insert id="addEmployee" parameterType="employee">
+        insert into employee
+		values (null,#{account},#{password},#{ename},#{sex},#{etime},#{address},#{phone})
+	</insert>
+
+	<delete id="deleEmployee" parameterType="int">
+
+		delete from employee where eid = #{eid}
+	</delete>
+<select id="queryById" parameterType="int" resultType="employee">
+	select * from employee where eid = #{eid}
+</select>
+	<update id="updateEmployee" parameterType="employee">
+		update employee set password=#{password},ename = #{ename},sex=#{sex},etime=#{etime},
+		address=#{address},phone=#{phone} where eid = #{eid}
+	</update>
+
+
+	<delete id="deleRolequan" parameterType="int">
+
+		delete from emp_role where eid =#{eid}
+	</delete>
+
+	<insert id="addRolequan">
+		insert into emp_role values
+		<foreach collection="rid" item="it" separator=",">
+			(null,#{eid},#{it})
+		</foreach>
+	</insert>-->
+</mapper>

@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="crmsystem-web" />
         <module name="crmsystem-service" />
         <module name="crmsystem-dao" />
-        <module name="crmsystem-web" />
       </profile>
     </annotationProcessing>
   </component>
