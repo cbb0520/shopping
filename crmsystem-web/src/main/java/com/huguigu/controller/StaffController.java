@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class StaffController {
@@ -18,12 +19,12 @@ public class StaffController {
     @RequestMapping(value ="/staffLogin.action",produces = {"application/json;charset=utf-8"})
     @ResponseBody
     @CrossOrigin
-    public  String  staffLogin(Staff staff, HttpServletResponse response) {
+    public  Staff  staffLogin(Staff staff,  HttpSession session) {
         Staff staff1 = staffService.staffLogin(staff.getAccount());
         if(staff1 !=null){
-            return "登入成功";
+            return staff1;
         }
 
-        return "登入失败";
+        return null;
     }
 }
