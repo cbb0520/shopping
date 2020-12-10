@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 @Controller
 public class MenuController {
@@ -20,7 +20,7 @@ public class MenuController {
     @RequestMapping(value ="/meuncc.action",produces = {"application/json;charset=utf-8"})
     @ResponseBody
     @CrossOrigin
-    public List<Menu> queryAll(Integer eid){
+    public List<Menu> queryMenuAll(Integer eid){
 
         List<Menu> list = menuService.indexMenus(1);
         return list;

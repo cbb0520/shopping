@@ -1,5 +1,7 @@
 package com.huguigu.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Staff {
@@ -9,6 +11,7 @@ public class Staff {
     private String name;
     private String sex;
     private String phone;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date etiem;
     private String address;
     private int udele;
