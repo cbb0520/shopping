@@ -3,7 +3,7 @@ package com.huguigu.vo;
 public class Merchants {
     private int mid;
     private int uid;
-    private String shopname;
+    private String sname;
     private String mddress;
     private String mname;
     private String phone;
@@ -14,10 +14,10 @@ public class Merchants {
     private int udele;
     public Merchants(){}
 
-    public Merchants(int mid, int uid, String shopname, String mddress, String mname, String phone, String certificate, String mimgs, String mtype, String state, int udele) {
+    public Merchants(int mid, int uid, String sname, String mddress, String mname, String phone, String certificate, String mimgs, String mtype, String state, int udele) {
         this.mid = mid;
         this.uid = uid;
-        this.shopname = shopname;
+        this.sname = sname;
         this.mddress = mddress;
         this.mname = mname;
         this.phone = phone;
@@ -44,12 +44,12 @@ public class Merchants {
         this.uid = uid;
     }
 
-    public String getShopname() {
-        return shopname;
+    public String getSname() {
+        return sname;
     }
 
-    public void setShopname(String shopname) {
-        this.shopname = shopname;
+    public void setSname(String sname) {
+        this.sname = sname;
     }
 
     public String getMddress() {
@@ -121,7 +121,7 @@ public class Merchants {
         return "Merchants{" +
                 "mid=" + mid +
                 ", uid=" + uid +
-                ", shopname='" + shopname + '\'' +
+                ", sname='" + sname + '\'' +
                 ", mddress='" + mddress + '\'' +
                 ", mname='" + mname + '\'' +
                 ", phone='" + phone + '\'' +

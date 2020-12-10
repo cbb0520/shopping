@@ -15,4 +15,9 @@ public class CityServiceImpl implements CityService {
     public List<City> queryCityByid(String provincecode) {
         return cityDao.queryCityByid(provincecode);
     }
+
+    @Override
+    public City querycodeCity(String code) {
+        return cityDao.querycodeCity(code);
+    }
 }

@@ -6,4 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryCityByid" parameterType="String" resultType="City">
         select * from City where provincecode=#{provincecode}
 	</select>
+	<select id="querycodeCity" parameterType="String" resultType="City">
+		SELECT *FROM city WHERE CODE=#{code}
+	</select>
 </mapper>

@@ -15,4 +15,9 @@ public class AreaServiceImpl implements AreaService {
     public List<Area> queryAreaByid(String citycode) {
         return areaDao.queryAreaByid(citycode);
     }
+
+    @Override
+    public Area querycodeArea(String code) {
+        return areaDao.querycodeArea(code);
+    }
 }

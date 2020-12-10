@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AreaDao {
     List<Area> queryAreaByid(String citycode);
+    Area querycodeArea(String code);
 }

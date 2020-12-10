@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ProvinceService {
     List<Province> queryProvince();
+    Province queryProvincebyid(String code);
 }

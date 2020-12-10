@@ -13,4 +13,9 @@ public class ProvinceServiceImpl implements ProvinceService {
     public List<Province> queryProvince() {
         return provinceDao.queryProvince();
     }
+
+    @Override
+    public Province queryProvincebyid(String code) {
+        return provinceDao.queryProvincebyid(code);
+    }
 }

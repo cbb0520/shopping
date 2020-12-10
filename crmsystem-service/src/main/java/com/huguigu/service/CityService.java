@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CityService {
     List<City> queryCityByid(String provincecode);
+    City querycodeCity(String code);
 }

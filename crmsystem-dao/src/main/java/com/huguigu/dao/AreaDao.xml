@@ -6,4 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryAreaByid" parameterType="String" resultType="Area">
         select * from Area where citycode=#{citycode}
 	</select>
+	<select id="querycodeArea" parameterType="String" resultType="Area">
+		SELECT *FROM AREA WHERE CODE=#{code}
+	</select>
 </mapper>
