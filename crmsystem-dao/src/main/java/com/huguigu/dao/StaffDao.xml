@@ -9,13 +9,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-	<!--<select id="queryEmployee" parameterType="Employee" resultType="Employee">
+	<select id="queryStaff" parameterType="staff" resultType="staff">
 
-		select * from employee
+		select * from staff
 		<where>
-			<if test="ename!=null and ename!=''">and ename like concat('%',#{ename},'%')</if>
+			<if test="name!=null and name!=''">and name like concat('%',#{name},'%')</if>
 			<if test="address!=null and address!=''">and address like concat('%',#{address},'%') </if>
 			<if test="account!=null">and account like concat('%',#{account},'%') </if>
+			and udele = 0
 		</where>
 
 		order by eid DESC
@@ -23,30 +24,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="querycontu" parameterType="list" resultType="int">
 
-		select count(*) from employee
+		select count(*) from staff
 		<where>
-			<if test="ename!=null and ename!=''">and ename like concat('%',#{ename},'%')</if>
+			<if test="name!=null and name!=''">and name like concat('%',#{name},'%')</if>
 			<if test="address!=null and address!=''">and address like concat('%',#{address},'%') </if>
 			<if test="account!=null">and account like concat('%',#{account},'%') </if>
+			and udele = 0
 		</where>
 	</select>
 
-	<select id="empaccount" parameterType="Employee" resultType="employee">
+	<update id="deleStaff" parameterType="int">
+
+		update  staff set  udele = 1 where eid = #{eid}
+	</update>
+
+
+	<insert id="addStaff" parameterType="staff">
+        insert into staff
+		values (null,#{account},#{password},#{name},#{sex},#{phone},#{etiem},#{address},#{udele})
+	</insert>
+
+	<select id="queryByeId" parameterType="int" resultType="staff">
+	select * from staff where eid = #{eid}
+   </select>
+
+	<!--<select id="empaccount" parameterType="Employee" resultType="employee">
 		select * from employee where  account=#{account}
 	</select>
 
-	<insert id="addEmployee" parameterType="employee">
-        insert into employee
-		values (null,#{account},#{password},#{ename},#{sex},#{etime},#{address},#{phone})
-	</insert>
 
-	<delete id="deleEmployee" parameterType="int">
 
-		delete from employee where eid = #{eid}
-	</delete>
-<select id="queryById" parameterType="int" resultType="employee">
-	select * from employee where eid = #{eid}
-</select>
+
+
 	<update id="updateEmployee" parameterType="employee">
 		update employee set password=#{password},ename = #{ename},sex=#{sex},etime=#{etime},
 		address=#{address},phone=#{phone} where eid = #{eid}
