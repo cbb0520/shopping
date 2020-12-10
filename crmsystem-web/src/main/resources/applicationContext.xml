@@ -29,7 +29,7 @@
         <property name="url"
                   value="jdbc:mysql://localhost:3306/shopping?characterEncoding=utf-8"></property>
         <property name="username" value="root"></property>
-        <property name="password" value=""></property>
+        <property name="password" value="123456"></property>
         <!-- 关于数据库连接池的基本信息 -->
         <property name="maxActive" value="50"></property>
         <property name="initialSize" value="5"></property>

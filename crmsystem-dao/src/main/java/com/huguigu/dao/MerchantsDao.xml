@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.MerchantsDao">
+	<insert id="addMerchants" parameterType="merchants">
+		insert into merchants(uid,shopname,mddress,mname,phone,certificate,mimgs,mtype,state,udele)
+		values(#{uid},#{shopname},#{mddress},#{mname},#{phone},#{certificate},#{mimgs},#{mtype},#{state},#{udele})
+	</insert>
+	<update id="updatestate" parameterType="merchants">
+		update merchants set state=#{state} where mid=#{mid}
+	</update>
+</mapper>

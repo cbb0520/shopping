@@ -2,12 +2,8 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/crmsystem-dao/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crmsystem-dao/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crmsystem-service/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/crmsystem-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crmsystem-web/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crmsystem-web/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>
