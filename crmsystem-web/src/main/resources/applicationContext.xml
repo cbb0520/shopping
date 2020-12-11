@@ -29,8 +29,8 @@
         <property name="url"
                   value="jdbc:mysql://rm-bp109gtooyq3qy73e1250109m.mysql.rds.aliyuncs.com:3306/
                   shopping?serverTimezone=UTC&amp;characterEncoding=utf8&amp;useSSL=false"></property>
-        <property name="username" value="spider"></property>
-        <property name="password" value="1273371063@qqcom"></property>
+        <property name="username" value="huyafang"></property>
+        <property name="password" value="15773310019@com"></property>
         <!-- 关于数据库连接池的基本信息 -->
         <property name="maxActive" value="50"></property>
         <property name="initialSize" value="5"></property>
