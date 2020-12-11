@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.RoleDao">
+
+	<select id="queryRoLe" parameterType="roLe" resultType="roLe">
+
+		select * from role
+		<where>
+			<if test="rname!=null and rname!=''">and rname like concat('%',#{rname},'%')</if>
+			and udele = 0
+		</where>
+
+		order by rid DESC
+	</select>
+
+	<select id="querycontu" parameterType="list" resultType="int">
+
+		select count(*) from role
+		<where>
+			<if test="rname!=null and rname!=''">and rname like concat('%',#{rname},'%')</if>
+			and udele = 0
+		</where>
+	</select>
+
+	<update id="deleRoLe" parameterType="int">
+
+		update  role  set  udele = 1 where rid = #{rid}
+	</update>
+
+
+	<insert id="addRoLe" parameterType="roLe">
+        insert into role
+		values (null,#{rname},#{udele})
+	</insert>
+
+	<select id="queryByrId" parameterType="int" resultType="role">
+	select * from role where rid = #{rid}
+    </select>
+
+
+	<update id="updateRoLe" parameterType="role">
+		update role set rname=#{rname} where rid = #{rid}
+	</update>
+	<!--
+
+
+
+
+
+	<select id="emprole" parameterType="int" resultType="roLe">
+		select r.* from role r
+		left join emp_role er
+		on r.rid = er.rid
+		where er.eid =#{eid}
+	</select>
+
+	<delete id="deleMenuquan" parameterType="int">
+
+		delete from menus_role where rid =#{rid}
+	</delete>
+
+	<insert id="addMenuquan">
+		insert into menus_role values
+		<foreach collection="mid" item="it" separator=",">
+			(null,#{rid},#{it})
+		</foreach>
+	</insert>
+
+	<select id="accountrole"  resultType="roLe">
+		 SELECT r.* FROM role r, emp_role er, employee em
+		WHERE r.rid = er.rid AND er.eid = em.eid
+		AND em.`account` = #{account}
+	</select>-->
+</mapper>

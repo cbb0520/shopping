@@ -18,4 +18,6 @@ public interface StaffDao {
     public int addStaff(Staff staff);
     //查询单个员工
     public Staff queryByeId(int eid);
+    //修改
+    public int updateStaff(Staff staff);
 }
