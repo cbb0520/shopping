@@ -70,4 +70,16 @@ public class StaffController {
     public Staff queryByeId(int eid){
         return   staffService.queryByeId(eid);
     }
+
+    @RequestMapping( value ="/updateStaff.action",produces = {"application/json;charset=utf-8"})
+    @ResponseBody
+    public String  updateStaff(Staff staff) {
+
+        int i = staffService.updateStaff(staff);
+        if (i > 0) {
+
+            return "恭喜你，编辑成功";
+        }
+        return "编辑失败";
+    }
 }
