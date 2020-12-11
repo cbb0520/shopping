@@ -8,9 +8,8 @@ import com.huguigu.service.MerchantsService;
 import com.huguigu.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 @Service
-public class MerchantsImpl implements MerchantsService {
+public class MerchantsServiceImpl implements MerchantsService {
     @Autowired
     MerchantsDao merchantsDao;
     @Autowired
@@ -21,6 +20,7 @@ public class MerchantsImpl implements MerchantsService {
     AreaDao areaDao;
     @Override
     public int addMerchants(Merchants merchants,String provincecode,String citycode,String areacode) {
+        System.out.println(merchants);
            Province province =provinceDao.queryProvincebyid(provincecode);
            String pname=province.getName();
            City city= cityDao.querycodeCity(citycode);
@@ -67,5 +67,14 @@ public class MerchantsImpl implements MerchantsService {
     @Override
     public Merchants queryMerchantsuid(int uid) {
         return merchantsDao.queryMerchantsuid(uid);
+    }
+
+    @Override
+    public PageVo<Merchants> queryCountshengpiMerchants(Merchants merchants, int page, int rows) {
+        PageVo<Merchants> pageVo=new PageVo<>();
+        PageHelper.startPage(page,rows);
+        pageVo.setRows(merchantsDao.shengpiMerchants(merchants));
+        pageVo.setTotal(merchantsDao.queryCountshengpiMerchants(merchants));
+        return pageVo;
     }
 }
