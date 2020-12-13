@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.GoodsDao">
+
+    <resultMap id="goodsmap" type="Goods">
+        <association property="classify" column="fid"
+                     select="com.huguigu.dao.ClassifyDao.queryClassById"
+                     javaType="Classify"/>
+    </resultMap>
+    
+    <select id="queryAllGoods" resultMap="goodsmap">
+        select * from goods
+        <where>
+            <if test="gname!=null">and gname like concat('%',#{gname},'%')</if>
+            <if test="classify.fid!=0">and fid=#{classify.fid}</if>
+            and udele = 0
+        </where>
+    </select>
+
+    <select id="queryCountGoods" resultType="int">
+        select count(1) from goods
+        <where>
+            <if test="gname!=null">and gname like concat('%',#{gname},'%')</if>
+            <if test="classify.fid!=0">and fid=#{classify.fid}</if>
+            and udele = 0
+        </where>
+    </select>
+
+    <update id="delGoods" parameterType="int">
+        update goods set udele = 1 where gid = #{gid}
+    </update>
+
+    <select id="queryGoodsById" parameterType="int" resultMap="goodsmap">
+        select * from goods where gid = #{gid}
+    </select>
+
+    <update id="uptGoods">
+        update goods
+        <set>
+            <if test="gname!=null"> gname = #{gname},</if>
+            <if test="gimgs!=null"> gimgs = #{gimgs},</if>
+            <if test="limit!=null"> `limit` = #{limit},</if>
+            <if test="price!=null"> price = #{price}</if>
+        </set>
+        where gid = #{gid}
+    </update>
+</mapper>
