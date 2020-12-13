@@ -40,4 +40,9 @@ public class StaffServiceImpl implements StaffService {
     public Staff queryByeId(int eid) {
         return staffDao.queryByeId(eid);
     }
+
+    @Override
+    public int updateStaff(Staff staff) {
+        return staffDao.updateStaff(staff);
+    }
 }

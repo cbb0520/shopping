@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.huguigu.dao.StaffDao">
 	<select id="staffLogin" resultType="staff">
 		SELECT * FROM staff
-        WHERE `account` =  #{account}
+        WHERE `account` =  #{account} and udele = 0
 	</select>
 
 
@@ -48,21 +48,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from staff where eid = #{eid}
    </select>
 
-	<!--<select id="empaccount" parameterType="Employee" resultType="employee">
-		select * from employee where  account=#{account}
-	</select>
 
 
 
-
-
-	<update id="updateEmployee" parameterType="employee">
-		update employee set password=#{password},ename = #{ename},sex=#{sex},etime=#{etime},
-		address=#{address},phone=#{phone} where eid = #{eid}
+	<update id="updateStaff" parameterType="Staff">
+		update staff set password=#{password},name = #{name},sex=#{sex},phone=#{phone},
+		etiem=#{etiem},address=#{address} where eid = #{eid}
 	</update>
 
 
-	<delete id="deleRolequan" parameterType="int">
+	<!--<delete id="deleRolequan" parameterType="int">
 
 		delete from emp_role where eid =#{eid}
 	</delete>
@@ -72,5 +67,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<foreach collection="rid" item="it" separator=",">
 			(null,#{eid},#{it})
 		</foreach>
-	</insert>-->
+	</insert>&ndash;&gt;-->
 </mapper>

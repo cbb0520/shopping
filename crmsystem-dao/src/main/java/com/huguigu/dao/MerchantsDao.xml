@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.MerchantsDao">
+	<insert id="addMerchants" parameterType="merchants">
+		insert into merchants(uid,sname,mddress,mname,phone,certificate,mimgs,mtype,state,udele)
+		values(#{uid},#{sname},#{mddress},#{mname},#{phone},#{certificate},#{mimgs},#{mtype},#{state},#{udele})
+	</insert>
+	<update id="updatestate" parameterType="merchants">
+		update merchants set state=#{state} where mid=#{mid}
+	</update>
+	<select id="queryAllMerchants" parameterType="merchants" resultType="Merchants">
+			select * from merchants
+			<where>
+				udele=0 and state='已同意'
+				<if test="sname!=null"> and sname like concat ('%',#{sname},'%')</if>
+				<if test="mname!=null"> and mname like concat ('%',#{mname},'%')</if>
+			</where>
+	</select>
+	<select id="queryCountMerchants" parameterType="merchants" resultType="int">
+			select count(1)  from merchants
+		<where>
+			udele=0 and state='已同意'
+			<if test="sname!=null"> and sname like concat ('%',#{sname},'%')</if>
+			<if test="mname!=null"> and mname like concat ('%',#{mname},'%')</if>
+		</where>
+	</select>
+	<select id="queryMerchantsBYId" parameterType="int" resultType="Merchants">
+		select *from Merchants where mid=#{mid}
+	</select>
+	<update id="updateMerchants" parameterType="merchants">
+		update merchants set uid=#{uid},sname=#{sname},mddress=#{mddress},mname=#{mname},certificate=#{certificate},mimgs=#{mimgs},state=#{state},phone=#{phone},mtype=#{mtype},udele=#{udele} where mid=#{mid}
+	</update>
+	<update id="deleteMerchants" parameterType="int">
+		update merchants set udele=1 where mid=#{mid}
+	</update>
+	<select id="queryMerchantsuid" parameterType="int" resultType="Merchants">
+		select *from merchants where uid=#{uid}
+	</select>
+	<select id="shengpiMerchants" parameterType="merchants" resultType="Merchants">
+		select * from merchants
+		<where>
+			udele=0 and state='未同意'
+			<if test="sname!=null"> and sname like concat ('%',#{sname},'%')</if>
+		</where>
+	</select>
+	<select id="queryCountshengpiMerchants" parameterType="merchants" resultType="int">
+		select count(1)  from merchants
+		<where>
+			udele=0 and state='未同意'
+			<if test="sname!=null"> and sname like concat ('%',#{sname},'%')</if>
+		</where>
+	</select>
+</mapper>
