@@ -11,4 +11,7 @@ public interface MerchantsDao {
     Merchants queryMerchantsBYId(int mid);
     int updateMerchants(Merchants merchants);
     Merchants queryMerchantsuid(int uid);
+    List<Merchants> shengpiMerchants(Merchants merchants);
+    int queryCountshengpiMerchants(Merchants merchants);
+
 }

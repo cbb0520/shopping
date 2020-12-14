@@ -6,9 +6,10 @@ import com.huguigu.vo.PageVo;
 public interface MerchantsService {
     int addMerchants(Merchants merchants,String provincecode,String citycode,String areacode);
     int updatestate(Merchants merchants);
-    public PageVo<Merchants> queryCountMerchants(Merchants merchants, int page, int rows);
+    PageVo<Merchants> queryCountMerchants(Merchants merchants, int page, int rows);
     int deleteMerchants(int mid);
     Merchants queryMerchantsBYId(int mid);
     int updateMerchants(Merchants merchants);
     Merchants queryMerchantsuid(int uid);
+    PageVo<Merchants> queryCountshengpiMerchants(Merchants merchants, int page, int rows);
 }
