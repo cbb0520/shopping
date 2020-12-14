@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface StaffDao {
     //登入
-    public Staff staffLogin(@Param("account")String account);
+    public Staff staffLogin(Staff staff);
     //条件查询
     public List<Staff> queryStaff(Staff staff);
     //数据条数

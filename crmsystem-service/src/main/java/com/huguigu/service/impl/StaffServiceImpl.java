@@ -13,8 +13,8 @@ public class StaffServiceImpl implements StaffService {
     @Autowired
     StaffDao staffDao;
     @Override
-    public Staff staffLogin(String account) {
-        return staffDao.staffLogin(account);
+    public Staff staffLogin(Staff staff) {
+        return staffDao.staffLogin(staff);
     }
 
     @Override

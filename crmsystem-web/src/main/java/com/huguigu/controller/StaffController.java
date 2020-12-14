@@ -25,7 +25,7 @@ public class StaffController {
     @ResponseBody
     @CrossOrigin
     public  Staff  staffLogin(Staff staff,  HttpSession session) {
-        Staff staff1 = staffService.staffLogin(staff.getAccount());
+        Staff staff1 = staffService.staffLogin(staff);
         if(staff1 !=null){
             return staff1;
         }

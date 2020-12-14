@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Menu {
     private int id;
-    private String text;
+    private String label;
     private String url;
     private String iconCls;
     private int parentid;
@@ -22,12 +22,12 @@ public class Menu {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getLabel() {
+        return label;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public String getUrl() {
@@ -78,17 +78,6 @@ public class Menu {
         this.children = children;
     }
 
-    public Menu(int id, String text, String url, String iconCls, int parentid, String menucode, int nodetype, List<Menu> children) {
-        this.id = id;
-        this.text = text;
-        this.url = url;
-        this.iconCls = iconCls;
-        this.parentid = parentid;
-        this.menucode = menucode;
-        this.nodetype = nodetype;
-        this.children = children;
-    }
-
     public Menu() {
         super();
     }
@@ -97,7 +86,7 @@ public class Menu {
     public String toString() {
         return "Menu{" +
                 "id=" + id +
-                ", text='" + text + '\'' +
+                ", label='" + label + '\'' +
                 ", url='" + url + '\'' +
                 ", iconCls='" + iconCls + '\'' +
                 ", parentid=" + parentid +

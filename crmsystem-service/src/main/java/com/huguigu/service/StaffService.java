@@ -5,7 +5,7 @@ import com.huguigu.vo.Staff;
 import org.apache.ibatis.annotations.Param;
 
 public interface StaffService {
-    public Staff staffLogin(String account);
+    public Staff staffLogin(Staff staff);
     public PageVo<Staff> queryStaffbyCond(Staff staff, int page, int rows) ;
     //删除员工
     public int deleStaff(int eid);
