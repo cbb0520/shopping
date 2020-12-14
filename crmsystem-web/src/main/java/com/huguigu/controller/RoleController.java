@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -64,5 +65,13 @@ public class RoleController {
             return "恭喜你，编辑成功";
         }
         return "编辑失败";
+    }
+
+    //授权页面  显示角色所有数据  包含子节点的选中状态
+    @RequestMapping("/staffrole.action")
+    @ResponseBody
+    public List<RoLe> staffrole(
+            @RequestParam int eid) {
+        return roleService.staffrole(eid);
     }
 }

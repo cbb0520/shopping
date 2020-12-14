@@ -43,23 +43,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateRoLe" parameterType="role">
 		update role set rname=#{rname} where rid = #{rid}
 	</update>
-	<!--
 
 
-
-
-
-	<select id="emprole" parameterType="int" resultType="roLe">
+	<select id="staffrole" parameterType="int" resultType="roLe">
 		select r.* from role r
 		left join emp_role er
 		on r.rid = er.rid
 		where er.eid =#{eid}
 	</select>
+	<!--
 
-	<delete id="deleMenuquan" parameterType="int">
-
-		delete from menus_role where rid =#{rid}
-	</delete>
 
 	<insert id="addMenuquan">
 		insert into menus_role values

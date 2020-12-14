@@ -17,4 +17,6 @@ public interface RoleDao {
     public RoLe queryByrId(int rid);
     //修改角色
     public int updateRoLe(RoLe roLe);
+    //查询用户的角色
+    public List<RoLe> staffrole(int eid);
 }

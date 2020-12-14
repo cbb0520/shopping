@@ -56,16 +56,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		etiem=#{etiem},address=#{address} where eid = #{eid}
 	</update>
 
-
-	<!--<delete id="deleRolequan" parameterType="int">
-
-		delete from emp_role where eid =#{eid}
-	</delete>
-
-	<insert id="addRolequan">
-		insert into emp_role values
-		<foreach collection="rid" item="it" separator=",">
-			(null,#{eid},#{it})
-		</foreach>
-	</insert>&ndash;&gt;-->
 </mapper>

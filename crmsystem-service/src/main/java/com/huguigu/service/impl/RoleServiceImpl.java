@@ -8,6 +8,8 @@ import com.huguigu.vo.RoLe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoleServiceImpl implements RoleService {
     @Autowired
@@ -39,5 +41,10 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public int updateRoLe(RoLe roLe) {
         return roleDao.updateRoLe(roLe);
+    }
+
+    @Override
+    public List<RoLe> staffrole(int eid) {
+        return roleDao.staffrole(eid);
     }
 }

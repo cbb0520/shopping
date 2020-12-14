@@ -3,6 +3,8 @@ package com.huguigu.service;
 import com.huguigu.vo.PageVo;
 import com.huguigu.vo.RoLe;
 
+import java.util.List;
+
 public interface RoleService {
     public PageVo<RoLe> queryRoLebyCond(RoLe roLe, int page, int rows) ;
     //删除角色
@@ -13,4 +15,6 @@ public interface RoleService {
     public RoLe queryByrId(int rid);
     //修改角色
     public int updateRoLe(RoLe roLe);
+    //查询用户的角色
+    public List<RoLe> staffrole(int eid);
 }
