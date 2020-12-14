@@ -26,8 +26,6 @@ public class GoodsController {
                                        @RequestParam(value = "classify",required = false,defaultValue = "0")int classify,
                                        @RequestParam(value = "page", defaultValue = "1") int page,
                                        @RequestParam(value = "rows", defaultValue = "5") int rows){
-       // System.out.println(goods);
-      //  System.out.println(classify);
         Goods goods=new Goods();
         goods.setGname(gname);
         Classify classify1 = new Classify(classify,null,null);
@@ -54,14 +52,12 @@ public class GoodsController {
     //根据id查询商品queryGoodsById
     @RequestMapping("queryGoodsById.action")
     public Goods queryGoodsById(int gid){
-        System.out.println(goodsService.queryGoodsById(gid));
         return goodsService.queryGoodsById(gid);
     }
 
     //修改商品
     @RequestMapping("uptGoods.action")
     public Map uptGoods(Goods goods){
-        System.out.println(goods);
         Map<String,String> map =new HashMap<String,String>();
         int i = goodsService.uptGoods(goods);
         if (i < 0) {

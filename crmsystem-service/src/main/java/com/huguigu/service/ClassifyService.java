@@ -1,18 +1,13 @@
-package com.huguigu.dao;
+package com.huguigu.service;
 
 import com.huguigu.vo.Classify;
+import com.huguigu.vo.PageVo;
 
 import java.util.List;
 
-public interface ClassifyDao {
-    //根据id查询商品类型
-    Classify queryClassById(int id);
-
+public interface ClassifyService {
     //查询所有类别
-    List<Classify> queryAllClassify(Classify classify);
-
-    //查询类别数量
-    int queryCountClassify(Classify classify);
+    PageVo<Classify> queryAllClassify(Classify classify, int page, int rows);
 
     //删除类别
     int delClassifyById(int id);
