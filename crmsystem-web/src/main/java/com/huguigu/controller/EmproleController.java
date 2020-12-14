@@ -15,9 +15,9 @@ public class EmproleController {
 
     @RequestMapping(value = "/addEmprole.action",produces = "text/json;charset=utf-8")
     @ResponseBody
-    public String addEmprole(int eid,String rids) {
+    public String addEmprole(int eid,int loginedi,String rids) {
 
-        int shouquan = emproleService.addEmprole(eid, rids);
+        int shouquan = emproleService.addEmprole(eid,loginedi,rids);
         if (1 > 0) {
             return "恭喜你，授权成功";
         }
