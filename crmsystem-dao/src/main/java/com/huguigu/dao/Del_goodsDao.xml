@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.Del_goodsDao">
+	<resultMap id="Del_goodsMap" type="com.huguigu.vo.Del_goods">
+		<id column="dgid" property="dgid"></id>
+		<result column="did" property="did"></result>
+		<result column="gid" property="gid"></result>
+		<result column="dcount" property="dcount"></result>
+		<result column="state" property="state"></result>
+		<association property="goods" javaType="Goods"
+					 column="gid" select="com.huguigu.dao.GoodsDao.queryGoodsById">
+		</association>
+		<association property="deliver" javaType="Deliver"
+					 column="did" select="com.huguigu.dao.DeliverDao.queryDeliverByid">
+		</association>
+	</resultMap>
+	<select id="queryAllDel_goods" parameterType="int" resultMap="Del_goodsMap">
+      SELECT * FROM del_goods dg
+        INNER JOIN goods g ON g.gid=dg.gid
+        INNER JOIN deliver d ON d.did=dg.did
+         WHERE dg.did=#{did}
+	</select>
+</mapper>
