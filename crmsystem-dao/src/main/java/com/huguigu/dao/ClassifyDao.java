@@ -1,6 +1,7 @@
 package com.huguigu.dao;
 
 import com.huguigu.vo.Classify;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,4 +26,7 @@ public interface ClassifyDao {
 
     //添加类型
     int addCLassify(Classify classify);
+
+    //判断是否有相同的类型名
+    int isEqual(@Param("oldfname") String oldfname, @Param("newfname") String newfname);
 }

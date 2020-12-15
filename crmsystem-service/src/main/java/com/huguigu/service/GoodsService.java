@@ -14,5 +14,5 @@ public interface GoodsService {
     Goods queryGoodsById(int gid);
 
     //修改商品
-    int uptGoods(Goods goods);
+    int uptGoods(Goods goods,String oldgname);
 }

@@ -51,11 +51,11 @@
 		<property name="maxUploadSize" value="2097152"> </property>
 		<property name="maxInMemorySize" value="4096"></property>
 		<property name="defaultEncoding" value="utf-8"></property>
-
 	</bean>
 
 	<!--开启aop，对类代理
  不加这个配置，后续配置无效
  -->
 	<aop:config proxy-target-class="true"></aop:config>
+
 </beans>

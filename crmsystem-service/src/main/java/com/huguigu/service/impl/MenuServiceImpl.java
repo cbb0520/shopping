@@ -20,4 +20,11 @@ public class MenuServiceImpl implements MenuService {
         }
         return meuns1;
     }
+
+    @Override
+    public List<Menu> queryMenuByrid(int rid) {
+        List<Menu> menus = menuDao.queryMenuByrid(rid);
+
+        return menus;
+    }
 }

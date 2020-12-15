@@ -10,16 +10,24 @@ import java.util.List;
 
 
 @Controller
+@CrossOrigin
 public class MenuController {
     @Autowired
     MenuService menuService;
     @RequestMapping(value ="/meuncc.action",produces = {"application/json;charset=utf-8"})
     @ResponseBody
-    @CrossOrigin
+
     public List<Menu> queryMenuAll(Integer eid){
 
         List<Menu> list = menuService.indexMenus(1);
         return list;
+    }
+
+    @RequestMapping("/queryMenuByrid.action")
+    @ResponseBody
+    public List<Menu> queryMenuByrid(int rid) {
+
+        return menuService.queryMenuByrid(rid);
     }
 
 }
