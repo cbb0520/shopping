@@ -12,11 +12,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       AND er.rid = ro.rid
       AND ro.rid = mr.rid
       AND mr.id = meu.id
-      AND em.eid = #{eid} AND meu.`parentid`= #{parentid}
+      AND em.eid = #{eid}
+      AND meu.`parentid`= #{parentid}
       ORDER BY meu.id;
 
 	</select>
 
+    <select id="queryMenuByrid" parameterType="int" resultType="menu">
+	SELECT m.* FROM menu m
+		LEFT JOIN menus_role p
+		ON m.id = p.id
+		where p.rid =#{rid} and m.`parentid` !=0
+	</select>
 
+    <select id="empMenu" parameterType="int" resultType="menu">
+
+		SELECT DISTINCT meu.*
+      FROM menu meu, menus_role mr, role ro, emp_role er , staff em
+      WHERE em.eid = er.eid
+      AND er.rid = ro.rid
+      AND ro.rid = mr.rid
+      AND mr.id = meu.id
+      AND em.eid = #{eid}
+      ORDER BY meu.id;
+
+	</select>
 
 </mapper>

@@ -74,4 +74,16 @@ public class RoleController {
             @RequestParam int eid) {
         return roleService.staffrole(eid);
     }
+
+    //角色授予菜单
+    @RequestMapping(value = "/addroleMenu.action",produces = "text/json;charset=utf-8")
+    @ResponseBody
+    public String addroleMenu(int rid,int loginedi,String mids) {
+
+        int shouquan = roleService.addroleMenu(rid,loginedi,mids);
+        if (1 > 0) {
+            return "恭喜你，授权成功";
+        }
+        return "授权失败";
+    }
 }
