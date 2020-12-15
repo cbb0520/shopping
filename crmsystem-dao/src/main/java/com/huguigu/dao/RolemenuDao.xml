@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.RolemenuDao">
+
+	<delete id="deleroleMenu" parameterType="int[]">
+		<!-- delete from emp where empno in(7789,7790) -->
+		<!-- forEach : 用来循环 collection : 用来指定循环的数据的类型 可以填的值有：array,list,map item
+			: 循环中为每个循环的数据指定一个别名 index : 循环中循环的下标 open : 开始 close : 结束 separator : 数组中元素之间的分隔符 -->
+		delete from menus_role where rid = #{rid} and id in
+		<foreach collection="mids" item="id" index="no" open="("
+				 separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<insert id="addroleMenu">
+		insert into menus_role values
+		<foreach collection="mids" item="id" separator=",">
+			(null,#{rid},#{id})
+		</foreach>
+	</insert>
+</mapper>
