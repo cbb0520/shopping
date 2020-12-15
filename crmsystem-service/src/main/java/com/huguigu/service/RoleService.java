@@ -17,4 +17,6 @@ public interface RoleService {
     public int updateRoLe(RoLe roLe);
     //查询用户的角色
     public List<RoLe> staffrole(int eid);
+    //角色添加菜单权限
+    public int addroleMenu(int rid,int loginedi,String mids);
 }

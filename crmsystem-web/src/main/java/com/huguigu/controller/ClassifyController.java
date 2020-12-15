@@ -47,16 +47,20 @@ public class ClassifyController {
     }
 
     @RequestMapping("uptClassify.action")
-    public Map uptClassify(Classify classify){
+    public Map uptClassify(Classify classify,String oldfname){
         Map<String,String> map =new HashMap<String,String>();
-        int i = classifyService.uptClassify(classify);
-        if (i < 0) {
+        int i = classifyService.uptClassify(classify,oldfname);
+        if (i < 1) {
             map.put("msg","修改失败");
             map.put("type","error");
         }
         if (i == 1) {
             map.put("msg","修改成功");
             map.put("type","success");
+        }
+        if(i == 2){
+            map.put("msg","修改失败，该名称已经在使用！");
+            map.put("type","info");
         }
         return map;
     }
@@ -65,13 +69,17 @@ public class ClassifyController {
     public Map addClassify(Classify classify){
         Map<String,String> map =new HashMap<String,String>();
         int i = classifyService.addCLassify(classify);
-        if (i < 0) {
+        if (i < 1) {
             map.put("msg","添加失败");
             map.put("type","error");
         }
         if (i == 1) {
             map.put("msg","添加成功");
             map.put("type","success");
+        }
+        if(i == 2){
+            map.put("msg","修改失败，该名称已经在使用！");
+            map.put("type","info");
         }
         return map;
     }
