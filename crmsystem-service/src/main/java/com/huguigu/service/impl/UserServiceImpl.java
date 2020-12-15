@@ -26,4 +26,27 @@ public class UserServiceImpl implements UserService {
         pageVo.setTotal(userDao.queryAlluserCount(user));
         return pageVo;
     }
+    //前端登录
+    @Override
+    public User loginUser(User user) {
+        return userDao.loginUser(user);
+    }
+    //前端注册
+    @Override
+    public int registerUser(User user) {
+        return userDao.registerUser(user);
+    }
+
+    //根据账号查询用户
+    @Override
+    public User queryByuaccount(User user) {
+        return userDao.queryByuaccount(user);
+    }
+    //查询最大用户ID
+    @Override
+    public int querymaxuid() {
+        return userDao.querymaxuid();
+    }
+
+
 }
