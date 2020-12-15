@@ -16,7 +16,7 @@ public interface ClassifyService {
     Classify queryClassifyById(int id);
 
     //修改类型
-    int uptClassify(Classify classify);
+    int uptClassify(Classify classify,String oldfname);
 
     //添加类型
     int addCLassify(Classify classify);
