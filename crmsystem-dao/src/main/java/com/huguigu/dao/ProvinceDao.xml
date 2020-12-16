@@ -9,4 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="queryProvincebyid" parameterType="String" resultType="Province">
         select *from province where code=#{code}
     </select>
+    <select id="queryProvinceName" parameterType="String" resultType="Province">
+        select *from province where name=#{name}
+    </select>
 </mapper>

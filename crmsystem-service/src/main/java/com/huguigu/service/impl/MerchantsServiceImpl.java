@@ -27,7 +27,7 @@ public class MerchantsServiceImpl implements MerchantsService {
            Area area=areaDao.querycodeArea(areacode);
            String aname=area.getName();
            String mddress=merchants.getMddress();
-           String dizhi=pname+cname+aname+mddress;
+           String dizhi=pname+"/"+cname+"/"+aname+"/"+mddress;
             merchants.setState("未同意");
             merchants.setMddress(dizhi);
         return merchantsDao.addMerchants(merchants);
@@ -64,8 +64,17 @@ public class MerchantsServiceImpl implements MerchantsService {
     }
 
     @Override
-    public int updateMerchants(Merchants merchants) {
+    public int updateMerchants(Merchants merchants,String provincecode,String citycode, String areacode) {
+        Province province =provinceDao.queryProvincebyid(provincecode);
+        String pname=province.getName();
+        City city= cityDao.querycodeCity(citycode);
+        String cname=city.getName();
+        Area area=areaDao.querycodeArea(areacode);
+        String aname=area.getName();
+        String mddress=merchants.getMddress();
+        String zongdizhi=pname+"/"+cname+"/"+aname+"/"+mddress;
         merchants.setState("已同意");
+        merchants.setMddress(zongdizhi);
         return merchantsDao.updateMerchants(merchants);
     }
 

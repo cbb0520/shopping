@@ -90,11 +90,11 @@ public class MerchantsController {
     }
     @RequestMapping("/updateMerchants.action")
     @ResponseBody
-    public Map updateMerchants(Merchants merchants, @RequestParam("img") MultipartFile img) throws IOException {
+    public Map updateMerchants(Merchants merchants, @RequestParam("img") MultipartFile img,String provincecode,String citycode, String areacode) throws IOException {
         merchants.setMimgs("./src/assets/shanghu/"+img.getOriginalFilename());  //保存到数据库的【相对路径】
         img.transferTo(new File("E:\\s3zuoye\\shopping_after\\src\\assets\\shanghu\\"+img.getOriginalFilename()));
         Map<String,String> map=new HashMap<>();
-        int num=merchantsService.updateMerchants(merchants);
+        int num=merchantsService.updateMerchants(merchants,provincecode,citycode,areacode);
         if(num==1){
             map.put("msg","修改成功");
             map.put("code","1");

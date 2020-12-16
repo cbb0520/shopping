@@ -20,4 +20,9 @@ public class CityServiceImpl implements CityService {
     public City querycodeCity(String code) {
         return cityDao.querycodeCity(code);
     }
+
+    @Override
+    public City queryCityName(String name) {
+        return cityDao.queryCityName(name);
+    }
 }
