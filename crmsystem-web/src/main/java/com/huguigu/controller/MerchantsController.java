@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,23 +25,29 @@ public class MerchantsController {
                                           @RequestParam(value ="rows",defaultValue ="5")  int rows){
         return merchantsService.queryCountMerchants(merchants,page,rows);
     }
+    @RequestMapping("/addMerchants2.action")
+    @ResponseBody
+    public Map addMerchants2(Merchants merchants){
+        Map<String,String> map=new HashMap<>();
+        int num=merchantsService.addMerchants2(merchants);
+        if(num==1){
+            map.put("msg","添加成功");
+            map.put("code","1");
+        }else {
+            map.put("msg","添加失败");
+            map.put("code","0");
+        }
+        return map;
+    }
+
     @RequestMapping("/addMerchants.action")
     @ResponseBody
     public Map addMerchants(Merchants merchants, String provincecode, String citycode, String areacode,
-                            @RequestParam(value = "filename",required =false) MultipartFile filename, HttpServletRequest request){
-        System.out.println(merchants);
-        String path =request.getServletContext().getRealPath("/upload");
-        File file  =new File(path);
-        if(!file.exists()){
-            file.mkdirs();
-        }
-        try {
-            merchants.setMimgs((filename.getOriginalFilename()));
-            filename.transferTo(new File(path,merchants.getMimgs()));
-            System.out.println("文件保存成功");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+                            @RequestParam("img") MultipartFile img) throws IOException {
+        merchants.setMimgs("./src/assets/shanghu/"+img.getOriginalFilename());  //保存到数据库的【相对路径】
+        System.out.println(img.getBytes().length);
+        //将上传的文件保存到服务器上的前端项目的【绝对路径】
+        img.transferTo(new File("E:\\s3zuoye\\shopping_after\\src\\assets\\shanghu\\"+img.getOriginalFilename()));
         Map<String,String> map=new HashMap<>();
         int num=merchantsService.addMerchants(merchants,provincecode,citycode,areacode);
         if(num==1){
@@ -85,9 +90,11 @@ public class MerchantsController {
     }
     @RequestMapping("/updateMerchants.action")
     @ResponseBody
-    public Map updateMerchants(Merchants merchants){
+    public Map updateMerchants(Merchants merchants, @RequestParam("img") MultipartFile img,String provincecode,String citycode, String areacode) throws IOException {
+        merchants.setMimgs("./src/assets/shanghu/"+img.getOriginalFilename());  //保存到数据库的【相对路径】
+        img.transferTo(new File("E:\\s3zuoye\\shopping_after\\src\\assets\\shanghu\\"+img.getOriginalFilename()));
         Map<String,String> map=new HashMap<>();
-        int num=merchantsService.updateMerchants(merchants);
+        int num=merchantsService.updateMerchants(merchants,provincecode,citycode,areacode);
         if(num==1){
             map.put("msg","修改成功");
             map.put("code","1");

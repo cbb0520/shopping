@@ -1,22 +1,33 @@
 package com.huguigu.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class Deliver {
     private int did;
     private int uid;
     private int mid;
     private double price;
-    private int state;
+    private int ustate;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone ="GMT+8")
+    private Date buytime;
+    private int mstate;
+    private int hstate;
     private int udele;
     private User user;
     private Merchants merchants;
     public Deliver(){}
 
-    public Deliver(int did, int uid, int mid, double price, int state, int udele, User user, Merchants merchants) {
+    public Deliver(int did, int uid, int mid, double price, int ustate, Date buytime, int mstate, int hstate, int udele, User user, Merchants merchants) {
         this.did = did;
         this.uid = uid;
         this.mid = mid;
         this.price = price;
-        this.state = state;
+        this.ustate = ustate;
+        this.buytime = buytime;
+        this.mstate = mstate;
+        this.hstate = hstate;
         this.udele = udele;
         this.user = user;
         this.merchants = merchants;
@@ -54,12 +65,36 @@ public class Deliver {
         this.price = price;
     }
 
-    public int getState() {
-        return state;
+    public int getUstate() {
+        return ustate;
     }
 
-    public void setState(int state) {
-        this.state = state;
+    public void setUstate(int ustate) {
+        this.ustate = ustate;
+    }
+
+    public Date getBuytime() {
+        return buytime;
+    }
+
+    public void setBuytime(Date buytime) {
+        this.buytime = buytime;
+    }
+
+    public int getMstate() {
+        return mstate;
+    }
+
+    public void setMstate(int mstate) {
+        this.mstate = mstate;
+    }
+
+    public int getHstate() {
+        return hstate;
+    }
+
+    public void setHstate(int hstate) {
+        this.hstate = hstate;
     }
 
     public int getUdele() {
@@ -93,7 +128,10 @@ public class Deliver {
                 ", uid=" + uid +
                 ", mid=" + mid +
                 ", price=" + price +
-                ", state=" + state +
+                ", ustate=" + ustate +
+                ", buytime=" + buytime +
+                ", mstate=" + mstate +
+                ", hstate=" + hstate +
                 ", udele=" + udele +
                 ", user=" + user +
                 ", merchants=" + merchants +

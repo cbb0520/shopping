@@ -20,4 +20,9 @@ public class AreaServiceImpl implements AreaService {
     public Area querycodeArea(String code) {
         return areaDao.querycodeArea(code);
     }
+
+    @Override
+    public Area queryAreaName(String name) {
+        return areaDao.queryAreaName(name);
+    }
 }

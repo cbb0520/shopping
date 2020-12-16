@@ -6,4 +6,7 @@ public interface DeliverDao {
     List<Deliver> queryAllDeliver(Deliver deliver);
     int queryCountDeliver(Deliver deliver);
     Deliver queryDeliverByid(int did);
+    int updateDeliverState(int did);
+    List<Deliver> queryDeliverstate(Deliver deliver);
+    int queryDeliver(Deliver deliver);
 }
