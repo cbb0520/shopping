@@ -55,4 +55,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             and udele = 0
         </where>
     </select>
+
+    <select id="queryGoodsByWid" parameterType="int" resultMap="goodsmap">
+        select g.*,wg.count from goods g inner join warehouse_goods wg on g.gid = wg.gid
+        where g.gid in (select gid from warehouse_goods where warehouse_goods.wid = #{wid})
+    </select>
+
+    <select id="queryCountByWarehouse" parameterType="java.lang.Integer" resultType="int">
+        SELECT wg.count FROM goods g INNER JOIN warehouse_goods wg ON g.gid = wg.gid
+        WHERE wg.gid = #{id}
+    </select>
 </mapper>

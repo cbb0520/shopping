@@ -23,4 +23,10 @@ public interface GoodsDao {
 
     //判断是否有相同的商品名
     int isEqual(@Param("oldgname") String oldgname, @Param("newgname") String newgname);
+
+    //根据仓库id查询商品集合
+    List<Goods> queryGoodsByWid(int wid);
+
+    //根据id查询商品剩余数量
+    Integer queryCountByWarehouse(int id);
 }

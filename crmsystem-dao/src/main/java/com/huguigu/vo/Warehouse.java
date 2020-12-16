@@ -1,51 +1,56 @@
 package com.huguigu.vo;
 
+import java.util.List;
+
 /**
  * 仓库表
  */
 public class Warehouse {
-    private Integer cid;
-    private String cname;
+    private Integer wid;
+    private String wname;
     private Classify classify;
     private Integer liang;
+    private List<Goods> goods;
     private Integer udele;
 
     public Warehouse() {
     }
 
-    public Warehouse(Integer cid, String cname, Classify classify, Integer liang, Integer udele) {
-        this.cid = cid;
-        this.cname = cname;
+    public Warehouse(Integer wid, String wname, Classify classify, Integer liang, List<Goods> goods, Integer udele) {
+        this.wid = wid;
+        this.wname = wname;
         this.classify = classify;
         this.liang = liang;
+        this.goods = goods;
         this.udele = udele;
     }
 
     @Override
     public String toString() {
         return "Warehouse{" +
-                "cid=" + cid +
-                ", cname='" + cname + '\'' +
+                "wid=" + wid +
+                ", wname='" + wname + '\'' +
                 ", classify=" + classify +
                 ", liang=" + liang +
+                ", goods=" + goods +
                 ", udele=" + udele +
                 '}';
     }
 
-    public Integer getCid() {
-        return cid;
+    public Integer getWid() {
+        return wid;
     }
 
-    public void setCid(Integer cid) {
-        this.cid = cid;
+    public void setWid(Integer wid) {
+        this.wid = wid;
     }
 
-    public String getCname() {
-        return cname;
+    public String getWname() {
+        return wname;
     }
 
-    public void setCname(String cname) {
-        this.cname = cname;
+    public void setWname(String wname) {
+        this.wname = wname;
     }
 
     public Classify getClassify() {
@@ -62,6 +67,14 @@ public class Warehouse {
 
     public void setLiang(Integer liang) {
         this.liang = liang;
+    }
+
+    public List<Goods> getGoods() {
+        return goods;
+    }
+
+    public void setGoods(List<Goods> goods) {
+        this.goods = goods;
     }
 
     public Integer getUdele() {

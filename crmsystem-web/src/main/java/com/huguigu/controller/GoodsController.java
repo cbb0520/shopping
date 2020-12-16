@@ -49,6 +49,10 @@ public class GoodsController {
             map.put("msg", "删除成功");
             map.put("type", "success");
         }
+        if (i == 2) {
+            map.put("msg", "删除失败,该商品还有库存，不能删除！");
+            map.put("type", "info");
+        }
         return map;
     }
 
@@ -66,7 +70,7 @@ public class GoodsController {
         try {
             //用object接受，如果是字符串类型就不执行文件上传，是文件类型则强转成文件类型上传
             if(img instanceof String){
-                System.out.println("String");
+                //System.out.println("String");
             }else {
                 MultipartFile multipartFile = (MultipartFile)img;
                 multipartFile.transferTo(new File("E:\\IdeaProjects\\shopping_after\\src\\assets\\"+multipartFile.getOriginalFilename()));
