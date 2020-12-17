@@ -14,10 +14,12 @@ public class Goods {
     private Float price;
     private Integer udele;
 
+    private Integer count;
+
     public Goods() {
     }
 
-    public Goods(Integer gid, Classify classify, String code, String gname, String gimgs, Integer limit, Integer soid, Float price, Integer udele) {
+    public Goods(Integer gid, Classify classify, String code, String gname, String gimgs, Integer limit, Integer soid, Float price, Integer udele, Integer count) {
         this.gid = gid;
         this.classify = classify;
         this.code = code;
@@ -27,6 +29,7 @@ public class Goods {
         this.soid = soid;
         this.price = price;
         this.udele = udele;
+        this.count = count;
     }
 
     @Override
@@ -41,7 +44,16 @@ public class Goods {
                 ", soid=" + soid +
                 ", price=" + price +
                 ", udele=" + udele +
+                ", count=" + count +
                 '}';
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public Integer getGid() {

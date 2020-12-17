@@ -26,7 +26,16 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public int delGoods(int gid) {
-        return goodsDao.delGoods(gid);
+        //判断该商品是否还有库存
+        Integer i = goodsDao.queryCountByWarehouse(gid);
+        System.out.println(i);
+        if(i == null){
+            return goodsDao.delGoods(gid);
+        }
+        if(i == 0){
+            return goodsDao.delGoods(gid);
+        }
+        return 2;
     }
 
     @Override
@@ -35,7 +44,11 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public int uptGoods(Goods goods) {
+    public int uptGoods(Goods goods,String oldgname) {
+        //判断修改后的商品名是否与其他商品名相同
+        if(goodsDao.isEqual(oldgname,goods.getGname()) > 0){
+            return 2;
+        }
         return goodsDao.uptGoods(goods);
     }
 }

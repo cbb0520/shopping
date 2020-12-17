@@ -9,4 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="querycodeCity" parameterType="String" resultType="City">
 		SELECT *FROM city WHERE CODE=#{code}
 	</select>
+	<select id="queryCityName" parameterType="String" resultType="City">
+		select * from city where name=#{name}
+	</select>
 </mapper>

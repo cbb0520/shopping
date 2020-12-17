@@ -29,4 +29,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from user where uid=#{uid}
     </select>
 
+    <!--前端登录-->
+    <select id="loginUser" parameterType="User" resultType="User">
+        SELECT * FROM user where uaccount=#{uaccount} and upassword=#{upassword} and udele=0;
+    </select>
+
+    <!--前端注册-->
+    <insert id="registerUser" parameterType="User">
+        insert into user values (null,#{uaccount},#{upassword},#{uimg},#{uname},#{phone},#{mid},#{address},0)
+	</insert>
+
+    <!--根据账号查询用户-->
+    <select id="queryByuaccount" parameterType="User" resultType="User">
+        SELECT * FROM user where uaccount=#{uaccount} and udele=0;
+    </select>
+
+    <!--查询最大用户ID-->
+    <select id="querymaxuid" resultType="int">
+        SELECT MAX(uid) FROM USER;
+    </select>
+
 </mapper>

@@ -37,12 +37,18 @@ public class ClassifyServiceImpl implements ClassifyService {
     }
 
     @Override
-    public int uptClassify(Classify classify) {
+    public int uptClassify(Classify classify,String oldfname) {
+        if(classifyDao.isEqual(oldfname,classify.getFname()) > 0){
+            return 2;
+        }
         return classifyDao.uptClassify(classify);
     }
 
     @Override
     public int addCLassify(Classify classify) {
+        if(classifyDao.isEqual(null,classify.getFname()) > 0){
+            return 2;
+        }
         return classifyDao.addCLassify(classify);
     }
 }
