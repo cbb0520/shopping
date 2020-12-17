@@ -27,7 +27,15 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public int delGoods(int gid) {
         //判断该商品是否还有库存
-        return goodsDao.delGoods(gid);
+        Integer i = goodsDao.queryCountByWarehouse(gid);
+        System.out.println(i);
+        if(i == null){
+            return goodsDao.delGoods(gid);
+        }
+        if(i == 0){
+            return goodsDao.delGoods(gid);
+        }
+        return 2;
     }
 
     @Override

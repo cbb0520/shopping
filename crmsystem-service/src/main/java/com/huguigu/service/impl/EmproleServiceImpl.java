@@ -19,6 +19,7 @@ RoleDao roleDao;
 
     @Override
     public int addEmprole(int eid,int loginedi, String rids) {
+
         List<RoLe> staffrole = roleDao.staffrole(loginedi);
         String[] arr = rids.split(",");
         int[] ints = new int[arr.length];
@@ -26,10 +27,14 @@ RoleDao roleDao;
         for(int i=0;i<staffrole.size();i++) {
             staro[i] = staffrole.get(i).getRid();
         }
-        for(int i=0;i<arr.length;i++){
-            ints[i] = Integer.parseInt(arr[i]);
-        }
         emp_roleDao.deleEmprole(eid,staro);
-        return emp_roleDao.addEmprole(eid,ints);
+        if(rids != "") {
+            for (int i = 0; i < arr.length; i++) {
+                ints[i] = Integer.parseInt(arr[i]);
+            }
+            emp_roleDao.addEmprole(eid,ints);
+        }
+
+        return  1;
     }
 }

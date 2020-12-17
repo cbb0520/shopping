@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.WarehouseDao">
+
+    <resultMap id="warehousemap" type="warehouse">
+        <id column="wid" property="wid"></id>
+        <association property="classify" column="fid"
+                     select="com.huguigu.dao.ClassifyDao.queryClassById"
+                     javaType="Classify"/>
+        <collection property="goods" javaType="list" ofType="com.huguigu.vo.Goods" column="wid"
+                    select="com.huguigu.dao.GoodsDao.queryGoodsByWid">
+        </collection>
+    </resultMap>
+
+
+    <select id="queryAllWarehouse" resultMap="warehousemap">
+        select * from warehouse
+        <where>
+            <if test="wname!=null">wname like concat('%',#{wname},'%')</if>
+            and udele = 0
+        </where>
+    </select>
+
+    <select id="queryCountWarehouse" resultType="int">
+        select count(1) from warehouse
+        <where>
+            <if test="wname!=null">wname like concat('%',#{wname},'%')</if>
+            and udele = 0
+        </where>
+    </select>
+
+    <update id="delWarehouseByWid" parameterType="int">
+        update warehouse set udele = 1 where wid = #{wid}
+    </update>
+
+    <insert id="addWarehouse">
+        insert into warehouse values (null,#{wname},#{classify.fid},#{liang},0)
+    </insert>
+
+    <select id="queryWarehouseById" resultMap="warehousemap">
+        select  * from warehouse where wid = #{id}
+    </select>
+
+    <update id="uptWarehouse">
+        update warehouse set wname = #{wname}, fid = #{classify.fid}, liang = #{liang}
+        where wid = #{wid}
+    </update>
+
+    <select id="isWarehouseLian" resultType="java.lang.Integer">
+        SELECT #{liang} - (SELECT SUM(COUNT) FROM warehouse_goods WHERE wid = #{wid})
+    </select>
+
+    <select id="getWarehouseAllCount" resultType="java.lang.Integer">
+        select sum(count) from warehouse_goods where  wid = #{wid}
+    </select>
+
+    <select id="isWnameRepetition" resultType="int">
+        select count(1) from warehouse
+        <where>
+            <if test="oldwname!=null">and wname != #{oldwname}</if>
+            and wname = #{newwname}
+        </where>
+
+    </select>
+</mapper>
