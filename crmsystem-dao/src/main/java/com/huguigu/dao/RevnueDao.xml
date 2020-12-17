@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.RevnueDao">
+
+	<select id="querymothen" parameterType="revnue" resultType="int">
+
+		SELECT IFNULL(SUM(total),0) AS total FROM revnue WHERE MONTH(rtime)= #{mothen} AND YEAR(rtime)= #{year} ;
+	</select>
+	<select id="queryyear" parameterType="revnue" resultType="int">
+
+		SELECT IFNULL(SUM(total),0) AS total FROM revnue WHERE  YEAR(rtime)= #{year} ;
+	</select>
+
+	<select id="querysum" parameterType="revnue" resultType="int">
+
+		SELECT IFNULL(SUM(total),0) AS total FROM revnue
+	</select>
+</mapper>

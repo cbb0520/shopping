@@ -21,7 +21,7 @@
         INNER JOIN USER u ON d.uid=u.uid
         INNER JOIN merchants m ON d.mid=m.mid
         <where>
-            d.state=0
+            d.mstate=0
             <if test="user!=null">
                 <if test="user.uname!=null">and u.uname like concat ('%',#{user.uname},'%')</if>
             </if>
@@ -32,7 +32,7 @@
         INNER JOIN USER u ON d.uid=u.uid
         INNER JOIN merchants m ON d.mid=m.mid
         <where>
-            d.state=0
+            d.mstate=0
             <if test="user!=null">
                 <if test="user.uname!=null">and u.uname like concat ('%',#{user.uname},'%')</if>
             </if>
