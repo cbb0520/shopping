@@ -9,4 +9,15 @@ public interface DeliverDao {
     int updateDeliverState(int did);
     List<Deliver> queryDeliverstate(Deliver deliver);
     int queryDeliver(Deliver deliver);
+    List<Deliver> queryAllDeliverdsh(Deliver deliver);
+    int queryCountDeliverdsh(Deliver deliver);
+    List<Deliver> queryAllDeliverdfh(Deliver deliver);
+    int queryCountDeliverdfh(Deliver deliver);
+    int updateDeliverStatesh(int did);
+    List<Deliver> queryAllDeliverdth(Deliver deliver);
+    int queryCountDeliverdth(Deliver deliver);
+    List<Deliver> queryAllDeliveryth(Deliver deliver);
+    int queryCountDeliveryth(Deliver deliver);
+    List<Deliver> queryAllDelivers(Deliver deliver);
+    int queryCountDelivers(Deliver deliver);
 }
