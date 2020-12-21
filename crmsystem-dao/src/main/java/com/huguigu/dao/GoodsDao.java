@@ -29,4 +29,5 @@ public interface GoodsDao {
 
     //根据id查询商品剩余数量
     Integer queryCountByWarehouse(int id);
+
 }

@@ -1,8 +1,11 @@
 package com.huguigu.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 商品表
  */
+@JsonIgnoreProperties("handler")
 public class Goods {
     private Integer gid;
     private Classify classify;

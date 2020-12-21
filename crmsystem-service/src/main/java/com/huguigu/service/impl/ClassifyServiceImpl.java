@@ -51,4 +51,9 @@ public class ClassifyServiceImpl implements ClassifyService {
         }
         return classifyDao.addCLassify(classify);
     }
+
+    @Override
+    public List<Classify> queryClassify() {
+        return classifyDao.queryClassify();
+    }
 }

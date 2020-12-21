@@ -2,6 +2,7 @@ package com.huguigu.service;
 
 import com.huguigu.vo.PageVo;
 import com.huguigu.vo.RoLe;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface RoleService {
     public List<RoLe> staffrole(int eid);
     //角色添加菜单权限
     public int addroleMenu(int rid,int loginedi,String mids);
+    //根据角色明查询角色
+    public RoLe queryRname(@Param("rname")String rname);
 }

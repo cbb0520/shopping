@@ -65,4 +65,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT wg.count FROM goods g INNER JOIN warehouse_goods wg ON g.gid = wg.gid
         WHERE wg.gid = #{id}
     </select>
+
+
 </mapper>
