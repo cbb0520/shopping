@@ -48,5 +48,10 @@ public class UserServiceImpl implements UserService {
         return userDao.querymaxuid();
     }
 
+    @Override
+    public User queryUserbyid(int uid) {
+        return userDao.queryUserbyid(uid);
+    }
+
 
 }

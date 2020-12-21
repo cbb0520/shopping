@@ -1,7 +1,9 @@
 package com.huguigu.controller;
 import com.huguigu.service.MerchantsService;
+import com.huguigu.service.UserService;
 import com.huguigu.vo.Merchants;
 import com.huguigu.vo.PageVo;
+import com.huguigu.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +20,8 @@ import java.util.Map;
 public class MerchantsController {
     @Autowired
     MerchantsService merchantsService;
+    @Autowired
+    UserService userService;
     @RequestMapping("/queryCountMerchants.action")
     @ResponseBody
     public PageVo<Merchants> queryCountMerchants(Merchants merchants,
@@ -120,5 +124,10 @@ public class MerchantsController {
     @ResponseBody
     public Merchants queryMerchantsBYId(int mid){
         return merchantsService.queryMerchantsBYId(mid);
+    }
+    @RequestMapping("/yanzhengUserById.action")
+    @ResponseBody
+    public User yanzhengUserById(int uid){
+        return userService.queryUserbyid(uid);
     }
 }
