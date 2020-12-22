@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.huguigu.dao.StaffDao">
 	<select id="staffLogin" resultType="staff">
 		SELECT * FROM staff
-        WHERE `account` =  #{account} and password = #{password} and udele = 0
+        WHERE `account` =  #{account}  and udele = 0
 	</select>
 
 

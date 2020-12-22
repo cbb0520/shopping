@@ -17,7 +17,7 @@ public class RevnueServiceImpl implements RevnueService {
         List<Revnue> incoMes = new ArrayList<>();
         for (int i = 1;i<month+1;i++){
             Revnue revnue = new Revnue();
-            int querymothen = revnueDao.querymothen(String.valueOf(i), year);
+            float querymothen = revnueDao.querymothen(String.valueOf(i), year);
             revnue.setMothen(i+"月");
             revnue.setPrice(querymothen);
             incoMes.add(revnue);
@@ -26,8 +26,9 @@ public class RevnueServiceImpl implements RevnueService {
         Revnue me2 = new Revnue();
         Revnue me3 = new Revnue();
         Revnue me = new Revnue();
-        int querynianji = revnueDao.queryyear(year);//年和
-        int querysum = revnueDao.querysum();//总和
+        float querynianji = revnueDao.queryyear(year);//年和
+        float querysum = revnueDao.querysum();//总和
+        System.out.println(querynianji);
         int yongjin = (int) (querynianji*0.1);
         int sumyongjin = (int) (querysum*0.1);
         me1.setMothen("年度总收入");
@@ -50,11 +51,13 @@ public class RevnueServiceImpl implements RevnueService {
         List<Revnue> incoMes = new ArrayList<>();
         for (int i = 1;i<mothen+1;i++){
             Revnue revnue = new Revnue();
-            int querymothen = revnueDao.querymothen(String.valueOf(i), year);
+            float querymothen = revnueDao.querymothen(String.valueOf(i), year);
             revnue.setMothen(i+"月");
             revnue.setPrice(querymothen);
             incoMes.add(revnue);
         }
         return incoMes;
     }
+
+
 }

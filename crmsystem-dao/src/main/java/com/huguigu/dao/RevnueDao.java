@@ -5,9 +5,10 @@ import org.apache.ibatis.annotations.Param;
 public interface RevnueDao {
 
     //每个月的收入
-    public  int querymothen(@Param("mothen")String mothen, @Param("year")String year);
+    public  float querymothen(@Param("mothen")String mothen, @Param("year")String year);
     //年季总收入
-    public  int queryyear(@Param("year")String year);
+    public  float queryyear(@Param("year")String year);
     //求总和
-    public  int querysum();
+    public  float querysum();
+
 }

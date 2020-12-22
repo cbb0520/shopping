@@ -4,9 +4,9 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-	<!--<settings>
+	<settings>
 		<setting name="logImpl" value="LOG4J"/>
-	</settings>-->
+	</settings>
 	<!--  批量定义别名-->
 	<typeAliases>
 		<package name="com.huguigu.vo"/>

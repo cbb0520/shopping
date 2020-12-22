@@ -41,4 +41,5 @@ public interface GoodsDao {
 
     //查询该用户的购物车
     List<Goods> queryGoodsByUid(int uid);
+
 }

@@ -21,8 +21,9 @@ public class RevnueController {
     @RequestMapping("/queryshouru.action")
     @ResponseBody
     public List<Revnue> queryshouru(String year) {
+        System.out.println(year);
         Calendar cal = Calendar.getInstance();
-        if (year==null || year == "") {
+        if (year.equals("null") || year == "") {
             year = String.valueOf(cal.get(Calendar.YEAR));
         }
         int month = cal.get(Calendar.MONTH) + 1;
@@ -33,7 +34,7 @@ public class RevnueController {
     @ResponseBody
     public List<Revnue> queryqinsan(String year) {
         Calendar cal = Calendar.getInstance();
-        if (year==null || year == "") {
+        if (year.equals("null") || year == "") {
             year = String.valueOf(cal.get(Calendar.YEAR));
         }
         int month = cal.get(Calendar.MONTH) + 1;
@@ -43,4 +44,6 @@ public class RevnueController {
 
         return queryshouru2;
     }
+
+
 }

@@ -75,4 +75,9 @@ public class RoleServiceImpl implements RoleService {
 
         return 1;
     }
+
+    @Override
+    public RoLe queryRname(String rname) {
+        return roleDao.queryRname(rname);
+    }
 }

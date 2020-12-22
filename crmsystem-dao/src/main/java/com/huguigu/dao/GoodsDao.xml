@@ -83,4 +83,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT g.gid, fid, CODE, gname, gimgs, `limit`, soid, price, udele,sc.count
         FROM goods g INNER JOIN shopping_car sc ON g.gid = sc.gid WHERE uid = #{uid}
     </select>
+
+
 </mapper>
