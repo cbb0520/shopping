@@ -132,4 +132,26 @@ public class GoodsController {
     public List<Goods> queryGoodsByUid(String uaccount){
         return goodsService.queryGoodsByUid(uaccount);
     }
+
+    //修改购物车的数量 delShoppingCar
+    @RequestMapping("selectCountGoods.action")
+    public int selectCountGoods(int gid,int count,String uaccount){
+        return goodsService.uptShoppingCarCount(gid,count,uaccount);
+    }
+    //根据条件删除购物车某些商品
+    @RequestMapping("delShoppingCar.action")
+    public int delShoppingCar(int gid,String uaccount){
+        return goodsService.delShoppingCar(gid,uaccount);
+    }
+    // 设置选中购物车
+    @RequestMapping("changeSelect.action")
+    public int changeSelect(int gid,Boolean select,String uaccount){
+        return goodsService.changeSelect(gid,uaccount,select);
+    }
+
+    //全选不全选
+    @RequestMapping("selectAllShopping.action")
+    public int selectAllShopping(Boolean select,String uaccount){
+        return goodsService.changeAllSelect(uaccount,select);
+    }
 }

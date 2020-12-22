@@ -81,4 +81,32 @@ public class GoodsServiceImpl implements GoodsService {
         int uid = user.getUid();
         return goodsDao.queryGoodsByUid(uid);
     }
+
+    @Override
+    public int uptShoppingCarCount(int gid, int count, String uaccount) {
+        User user = userDao.queryUserByUaccount(uaccount);
+        int uid = user.getUid();
+        return goodsDao.uptShoppingCarCount(gid,count,uid);
+    }
+
+    @Override
+    public int delShoppingCar(int gid, String uaccount) {
+        User user = userDao.queryUserByUaccount(uaccount);
+        int uid = user.getUid();
+        return goodsDao.delShoppingCar(gid,uid);
+    }
+
+    @Override
+    public int changeSelect(int gid, String uaccount, boolean select) {
+        User user = userDao.queryUserByUaccount(uaccount);
+        int uid = user.getUid();
+        return goodsDao.changeSelect(gid,uid,select);
+    }
+
+    @Override
+    public int changeAllSelect(String uaccount, boolean select) {
+        User user = userDao.queryUserByUaccount(uaccount);
+        int uid = user.getUid();
+        return goodsDao.changeAllSelect(uid,select);
+    }
 }
