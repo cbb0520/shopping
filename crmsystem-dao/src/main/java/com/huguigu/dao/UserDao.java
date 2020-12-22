@@ -16,4 +16,7 @@ public interface UserDao {
     public User queryByuaccount(User user);
     //查询最大用户ID
     public int querymaxuid();
+
+    //根据用户名查询用户信息
+    User queryUserByUaccount(String uaccount);
 }

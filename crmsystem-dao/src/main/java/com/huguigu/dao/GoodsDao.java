@@ -29,4 +29,16 @@ public interface GoodsDao {
 
     //根据id查询商品剩余数量
     Integer queryCountByWarehouse(int id);
+
+    //加入购物车
+    int joinShooping(@Param("uid") int uid, @Param("gid") int gid, @Param("count") int count);
+
+    //判断购物车是否已有此商品
+    int isShoppingCarExist(@Param("uid") int uid, @Param("gid") int gid);
+
+    //添加购物车里面的商品数量
+    int addShoppingCarCount(@Param("uid") int uid, @Param("gid") int gid, @Param("count") int count);
+
+    //查询该用户的购物车
+    List<Goods> queryGoodsByUid(int uid);
 }

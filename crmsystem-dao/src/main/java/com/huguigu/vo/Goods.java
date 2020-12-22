@@ -14,7 +14,7 @@ public class Goods {
     private Float price;
     private Integer udele;
 
-    private Integer count;
+    private Integer count = 1;
 
     public Goods() {
     }
