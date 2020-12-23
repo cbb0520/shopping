@@ -3,6 +3,22 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huguigu.dao.MerchantsDao">
+	<resultMap id="MerchantsMap" type="com.huguigu.vo.Merchants">
+		<id column="mid" property="mid"></id>
+		<result column="uid" property="uid"></result>
+		<result column="sname" property="sname"></result>
+		<result column="mddress" property="mddress"></result>
+		<result column="mname" property="mname"></result>
+		<result column="phone" property="phone"></result>
+		<result column="certificate" property="certificate"></result>
+		<result column="mimgs" property="mimgs"></result>
+		<result column="mtype" property="mtype"></result>
+		<result column="state" property="state"></result>
+		<result column="udele" property="udele"></result>
+		<association property="user" javaType="User"
+					 column="uid" select="com.huguigu.dao.UserDao.queryUserbyid">
+		</association>
+	</resultMap>
 	<insert id="addMerchants" parameterType="merchants">
 		insert into merchants(uid,sname,mddress,mname,phone,certificate,mimgs,mtype,state,udele)
 		values(#{uid},#{sname},#{mddress},#{mname},#{phone},#{certificate},#{mimgs},#{mtype},#{state},#{udele})
@@ -10,27 +26,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updatestate" parameterType="merchants">
 		update merchants set state=#{state} where mid=#{mid}
 	</update>
-	<select id="queryAllMerchants" parameterType="merchants" resultType="Merchants">
-			select * from merchants
+	<select id="queryAllMerchants" parameterType="merchants" resultMap="MerchantsMap">
+		SELECT * FROM  Merchants m  INNER JOIN USER u ON u.uid=m.uid
 			<where>
-				udele=0 and state='已同意'
-				<if test="sname!=null"> and sname like concat ('%',#{sname},'%')</if>
-				<if test="mname!=null"> and mname like concat ('%',#{mname},'%')</if>
+				m.udele=0 and m.state='已同意'
+				<if test="sname!=null"> and m.sname like concat ('%',#{sname},'%')</if>
 			</where>
 	</select>
 	<select id="queryCountMerchants" parameterType="merchants" resultType="int">
-			select count(1)  from merchants
+			select count(1)  from merchants  m  INNER JOIN USER u ON u.uid=m.uid
 		<where>
-			udele=0 and state='已同意'
-			<if test="sname!=null"> and sname like concat ('%',#{sname},'%')</if>
-			<if test="mname!=null"> and mname like concat ('%',#{mname},'%')</if>
+			m.udele=0 and m.state='已同意'
+			<if test="sname!=null"> and m.sname like concat ('%',#{sname},'%')</if>
 		</where>
 	</select>
 	<select id="queryMerchantsBYId" parameterType="int" resultType="Merchants">
 		select *from Merchants where mid=#{mid}
 	</select>
 	<update id="updateMerchants" parameterType="merchants">
-		update merchants set uid=#{uid},sname=#{sname},mddress=#{mddress},mname=#{mname},certificate=#{certificate},mimgs=#{mimgs},state=#{state},phone=#{phone},mtype=#{mtype},udele=#{udele} where mid=#{mid}
+		update merchants set uid=#{uid},sname=#{sname},mddress=#{mddress},mname=#{mname},certificate=#{certificate},
+		<if test="mimgs!=''">mimgs=#{mimgs},</if>
+		state=#{state},phone=#{phone},mtype=#{mtype},udele=#{udele} where mid=#{mid}
 	</update>
 	<update id="deleteMerchants" parameterType="int">
 		update merchants set udele=1 where mid=#{mid}
@@ -51,5 +67,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			udele=0 and state='未同意'
 			<if test="sname!=null"> and sname like concat ('%',#{sname},'%')</if>
 		</where>
+	</select>
+	<select id="yanzheng" parameterType="int" resultType="Merchants">
+		select * from Merchants where uid=#{uid} and state='已同意' or state='未同意'
 	</select>
 </mapper>

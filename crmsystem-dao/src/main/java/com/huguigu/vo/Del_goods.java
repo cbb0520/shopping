@@ -1,5 +1,4 @@
 package com.huguigu.vo;
-
 public class Del_goods {
     private int  dgid;
     private int did;

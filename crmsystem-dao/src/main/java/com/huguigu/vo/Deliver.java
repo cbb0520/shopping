@@ -15,11 +15,14 @@ public class Deliver {
     private int mstate;
     private int hstate;
     private int udele;
+    private double merchantrevenue;
     private User user;
     private Merchants merchants;
+    private String mothen;
+    private float total;
     public Deliver(){}
 
-    public Deliver(int did, int uid, int mid, double price, int ustate, Date buytime, int mstate, int hstate, int udele, User user, Merchants merchants) {
+    public Deliver(int did, int uid, int mid, double price, int ustate, Date buytime, int mstate, int hstate, int udele, double merchantrevenue, User user, Merchants merchants, String mothen, float total) {
         this.did = did;
         this.uid = uid;
         this.mid = mid;
@@ -29,8 +32,11 @@ public class Deliver {
         this.mstate = mstate;
         this.hstate = hstate;
         this.udele = udele;
+        this.merchantrevenue = merchantrevenue;
         this.user = user;
         this.merchants = merchants;
+        this.mothen = mothen;
+        this.total = total;
     }
 
     public int getDid() {
@@ -105,6 +111,14 @@ public class Deliver {
         this.udele = udele;
     }
 
+    public double getMerchantrevenue() {
+        return merchantrevenue;
+    }
+
+    public void setMerchantrevenue(double merchantrevenue) {
+        this.merchantrevenue = merchantrevenue;
+    }
+
     public User getUser() {
         return user;
     }
@@ -121,6 +135,22 @@ public class Deliver {
         this.merchants = merchants;
     }
 
+    public String getMothen() {
+        return mothen;
+    }
+
+    public void setMothen(String mothen) {
+        this.mothen = mothen;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
     @Override
     public String toString() {
         return "Deliver{" +
@@ -133,8 +163,11 @@ public class Deliver {
                 ", mstate=" + mstate +
                 ", hstate=" + hstate +
                 ", udele=" + udele +
+                ", merchantrevenue=" + merchantrevenue +
                 ", user=" + user +
                 ", merchants=" + merchants +
+                ", mothen='" + mothen + '\'' +
+                ", total=" + total +
                 '}';
     }
 }

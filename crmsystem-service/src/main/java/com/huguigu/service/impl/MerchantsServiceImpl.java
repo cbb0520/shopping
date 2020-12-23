@@ -91,4 +91,9 @@ public class MerchantsServiceImpl implements MerchantsService {
         pageVo.setTotal(merchantsDao.queryCountshengpiMerchants(merchants));
         return pageVo;
     }
+
+    @Override
+    public Merchants yanzheng(int uid) {
+        return merchantsDao.yanzheng(uid);
+    }
 }

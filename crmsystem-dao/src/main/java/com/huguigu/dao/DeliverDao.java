@@ -1,5 +1,7 @@
 package com.huguigu.dao;
 import com.huguigu.vo.Deliver;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface DeliverDao {
@@ -20,4 +22,5 @@ public interface DeliverDao {
     int queryCountDeliveryth(Deliver deliver);
     List<Deliver> queryAllDelivers(Deliver deliver);
     int queryCountDelivers(Deliver deliver);
+    float querymonthlyincome(@Param("mothen")String mothen, @Param("year")String year,@Param("mid")int mid);
 }
