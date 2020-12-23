@@ -1,9 +1,6 @@
 package com.huguigu.service.impl;
 import com.github.pagehelper.PageHelper;
-import com.huguigu.dao.AreaDao;
-import com.huguigu.dao.CityDao;
-import com.huguigu.dao.MerchantsDao;
-import com.huguigu.dao.ProvinceDao;
+import com.huguigu.dao.*;
 import com.huguigu.service.MerchantsService;
 import com.huguigu.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +15,8 @@ public class MerchantsServiceImpl implements MerchantsService {
     CityDao cityDao;
     @Autowired
     AreaDao areaDao;
+    @Autowired
+    UserDao userDao;
     @Override
     public int addMerchants(Merchants merchants,String provincecode,String citycode,String areacode) {
           Province province =provinceDao.queryProvincebyid(provincecode);
@@ -93,7 +92,8 @@ public class MerchantsServiceImpl implements MerchantsService {
     }
 
     @Override
-    public Merchants yanzheng(int uid) {
-        return merchantsDao.yanzheng(uid);
+    public Merchants yanzheng(String uid) {
+        User user = userDao.queryUserByUaccount(uid);
+        return merchantsDao.yanzheng(user.getUid());
     }
 }

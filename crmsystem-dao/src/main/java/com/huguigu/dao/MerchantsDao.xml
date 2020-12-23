@@ -30,14 +30,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM  Merchants m  INNER JOIN USER u ON u.uid=m.uid
 			<where>
 				m.udele=0 and m.state='已同意'
-				<if test="sname!=null"> and m.sname like concat ('%',#{sname},'%')</if>
+				<if test="mname!=null and mname!=''"> and m.mname like concat ('%',#{mname},'%')</if>
 			</where>
 	</select>
 	<select id="queryCountMerchants" parameterType="merchants" resultType="int">
 			select count(1)  from merchants  m  INNER JOIN USER u ON u.uid=m.uid
 		<where>
 			m.udele=0 and m.state='已同意'
-			<if test="sname!=null"> and m.sname like concat ('%',#{sname},'%')</if>
+			<if test="mname!=null and mname!=''"> and m.mname like concat ('%',#{mname},'%')</if>
 		</where>
 	</select>
 	<select id="queryMerchantsBYId" parameterType="int" resultType="Merchants">
@@ -69,6 +69,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where>
 	</select>
 	<select id="yanzheng" parameterType="int" resultType="Merchants">
-		select * from Merchants where uid=#{uid} and state='已同意' or state='未同意'
+		select * from Merchants where uid=#{uid}
 	</select>
 </mapper>

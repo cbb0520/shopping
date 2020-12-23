@@ -37,7 +37,7 @@
         INNER JOIN merchants m ON d.mid=m.mid
         <where>
             d.hstate=0
-            <if test="user!=null">
+            <if test="user!=null ">
                 <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
             </if>
         </where>
@@ -58,7 +58,6 @@
                 <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
             </if>
         </where>
-
     </select>
     <select id="queryDeliver" parameterType="deliver" resultType="int">
             SELECT COUNT(DISTINCT d.uid) FROM deliver d
@@ -67,7 +66,7 @@
         <where>
             d.hstate!=0
             <if test="user!=null">
-                <if test="user.uname!=null and user.uname!=''">and user.uname like concat ('%',#{user.uname},'%')</if>
+                <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
             </if>
         </where>
     </select>
@@ -130,7 +129,7 @@
     </select>
     <select id="queryCountDelivers" parameterType="deliver" resultType="int">
         SELECT  COUNT(1) FROM deliver d INNER JOIN USER u ON d.uid = u.uid INNER JOIN merchants m ON m.mid = d.mid WHERE d.mid  = ( SELECT MID FROM merchants WHERE uid =1)AND d.mstate!=0
-        <if test="user!=null">
+        <if test="user!=null ">
             <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
         </if>
     </select>
