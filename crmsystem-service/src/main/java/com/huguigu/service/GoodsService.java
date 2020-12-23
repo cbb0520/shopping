@@ -24,4 +24,15 @@ public interface GoodsService {
 
     //查询该用户的购物车
     List<Goods> queryGoodsByUid(String uaccount);
+
+    //修改购物车的数量
+    int uptShoppingCarCount(int gid, int count, String uaccount);
+
+    //删除购物车某项商品
+    int delShoppingCar(int gid, String uaccount);
+
+    //修改购物车是否选中
+    int changeSelect(int gid,String uaccount,boolean select);
+
+    int changeAllSelect(String uaccount,boolean select);
 }

@@ -17,7 +17,8 @@ public class Goods {
     private Float price;
     private Integer udele;
 
-    private Integer count = 1;
+    private Integer count = 1;//默认值：商品选择默认唯一。设置值：购物车的商品数量或仓库的商品数量
+    private Boolean select;//默认购物车不选中
 
     public Goods() {
     }
@@ -49,6 +50,14 @@ public class Goods {
                 ", udele=" + udele +
                 ", count=" + count +
                 '}';
+    }
+
+    public Boolean getSelect() {
+        return select;
+    }
+
+    public void setSelect(Boolean select) {
+        this.select = select;
     }
 
     public Integer getCount() {

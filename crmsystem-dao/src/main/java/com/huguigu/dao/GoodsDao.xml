@@ -67,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <insert id="joinShooping">
-        insert into shopping_car values (null,#{uid},#{gid},#{count})
+        insert into shopping_car values (null,#{uid},#{gid},#{count},0)
     </insert>
 
     <select id="isShoppingCarExist" resultType="int">
@@ -80,9 +80,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <select id="queryGoodsByUid" resultMap="goodsmap">
-        SELECT g.gid, fid, CODE, gname, gimgs, `limit`, soid, price, udele,sc.count
+        SELECT g.gid, fid, CODE, gname, gimgs, `limit`, soid, price, udele,sc.count,sc.`select`
         FROM goods g INNER JOIN shopping_car sc ON g.gid = sc.gid WHERE uid = #{uid}
     </select>
 
+    <update id="uptShoppingCarCount">
+        update shopping_car set count = #{count}
+        where uid = #{uid} and gid = #{gid}
+    </update>
 
+    <delete id="delShoppingCar">
+        delete from shopping_car where gid = #{gid} and uid = #{uid}
+    </delete>
+
+    <update id="changeSelect">
+        update shopping_car set `select`= #{select} where gid = #{gid} and uid = #{uid}
+    </update>
+
+    <update id="changeAllSelect">
+        update shopping_car set `select`= #{select} where uid = #{uid}
+    </update>
 </mapper>
