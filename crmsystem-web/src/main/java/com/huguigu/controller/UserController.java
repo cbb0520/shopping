@@ -26,7 +26,7 @@ public class UserController {
     @CrossOrigin
     public PageVo<User> queryAlluserCount(User user,
                                           @RequestParam(value = "page",defaultValue = "1") int page,
-                                          @RequestParam(value = "rows",defaultValue = "5")int rows){
+                                          @RequestParam(value = "rows",defaultValue = "3")int rows){
         return userService.queryAlluserCount(user,page,rows);
     }
 
