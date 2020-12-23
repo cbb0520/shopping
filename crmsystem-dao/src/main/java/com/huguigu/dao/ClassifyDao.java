@@ -29,4 +29,6 @@ public interface ClassifyDao {
 
     //判断是否有相同的类型名
     int isEqual(@Param("oldfname") String oldfname, @Param("newfname") String newfname);
+    //查询所有的分类不包含分页
+    List<Classify> queryClassify();
 }

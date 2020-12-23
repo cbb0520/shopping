@@ -20,4 +20,7 @@ public interface ClassifyService {
 
     //添加类型
     int addCLassify(Classify classify);
+
+    //查询所有的分类不包含分页
+    List<Classify> queryClassify();
 }

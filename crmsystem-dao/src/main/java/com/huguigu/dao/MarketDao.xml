@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.MarketDao">
+	<resultMap id="marketmapper"  type="com.huguigu.vo.Market">
+		<association property="goods" javaType="com.huguigu.vo.Goods"
+					 select="com.huguigu.dao.GoodsDao.queryGoodsById" column="gid"
+					 fetchType="lazy">
+
+		</association>
+	</resultMap>
+
+	<resultMap id="bermapper"  type="com.huguigu.vo.Ber">
+		<result column="fname" property="name"></result>
+		<result column="dcount" property="value"></result>
+	</resultMap>
+	<select id="quryMarket"  resultMap="marketmapper">
+
+		SELECT mar.gid,IFNULL(SUM(mar.dcount),0) AS dcount FROM del_goods mar,goods go,classify cl,deliver de
+		WHERE mar.gid = go.gid AND de.`did` =mar.`did`
+		AND go.fid = cl.fid AND de.`ustate` = 3
+		<if test="gname!=null and gname!='' ">and go.gname like concat('%',#{gname},'%')</if>
+		<if test="fname!=null and fname!=''">and cl.fname like concat('%',#{fname},'%')</if>
+		GROUP BY mar.gid ORDER BY SUM(mar.dcount) DESC
+	</select>
+
+	<select id="quryMarketCount" parameterType="list" resultType="int">
+		SELECT COUNT(*) FROM (SELECT DISTINCT go.* FROM del_goods mar,goods go,classify cl,deliver de
+		WHERE mar.gid = go.gid AND de.`did` =mar.`did`
+		AND go.fid = cl.fid AND de.`ustate` = 3
+		<if test="gname!=null and gname!='' ">and go.gname like concat('%',#{gname},'%')</if>
+		<if test="fname!=null and fname!=''">and cl.fname like concat('%',#{fname},'%')</if>
+		ORDER BY go.gid)
+		AS dd
+	</select>
+
+	<select id="quryMarketFen" parameterType="list" resultMap="bermapper">
+		SELECT cl.`fname`,IFNULL(SUM(mar.dcount),0) AS dcount FROM del_goods mar,goods go,classify cl,deliver de
+		WHERE mar.gid = go.gid AND de.`did` =mar.`did`
+		AND go.fid = cl.fid AND de.`ustate` = 3
+        GROUP BY cl.`fid`
+	</select>
+
+</mapper>

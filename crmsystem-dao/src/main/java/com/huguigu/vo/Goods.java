@@ -1,8 +1,11 @@
 package com.huguigu.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * 商品表
  */
+@JsonIgnoreProperties("handler")
 public class Goods {
     private Integer gid;
     private Classify classify;
@@ -14,10 +17,13 @@ public class Goods {
     private Float price;
     private Integer udele;
 
+    private Integer count = 1;//默认值：商品选择默认唯一。设置值：购物车的商品数量或仓库的商品数量
+    private Boolean select;//默认购物车不选中
+
     public Goods() {
     }
 
-    public Goods(Integer gid, Classify classify, String code, String gname, String gimgs, Integer limit, Integer soid, Float price, Integer udele) {
+    public Goods(Integer gid, Classify classify, String code, String gname, String gimgs, Integer limit, Integer soid, Float price, Integer udele, Integer count) {
         this.gid = gid;
         this.classify = classify;
         this.code = code;
@@ -27,6 +33,7 @@ public class Goods {
         this.soid = soid;
         this.price = price;
         this.udele = udele;
+        this.count = count;
     }
 
     @Override
@@ -41,7 +48,24 @@ public class Goods {
                 ", soid=" + soid +
                 ", price=" + price +
                 ", udele=" + udele +
+                ", count=" + count +
                 '}';
+    }
+
+    public Boolean getSelect() {
+        return select;
+    }
+
+    public void setSelect(Boolean select) {
+        this.select = select;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public Integer getGid() {

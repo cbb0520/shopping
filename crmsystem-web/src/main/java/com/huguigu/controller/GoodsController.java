@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,9 +27,9 @@ public class GoodsController {
     //查询所有商品
     @RequestMapping("queryAllGoods.action")
     public PageVo<Goods> queryAllGoods(String gname,
-                                     @RequestParam(value = "classify", required = false, defaultValue = "0") int classify,
-                                     @RequestParam(value = "page", defaultValue = "1") int page,
-                                     @RequestParam(value = "rows", defaultValue = "5") int rows) {
+                                       @RequestParam(value = "classify", required = false, defaultValue = "0") int classify,
+                                       @RequestParam(value = "page", defaultValue = "1") int page,
+                                       @RequestParam(value = "rows", defaultValue = "5") int rows) {
         Goods goods = new Goods();
         goods.setGname(gname);
         Classify classify1 = new Classify(classify, null, null);
@@ -39,7 +40,7 @@ public class GoodsController {
     //删除商品
     @RequestMapping("delGoods.action")
     public Map delGoods(int gid) {
-        Map<String,String> map =new HashMap<String,String>();
+        Map<String, String> map = new HashMap<String, String>();
         int i = goodsService.delGoods(gid);
         if (i < 1) {
             map.put("msg", "删除失败");
@@ -48,6 +49,10 @@ public class GoodsController {
         if (i == 1) {
             map.put("msg", "删除成功");
             map.put("type", "success");
+        }
+        if (i == 2) {
+            map.put("msg", "删除失败,该商品还有库存，不能删除！");
+            map.put("type", "info");
         }
         return map;
     }
@@ -60,19 +65,19 @@ public class GoodsController {
 
     //修改商品
     @RequestMapping("uptGoods.action")
-    public Map uptGoods(Goods goods,String oldgname,
+    public Map uptGoods(Goods goods, String oldgname,
                         @RequestParam(value = "img", defaultValue = "") Object img) {
         Map<String, String> map = new HashMap<String, String>();
         try {
             //用object接受，如果是字符串类型就不执行文件上传，是文件类型则强转成文件类型上传
-            if(img instanceof String){
-                System.out.println("String");
-            }else {
-                MultipartFile multipartFile = (MultipartFile)img;
-                multipartFile.transferTo(new File("E:\\IdeaProjects\\shopping_after\\src\\assets\\"+multipartFile.getOriginalFilename()));
-                goods.setGimgs("./src/assets/" + multipartFile.getOriginalFilename());
+            if (img instanceof String) {
+                //System.out.println("String");
+            } else {
+                MultipartFile multipartFile = (MultipartFile) img;
+                multipartFile.transferTo(new File("E:\\IdeaProjects\\shopping_after\\src\\assets\\" + multipartFile.getOriginalFilename()));
+                goods.setGimgs(multipartFile.getOriginalFilename());
             }
-            int i = goodsService.uptGoods(goods,oldgname);
+            int i = goodsService.uptGoods(goods, oldgname);
             if (i < 1) {
                 map.put("msg", "修改失败");
                 map.put("type", "error");
@@ -97,11 +102,56 @@ public class GoodsController {
         Map<String, String> map = new HashMap<String, String>();
         //将上传的文件保存到服务器上的前端项目的【绝对路径】
         try {
-            img.transferTo(new File("E:\\IdeaProjects\\shopping_after\\src\\assets\\"+img.getOriginalFilename()));
+            img.transferTo(new File("E:\\IdeaProjects\\shopping_after\\src\\assets\\" + img.getOriginalFilename()));
             map.put("imgurl", img.getOriginalFilename());
         } catch (IOException e) {
             e.printStackTrace();
         }
         return map;
+    }
+
+    //加入购物车
+    @RequestMapping("joinShopping.action")
+    public Map<String, String> joinShopping(int gid, String gname, int count, String uaccount) {
+        Map<String, String> map = new HashMap<String, String>();
+        int i = goodsService.joinShooping(uaccount, gid, count);
+        if (i == 1) {
+            map.put("title", "添加成功");
+            map.put("msg", "已添加" + gname + " " + count + " 份");
+            map.put("type", "success");
+        }
+        if (i == 0) {
+            map.put("title", "添加失败");
+            map.put("type", "error");
+        }
+        return map;
+    }
+
+    //根据用户查询购物车信息
+    @RequestMapping("queryGoodsByUid.action")
+    public List<Goods> queryGoodsByUid(String uaccount){
+        return goodsService.queryGoodsByUid(uaccount);
+    }
+
+    //修改购物车的数量 delShoppingCar
+    @RequestMapping("selectCountGoods.action")
+    public int selectCountGoods(int gid,int count,String uaccount){
+        return goodsService.uptShoppingCarCount(gid,count,uaccount);
+    }
+    //根据条件删除购物车某些商品
+    @RequestMapping("delShoppingCar.action")
+    public int delShoppingCar(int gid,String uaccount){
+        return goodsService.delShoppingCar(gid,uaccount);
+    }
+    // 设置选中购物车
+    @RequestMapping("changeSelect.action")
+    public int changeSelect(int gid,Boolean select,String uaccount){
+        return goodsService.changeSelect(gid,uaccount,select);
+    }
+
+    //全选不全选
+    @RequestMapping("selectAllShopping.action")
+    public int selectAllShopping(Boolean select,String uaccount){
+        return goodsService.changeAllSelect(uaccount,select);
     }
 }

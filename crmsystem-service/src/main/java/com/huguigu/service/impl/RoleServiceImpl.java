@@ -64,11 +64,20 @@ public class RoleServiceImpl implements RoleService {
         for(int i=0;i<menus.size();i++) {
             staro[i] = menus.get(i).getId();
         }
-        for(int i=0;i<arr.length;i++){
-            ints[i] = Integer.parseInt(arr[i]);
-        }
         rolemenuDao.deleroleMenu(rid,staro);
+        if(mids != "") {
+            for (int i = 0; i < arr.length; i++) {
+                ints[i] = Integer.parseInt(arr[i]);
+            }
+            rolemenuDao.addroleMenu(rid,ints);
+        }
 
-        return rolemenuDao.addroleMenu(rid,ints);
+
+        return 1;
+    }
+
+    @Override
+    public RoLe queryRname(String rname) {
+        return roleDao.queryRname(rname);
     }
 }

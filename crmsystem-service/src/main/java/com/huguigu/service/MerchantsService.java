@@ -9,7 +9,8 @@ public interface MerchantsService {
     PageVo<Merchants> queryCountMerchants(Merchants merchants, int page, int rows);
     int deleteMerchants(int mid);
     Merchants queryMerchantsBYId(int mid);
-    int updateMerchants(Merchants merchants);
+    int updateMerchants(Merchants merchants,String provincecode,String citycode, String areacode);
     Merchants queryMerchantsuid(int uid);
     PageVo<Merchants> queryCountshengpiMerchants(Merchants merchants, int page, int rows);
+    Merchants yanzheng(int uid);
 }

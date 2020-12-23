@@ -2,12 +2,16 @@ package com.huguigu.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.huguigu.dao.GoodsDao;
+import com.huguigu.dao.UserDao;
 import com.huguigu.service.GoodsService;
 import com.huguigu.vo.Goods;
 import com.huguigu.vo.PageVo;
 import com.huguigu.vo.Staff;
+import com.huguigu.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
@@ -27,7 +31,15 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public int delGoods(int gid) {
         //判断该商品是否还有库存
-        return goodsDao.delGoods(gid);
+        Integer i = goodsDao.queryCountByWarehouse(gid);
+        System.out.println(i);
+        if(i == null){
+            return goodsDao.delGoods(gid);
+        }
+        if(i == 0){
+            return goodsDao.delGoods(gid);
+        }
+        return 2;
     }
 
     @Override
@@ -42,5 +54,59 @@ public class GoodsServiceImpl implements GoodsService {
             return 2;
         }
         return goodsDao.uptGoods(goods);
+    }
+
+    @Autowired
+    UserDao userDao;
+
+    @Override
+    public int joinShooping(String uaccount, int gid, int count) {
+        User user = userDao.queryUserByUaccount(uaccount);
+        int uid = user.getUid();
+        try {
+            //判断购物车里是否已存在此商品
+            if(goodsDao.isShoppingCarExist(uid,gid) == 1){
+                //添加数量
+                return goodsDao.addShoppingCarCount(uid,gid,count);
+            }
+        }catch (Exception e){
+
+        }
+        return goodsDao.joinShooping(uid,gid,count);
+    }
+
+    @Override
+    public List<Goods> queryGoodsByUid(String uaccount) {
+        User user = userDao.queryUserByUaccount(uaccount);
+        int uid = user.getUid();
+        return goodsDao.queryGoodsByUid(uid);
+    }
+
+    @Override
+    public int uptShoppingCarCount(int gid, int count, String uaccount) {
+        User user = userDao.queryUserByUaccount(uaccount);
+        int uid = user.getUid();
+        return goodsDao.uptShoppingCarCount(gid,count,uid);
+    }
+
+    @Override
+    public int delShoppingCar(int gid, String uaccount) {
+        User user = userDao.queryUserByUaccount(uaccount);
+        int uid = user.getUid();
+        return goodsDao.delShoppingCar(gid,uid);
+    }
+
+    @Override
+    public int changeSelect(int gid, String uaccount, boolean select) {
+        User user = userDao.queryUserByUaccount(uaccount);
+        int uid = user.getUid();
+        return goodsDao.changeSelect(gid,uid,select);
+    }
+
+    @Override
+    public int changeAllSelect(String uaccount, boolean select) {
+        User user = userDao.queryUserByUaccount(uaccount);
+        int uid = user.getUid();
+        return goodsDao.changeAllSelect(uid,select);
     }
 }

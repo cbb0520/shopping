@@ -23,4 +23,33 @@ public interface GoodsDao {
 
     //判断是否有相同的商品名
     int isEqual(@Param("oldgname") String oldgname, @Param("newgname") String newgname);
+
+    //根据仓库id查询商品集合
+    List<Goods> queryGoodsByWid(int wid);
+
+    //根据id查询商品剩余数量
+    Integer queryCountByWarehouse(int id);
+
+    //加入购物车
+    int joinShooping(@Param("uid") int uid, @Param("gid") int gid, @Param("count") int count);
+
+    //判断购物车是否已有此商品
+    int isShoppingCarExist(@Param("uid") int uid, @Param("gid") int gid);
+
+    //添加购物车里面的商品数量
+    int addShoppingCarCount(@Param("uid") int uid, @Param("gid") int gid, @Param("count") int count);
+
+    //查询该用户的购物车
+    List<Goods> queryGoodsByUid(int uid);
+
+    //修改购物车的数量
+    int uptShoppingCarCount(@Param("gid") int gid, @Param("count") int count, @Param("uid") int uid);
+
+    //删除购物车某项商品
+    int delShoppingCar(@Param("gid") int gid,@Param("uid") int uid);
+
+    //修改购物车是否选中
+    int changeSelect(@Param("gid") int gid,@Param("uid") int uid,@Param("select") boolean select);
+
+    int changeAllSelect(@Param("uid") int uid,@Param("select")boolean select);
 }

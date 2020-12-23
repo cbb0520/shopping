@@ -51,19 +51,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on r.rid = er.rid
 		where er.eid =#{eid}
 	</select>
-	<!--
 
-
-	<insert id="addMenuquan">
-		insert into menus_role values
-		<foreach collection="mid" item="it" separator=",">
-			(null,#{rid},#{it})
-		</foreach>
-	</insert>
-
-	<select id="accountrole"  resultType="roLe">
-		 SELECT r.* FROM role r, emp_role er, employee em
-		WHERE r.rid = er.rid AND er.eid = em.eid
-		AND em.`account` = #{account}
-	</select>-->
+	<select id="queryRname"  resultType="role">
+	select * from role where rname = #{rname}
+    </select>
 </mapper>

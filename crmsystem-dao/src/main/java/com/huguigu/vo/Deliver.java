@@ -1,25 +1,42 @@
 package com.huguigu.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class Deliver {
     private int did;
     private int uid;
     private int mid;
     private double price;
-    private int state;
+    private int ustate;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone ="GMT+8")
+    private Date buytime;
+    private int mstate;
+    private int hstate;
     private int udele;
+    private double merchantrevenue;
     private User user;
     private Merchants merchants;
+    private String mothen;
+    private float total;
     public Deliver(){}
 
-    public Deliver(int did, int uid, int mid, double price, int state, int udele, User user, Merchants merchants) {
+    public Deliver(int did, int uid, int mid, double price, int ustate, Date buytime, int mstate, int hstate, int udele, double merchantrevenue, User user, Merchants merchants, String mothen, float total) {
         this.did = did;
         this.uid = uid;
         this.mid = mid;
         this.price = price;
-        this.state = state;
+        this.ustate = ustate;
+        this.buytime = buytime;
+        this.mstate = mstate;
+        this.hstate = hstate;
         this.udele = udele;
+        this.merchantrevenue = merchantrevenue;
         this.user = user;
         this.merchants = merchants;
+        this.mothen = mothen;
+        this.total = total;
     }
 
     public int getDid() {
@@ -54,12 +71,36 @@ public class Deliver {
         this.price = price;
     }
 
-    public int getState() {
-        return state;
+    public int getUstate() {
+        return ustate;
     }
 
-    public void setState(int state) {
-        this.state = state;
+    public void setUstate(int ustate) {
+        this.ustate = ustate;
+    }
+
+    public Date getBuytime() {
+        return buytime;
+    }
+
+    public void setBuytime(Date buytime) {
+        this.buytime = buytime;
+    }
+
+    public int getMstate() {
+        return mstate;
+    }
+
+    public void setMstate(int mstate) {
+        this.mstate = mstate;
+    }
+
+    public int getHstate() {
+        return hstate;
+    }
+
+    public void setHstate(int hstate) {
+        this.hstate = hstate;
     }
 
     public int getUdele() {
@@ -68,6 +109,14 @@ public class Deliver {
 
     public void setUdele(int udele) {
         this.udele = udele;
+    }
+
+    public double getMerchantrevenue() {
+        return merchantrevenue;
+    }
+
+    public void setMerchantrevenue(double merchantrevenue) {
+        this.merchantrevenue = merchantrevenue;
     }
 
     public User getUser() {
@@ -86,6 +135,22 @@ public class Deliver {
         this.merchants = merchants;
     }
 
+    public String getMothen() {
+        return mothen;
+    }
+
+    public void setMothen(String mothen) {
+        this.mothen = mothen;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
     @Override
     public String toString() {
         return "Deliver{" +
@@ -93,10 +158,16 @@ public class Deliver {
                 ", uid=" + uid +
                 ", mid=" + mid +
                 ", price=" + price +
-                ", state=" + state +
+                ", ustate=" + ustate +
+                ", buytime=" + buytime +
+                ", mstate=" + mstate +
+                ", hstate=" + hstate +
                 ", udele=" + udele +
+                ", merchantrevenue=" + merchantrevenue +
                 ", user=" + user +
                 ", merchants=" + merchants +
+                ", mothen='" + mothen + '\'' +
+                ", total=" + total +
                 '}';
     }
 }

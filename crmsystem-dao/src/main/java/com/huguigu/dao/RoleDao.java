@@ -1,6 +1,7 @@
 package com.huguigu.dao;
 
 import com.huguigu.vo.RoLe;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface RoleDao {
     public int updateRoLe(RoLe roLe);
     //查询用户的角色
     public List<RoLe> staffrole(int eid);
+    //根据角色明查询角色
+    public RoLe queryRname(@Param("rname")String rname);
 }

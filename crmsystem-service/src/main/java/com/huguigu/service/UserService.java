@@ -16,4 +16,6 @@ public interface UserService {
     public User queryByuaccount(User user);
     //查询最大用户ID
     public int querymaxuid();
+    //根据uid查询用户
+    User queryUserbyid(int uid);
 }

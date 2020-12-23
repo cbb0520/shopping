@@ -19,7 +19,7 @@ public class MenuController {
 
     public List<Menu> queryMenuAll(Integer eid){
 
-        List<Menu> list = menuService.indexMenus(1);
+        List<Menu> list = menuService.indexMenus(eid);
         return list;
     }
 

@@ -86,4 +86,10 @@ public class RoleController {
         }
         return "授权失败";
     }
+    //角色名查询
+    @RequestMapping("/queryRname.action")
+    @ResponseBody
+    public RoLe queryRname(String rname){
+        return   roleService.queryRname(rname);
+    }
 }

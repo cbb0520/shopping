@@ -59,4 +59,9 @@
             and udele = 0
         </where>
     </select>
+
+
+    <select id="queryClassify" resultType="classify">
+        select * from classify
+    </select>
 </mapper>

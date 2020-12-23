@@ -27,7 +27,9 @@ public class StaffController {
     public  Staff  staffLogin(Staff staff,  HttpSession session) {
         Staff staff1 = staffService.staffLogin(staff);
         if(staff1 !=null){
-            return staff1;
+            if(staff1.getPassword().equals(staff.getPassword())) {
+                return staff1;
+            }
         }
 
         return null;
@@ -81,5 +83,17 @@ public class StaffController {
             return "恭喜你，编辑成功";
         }
         return "编辑失败";
+    }
+
+    @RequestMapping(value ="/staffacount.action",produces = {"application/json;charset=utf-8"})
+    @ResponseBody
+    public  Staff  staffacount(Staff staff) {
+        Staff staff1 = staffService.staffLogin(staff);
+        if(staff1 !=null){
+                return staff1;
+
+        }
+
+        return null;
     }
 }

@@ -12,6 +12,7 @@ public class Merchants {
     private String mtype;
     private String state;
     private int udele;
+    private User user;
     public Merchants(){}
 
     public Merchants(int mid, int uid, String sname, String mddress, String mname, String phone, String certificate, String mimgs, String mtype, String state, int udele) {
@@ -116,6 +117,14 @@ public class Merchants {
         this.udele = udele;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Merchants{" +
@@ -130,6 +139,7 @@ public class Merchants {
                 ", mtype='" + mtype + '\'' +
                 ", state='" + state + '\'' +
                 ", udele=" + udele +
+                ", user=" + user +
                 '}';
     }
 }

@@ -83,4 +83,9 @@ public class ClassifyController {
         }
         return map;
     }
+
+    @RequestMapping("queryClassify.action")
+    public List<Classify> queryClassify(){
+        return classifyService.queryClassify();
+    }
 }
