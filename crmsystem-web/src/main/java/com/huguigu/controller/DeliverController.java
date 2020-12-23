@@ -2,14 +2,16 @@ package com.huguigu.controller;
 import com.huguigu.service.DeliverService;
 import com.huguigu.vo.Deliver;
 import com.huguigu.vo.PageVo;
+import com.huguigu.vo.Revnue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @CrossOrigin
@@ -92,5 +94,16 @@ public class DeliverController {
                                                 @RequestParam(value = "page",defaultValue ="1") int page,
                                                 @RequestParam(value ="rows",defaultValue ="5")  int rows){
         return deliverService.queryCountDelivers(deliver,page,rows);
+    }
+    @RequestMapping("/querymonthlyincome.action")
+    @ResponseBody
+    public List<Deliver> querymonthlyincome(String year,int mid) {
+        Calendar cal = Calendar.getInstance();
+        if (year==null || year == "") {
+            year = String.valueOf(cal.get(Calendar.YEAR));
+        }
+        int month = cal.get(Calendar.MONTH) + 1;
+        List<Deliver> querymonthlyincome = deliverService.querymonthlyincome(month,year,mid);
+        return querymonthlyincome;
     }
 }

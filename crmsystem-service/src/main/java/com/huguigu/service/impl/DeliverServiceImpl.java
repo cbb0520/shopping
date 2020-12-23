@@ -7,6 +7,9 @@ import com.huguigu.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class DeliverServiceImpl implements DeliverService {
     @Autowired
@@ -82,5 +85,18 @@ public class DeliverServiceImpl implements DeliverService {
         pageVo.setRows(deliverDao.queryAllDelivers(deliver));
         pageVo.setTotal(deliverDao.queryCountDelivers(deliver));
         return pageVo;
+    }
+
+    @Override
+    public List<Deliver> querymonthlyincome(int month, String year,int mid) {
+        List<Deliver> incoMes = new ArrayList<>();
+        for (int i = 1;i<month+1;i++){
+            Deliver deliver = new Deliver();
+            float querymothen = deliverDao.querymonthlyincome(String.valueOf(i), year,mid);
+            deliver.setMothen(i+"月");
+            deliver.setTotal(querymothen);
+            incoMes.add(deliver);
+        }
+        return incoMes;
     }
 }

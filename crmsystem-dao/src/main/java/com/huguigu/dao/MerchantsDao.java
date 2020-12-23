@@ -1,6 +1,5 @@
 package com.huguigu.dao;
 import com.huguigu.vo.Merchants;
-
 import java.util.List;
 public interface MerchantsDao {
     int addMerchants(Merchants merchants);
@@ -13,5 +12,5 @@ public interface MerchantsDao {
     Merchants queryMerchantsuid(int uid);
     List<Merchants> shengpiMerchants(Merchants merchants);
     int queryCountshengpiMerchants(Merchants merchants);
-
+    Merchants yanzheng(int uid);
 }
