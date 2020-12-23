@@ -74,7 +74,7 @@ public class GoodsController {
                 //System.out.println("String");
             } else {
                 MultipartFile multipartFile = (MultipartFile) img;
-                multipartFile.transferTo(new File("E:\\IdeaProjects\\shopping_after\\src\\assets\\" + multipartFile.getOriginalFilename()));
+                multipartFile.transferTo(new File("E:\\s3\\1905ja\\shopping_xm\\shopping_after\\src\\assets\\" + multipartFile.getOriginalFilename()));
                 goods.setGimgs(multipartFile.getOriginalFilename());
             }
             int i = goodsService.uptGoods(goods, oldgname);
@@ -102,7 +102,7 @@ public class GoodsController {
         Map<String, String> map = new HashMap<String, String>();
         //将上传的文件保存到服务器上的前端项目的【绝对路径】
         try {
-            img.transferTo(new File("E:\\IdeaProjects\\shopping_after\\src\\assets\\" + img.getOriginalFilename()));
+            img.transferTo(new File("E:\\s3\\1905ja\\shopping_xm\\shopping_after\\src\\assets\\" + img.getOriginalFilename()));
             map.put("imgurl", img.getOriginalFilename());
         } catch (IOException e) {
             e.printStackTrace();

@@ -100,4 +100,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="changeAllSelect">
         update shopping_car set `select`= #{select} where uid = #{uid}
     </update>
+
+    <insert id="addGoods" keyProperty="gid" useGeneratedKeys="true">
+        insert into goods values (null,#{classify.fid},#{code},#{gname},#{gimgs},0,0,#{price},0)
+    </insert>
+
+
+    <select id="queryGoodsgnmae"  resultMap="goodsmap">
+        select * from goods where gname = #{gname}
+    </select>
 </mapper>

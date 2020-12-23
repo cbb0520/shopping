@@ -32,4 +32,8 @@ public interface WarehouseDao {
 
     //判断仓库名是否重复
     int isWnameRepetition(@Param("oldwname") String oldwname, @Param("newwname") String newwname);
+
+    //商品仓库表添加
+    int addWar_goods (@Param("wid") int wid, @Param("gid") int gid , @Param("count") int count);
+
 }
