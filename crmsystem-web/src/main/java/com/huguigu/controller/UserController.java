@@ -93,7 +93,7 @@ public class UserController {
                             @RequestParam("img") MultipartFile img) throws IOException {
         user.setUimg(img.getOriginalFilename());  //保存到数据库的【相对路径】
         //将上传的文件保存到服务器上的前端项目的【绝对路径】
-        img.transferTo(new File("D:\\ideaIU-xm\\shopping_vue2\\images\\"+img.getOriginalFilename()));
+        img.transferTo(new File("D:\\ideaIU-xm\\shopping_after\\src\\assets\\"+img.getOriginalFilename()));
         Map<String,String> map=new HashMap<>();
         int num=userService.uplodauimgByuaccount(user);
         if(num==1){
