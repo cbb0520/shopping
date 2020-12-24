@@ -64,4 +64,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
 
     </select>
+
+    <insert id="addWar_goods">
+        insert into warehouse_goods values (null,#{wid},#{gid},#{count})
+    </insert>
 </mapper>

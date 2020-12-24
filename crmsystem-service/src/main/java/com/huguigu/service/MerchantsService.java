@@ -12,5 +12,5 @@ public interface MerchantsService {
     int updateMerchants(Merchants merchants,String provincecode,String citycode, String areacode);
     Merchants queryMerchantsuid(int uid);
     PageVo<Merchants> queryCountshengpiMerchants(Merchants merchants, int page, int rows);
-    Merchants yanzheng(int uid);
+    Merchants yanzheng(String uid);
 }

@@ -105,4 +105,16 @@ public class WarehouseController {
         }
         return map;
     }
+
+    @RequestMapping("queryWarehouse.action")
+    public List<Warehouse> queryWarehouse(Warehouse warehouse) {
+
+        return warehouseService.queryWarehouse(warehouse);
+    }
+
+    @RequestMapping("getWarehouseAllCount.action")
+    public Integer getWarehouseAllCount(Warehouse warehouse) {
+
+        return warehouseService.getWarehouseAllCount(warehouse);
+    }
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.PurchaseDao">
+
+    <resultMap id="purchasemap" type="com.huguigu.vo.Purchase">
+        <association property="classify" column="fid"
+                     select="com.huguigu.dao.ClassifyDao.queryClassById"
+                     javaType="Classify"/>
+    </resultMap>
+
+    <select id="queryPurchase" resultMap="purchasemap">
+        select * from purchase
+        <where>
+            <if test="pname!=null">and pname like concat('%',#{pname},'%')</if>
+            <if test="fid!=0">and fid=#{fid}</if>
+            and udele = 0
+        </where>
+    </select>
+
+    <select id="queryPurchasecontu" resultType="int">
+        select count(1) from purchase
+        <where>
+            <if test="pname!=null">and pname like concat('%',#{pname},'%')</if>
+            <if test="fid!=0">and fid=#{fid}</if>
+            and udele = 0
+        </where>
+    </select>
+
+
+</mapper>

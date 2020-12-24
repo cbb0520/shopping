@@ -129,7 +129,7 @@ public class MerchantsController {
     }
     @RequestMapping("/yanzhengUserById.action")
     @ResponseBody
-    public Merchants yanzhengUserById(int uid){
+    public Merchants yanzhengUserById(String uid){
         return merchantsService.yanzheng(uid);
     }
 
@@ -144,6 +144,41 @@ public class MerchantsController {
             map.put("imgurl", img.getOriginalFilename());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return map;
+    }
+    @RequestMapping("addImage3.action")
+    @ResponseBody
+    public Map addImage3(@RequestParam(value = "img") MultipartFile img) {
+        Map<String, String> map = new HashMap<String, String>();
+        //将上传的文件保存到服务器上的前端项目的【绝对路径】
+        try {
+            img.transferTo(new File("E:\\s3zuoye\\shopping_vue\\images\\shanghuimg\\" + img.getOriginalFilename()));
+            System.out.println(img.getOriginalFilename());
+            map.put("imgurl", img.getOriginalFilename());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+    @RequestMapping("/updateMerchants2.action")
+    @ResponseBody
+    public Map updateMerchants2(Merchants merchants, @RequestParam(value = "img", defaultValue = "") Object img,String provincecode,String citycode, String areacode) throws IOException {
+        if (img instanceof String) {
+            //System.out.println("String");
+        } else {
+            MultipartFile multipartFile = (MultipartFile) img;
+            multipartFile.transferTo(new File("E:\\s3zuoye\\shopping_vue\\images\\shanghuimg\\"+multipartFile.getOriginalFilename()));
+            merchants.setMimgs(multipartFile.getOriginalFilename());  //保存到数据库的【相对路径】
+        }
+        Map<String,String> map=new HashMap<>();
+        int num=merchantsService.updateMerchants(merchants,provincecode,citycode,areacode);
+        if(num==1){
+            map.put("msg","修改成功");
+            map.put("code","1");
+        }else {
+            map.put("msg","修改失败");
+            map.put("code","0");
         }
         return map;
     }

@@ -9,6 +9,8 @@ import com.huguigu.vo.Warehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WarehouseServiceImpl implements WarehouseService {
 
@@ -81,5 +83,15 @@ public class WarehouseServiceImpl implements WarehouseService {
 
         //执行修改
         return warehouseDao.uptWarehouse(warehouse);
+    }
+
+    @Override
+    public List<Warehouse> queryWarehouse(Warehouse warehouse) {
+        return warehouseDao.queryAllWarehouse(warehouse);
+    }
+
+    @Override
+    public Integer getWarehouseAllCount(Warehouse warehouse) {
+        return warehouseDao.getWarehouseAllCount(warehouse);
     }
 }
