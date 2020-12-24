@@ -30,9 +30,9 @@ public class MerchantsController {
     }
     @RequestMapping("/addMerchants2.action")
     @ResponseBody
-    public Map addMerchants2(Merchants merchants){
+    public Map addMerchants2(Merchants merchants,String provincecode, String citycode, String areacode){
         Map<String,String> map=new HashMap<>();
-        int num=merchantsService.addMerchants2(merchants);
+        int num=merchantsService.addMerchants(merchants,provincecode, citycode, areacode);
         if(num==1){
             map.put("msg","申请成功,请等待审核!");
             map.put("code","1");
@@ -178,6 +178,20 @@ public class MerchantsController {
             map.put("code","1");
         }else {
             map.put("msg","修改失败");
+            map.put("code","0");
+        }
+        return map;
+    }
+    @RequestMapping("/refuseMerchants.action")
+    @ResponseBody
+    public Map refuseMerchants(Merchants merchants){
+        Map<String,String> map=new HashMap<>();
+        int num=merchantsService.refuseMerchants(merchants);
+        if(num==1){
+            map.put("msg","拒绝成功");
+            map.put("code","1");
+        }else {
+            map.put("msg","拒绝失败");
             map.put("code","0");
         }
         return map;

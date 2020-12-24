@@ -38,8 +38,6 @@ public class UserController {
     @ResponseBody
     @CrossOrigin
     public Map loginUser(User user, HttpSession session){
-
-        System.out.println(user);
         Map<String,String> map =new HashMap<String,String>();
         User user1= userService.loginUser(user);
 
@@ -48,6 +46,7 @@ public class UserController {
             map.put("code","0");
             map.put("msg","登录成功");
             map.put("uaccount",user1.getUaccount());
+            map.put("uid",String.valueOf(user1.getUid()));
             map.put("uimg",user1.getUimg());
         }else{
             map.put("code","1");

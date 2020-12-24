@@ -16,13 +16,16 @@ public class Deliver {
     private int hstate;
     private int udele;
     private double merchantrevenue;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone ="GMT+8")
+    private Date fulfiltime;
+    private String text;
     private User user;
     private Merchants merchants;
     private String mothen;
     private float total;
     public Deliver(){}
 
-    public Deliver(int did, int uid, int mid, double price, int ustate, Date buytime, int mstate, int hstate, int udele, double merchantrevenue, User user, Merchants merchants, String mothen, float total) {
+    public Deliver(int did, int uid, int mid, double price, int ustate, Date buytime, int mstate, int hstate, int udele, double merchantrevenue, Date fulfiltime, String text, User user, Merchants merchants, String mothen, float total) {
         this.did = did;
         this.uid = uid;
         this.mid = mid;
@@ -33,6 +36,8 @@ public class Deliver {
         this.hstate = hstate;
         this.udele = udele;
         this.merchantrevenue = merchantrevenue;
+        this.fulfiltime = fulfiltime;
+        this.text = text;
         this.user = user;
         this.merchants = merchants;
         this.mothen = mothen;
@@ -119,6 +124,22 @@ public class Deliver {
         this.merchantrevenue = merchantrevenue;
     }
 
+    public Date getFulfiltime() {
+        return fulfiltime;
+    }
+
+    public void setFulfiltime(Date fulfiltime) {
+        this.fulfiltime = fulfiltime;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     public User getUser() {
         return user;
     }
@@ -164,6 +185,8 @@ public class Deliver {
                 ", hstate=" + hstate +
                 ", udele=" + udele +
                 ", merchantrevenue=" + merchantrevenue +
+                ", fulfiltime=" + fulfiltime +
+                ", text='" + text + '\'' +
                 ", user=" + user +
                 ", merchants=" + merchants +
                 ", mothen='" + mothen + '\'' +

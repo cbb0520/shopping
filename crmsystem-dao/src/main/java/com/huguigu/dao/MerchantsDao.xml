@@ -71,4 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="yanzheng" parameterType="int" resultType="Merchants">
 		select * from Merchants where uid=#{uid}
 	</select>
+	<update id="refuseMerchants" parameterType="merchants">
+		update Merchants set state='已拒绝' where mid=#{mid}
+	</update>
 </mapper>
