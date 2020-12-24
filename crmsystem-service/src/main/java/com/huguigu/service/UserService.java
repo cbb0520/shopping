@@ -18,4 +18,6 @@ public interface UserService {
     public int querymaxuid();
     //根据uid查询用户
     User queryUserbyid(int uid);
+    //根据用户名修改头像
+    public int uplodauimgByuaccount(User user);
 }
