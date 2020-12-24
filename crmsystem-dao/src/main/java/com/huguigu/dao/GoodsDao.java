@@ -52,4 +52,8 @@ public interface GoodsDao {
     int changeSelect(@Param("gid") int gid,@Param("uid") int uid,@Param("select") boolean select);
 
     int changeAllSelect(@Param("uid") int uid,@Param("select")boolean select);
+    //添加商品
+    int addGoods(Goods goods);
+    //判断此商品是否存在
+    Goods queryGoodsgnmae(@Param("gname") String gname);
 }

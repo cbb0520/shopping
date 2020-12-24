@@ -8,6 +8,6 @@ public interface RevnueDao {
     //年季总收入
     public  float queryyear(@Param("year")String year);
     //求总和
-    public  float querysum();
+    public  float  querysum();
 
 }
