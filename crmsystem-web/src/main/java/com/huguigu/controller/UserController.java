@@ -42,6 +42,7 @@ public class UserController {
             map.put("code","0");
             map.put("msg","登录成功");
             map.put("uaccount",user1.getUaccount());
+            map.put("uid",String.valueOf(user1.getUid()));
         }else{
             map.put("code","1");
             map.put("msg","登录失败");
