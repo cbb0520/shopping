@@ -182,4 +182,18 @@ public class MerchantsController {
         }
         return map;
     }
+    @RequestMapping("/refuseMerchants.action")
+    @ResponseBody
+    public Map refuseMerchants(Merchants merchants){
+        Map<String,String> map=new HashMap<>();
+        int num=merchantsService.refuseMerchants(merchants);
+        if(num==1){
+            map.put("msg","拒绝成功");
+            map.put("code","1");
+        }else {
+            map.put("msg","拒绝失败");
+            map.put("code","0");
+        }
+        return map;
+    }
 }

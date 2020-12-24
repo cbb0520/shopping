@@ -97,4 +97,9 @@ public class MerchantsServiceImpl implements MerchantsService {
 
         return merchantsDao.yanzheng(user.getUid());
     }
+
+    @Override
+    public int refuseMerchants(Merchants merchants) {
+        return merchantsDao.refuseMerchants(merchants);
+    }
 }

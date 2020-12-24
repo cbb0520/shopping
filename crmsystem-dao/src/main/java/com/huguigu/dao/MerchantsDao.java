@@ -13,4 +13,5 @@ public interface MerchantsDao {
     List<Merchants> shengpiMerchants(Merchants merchants);
     int queryCountshengpiMerchants(Merchants merchants);
     Merchants yanzheng(int uid);
+    int refuseMerchants(Merchants merchants);
 }
