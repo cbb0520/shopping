@@ -1,4 +1,7 @@
 package com.huguigu.dao;
+import com.huguigu.vo.Area;
+import com.huguigu.vo.City;
+import com.huguigu.vo.Province;
 import com.huguigu.vo.User;
 import java.util.List;
 
@@ -20,4 +23,9 @@ public interface UserDao {
     User queryUserByUaccount(String uaccount);
     //根据用户名修改头像
     public int uplodauimgByuaccount(User user);
+    //用户修改个人信息
+    public int updatauser(User user);
+    Province queryProvincebyid2(String code);
+    City querycodeCity2(String code);
+    Area querycodeArea2(String code);
 }

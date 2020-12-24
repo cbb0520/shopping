@@ -63,4 +63,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="uplodauimgByuaccount" parameterType="User">
         update user set uimg=#{uimg} where uaccount=#{uaccount};
     </update>
+    <!--用户修改个人信息-->
+    <update id="updatauser" parameterType="User">
+        update user set upassword=#{upassword},uname=#{uname},phone=#{phone},address=#{address}
+        where uaccount=#{uaccount}
+    </update>
+    <select id="queryProvincebyid2" parameterType="String" resultType="Province">
+        select *from province where code=#{code}
+    </select>
+    <select id="querycodeCity2" parameterType="String" resultType="City">
+		SELECT *FROM city WHERE CODE=#{code}
+	</select>
+    <select id="querycodeArea2" parameterType="String" resultType="Area">
+		SELECT *FROM AREA WHERE CODE=#{code}
+	</select>
 </mapper>

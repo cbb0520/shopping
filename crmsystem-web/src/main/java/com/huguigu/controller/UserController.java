@@ -1,8 +1,10 @@
 package com.huguigu.controller;
 import com.huguigu.controller.pinyin.Pinyin;
+import com.huguigu.service.ProvinceService;
 import com.huguigu.service.UserService;
 import com.huguigu.vo.Merchants;
 import com.huguigu.vo.PageVo;
+import com.huguigu.vo.Province;
 import com.huguigu.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import java.util.Map;
 public class UserController {
     @Autowired
     UserService userService;
+    ProvinceService provinceService;
 
     //查询所有用户信息
     @RequestMapping("/queryAlluserCount.action")
@@ -114,5 +117,22 @@ public class UserController {
         return userService.queryByuaccount(user);
     }
 
+    //用户修改个人信息
+    @RequestMapping("/updatauser.action")
+    @ResponseBody
+    @CrossOrigin
+    public Map updatauser(User user, String provincecode,String citycode, String areacode){
+        Map<String,String> map=new HashMap<>();
+        int num=userService.updatauser(user,provincecode,citycode,areacode);
+        if(num==1){
+            map.put("msg","修改成功");
+            map.put("code","1");
+        }else {
+            map.put("msg","修改失败");
+            map.put("code","0");
+        }
+        return map;
+    }
 
-}
+
+    }

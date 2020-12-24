@@ -1,6 +1,7 @@
 package com.huguigu.controller;
 
 import com.huguigu.service.AreaService;
+import com.huguigu.service.CityService;
 import com.huguigu.vo.Area;
 import com.huguigu.vo.City;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,15 @@ public class AreaController {
     @ResponseBody
     public Area queryAreaName(String name){
         return areaService.queryAreaName(name);
+    }
+    @RequestMapping("queryAreabynamecitycode.action")
+    @ResponseBody
+    public Area queryAreabynamecitycode(String name, String cityname){
+        //根据城市名查询citycode
+        City city=areaService.queryCityName2(cityname);
+        Area area=new Area();
+        area.setName(name);
+        area.setCitycode(city.getCode());
+        return areaService.queryAreabynamecitycode(area);
     }
 }

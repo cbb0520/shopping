@@ -3,6 +3,7 @@ package com.huguigu.service.impl;
 import com.huguigu.dao.AreaDao;
 import com.huguigu.service.AreaService;
 import com.huguigu.vo.Area;
+import com.huguigu.vo.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +26,15 @@ public class AreaServiceImpl implements AreaService {
     public Area queryAreaName(String name) {
         return areaDao.queryAreaName(name);
     }
+
+    @Override
+    public Area queryAreabynamecitycode(Area area) {
+        return areaDao.queryAreabynamecitycode(area);
+    }
+
+    @Override
+    public City queryCityName2(String name) {
+        return areaDao.queryCityName2(name);
+    }
+
 }
