@@ -7,21 +7,21 @@ public class User {
     private String uimg;
     private String uname;
     private String phone;
-    private Integer mid;
+    private Merchants merchants;
     private String address;
     private Integer udele;
 
     public User() {
     }
 
-    public User(Integer uid, String uaccount, String upassword, String uimg, String uname, String phone, Integer mid, String address, Integer udele) {
+    public User(Integer uid, String uaccount, String upassword, String uimg, String uname, String phone, Merchants merchants, String address, Integer udele) {
         this.uid = uid;
         this.uaccount = uaccount;
         this.upassword = upassword;
         this.uimg = uimg;
         this.uname = uname;
         this.phone = phone;
-        this.mid = mid;
+        this.merchants = merchants;
         this.address = address;
         this.udele = udele;
     }
@@ -74,12 +74,11 @@ public class User {
         this.phone = phone;
     }
 
-    public Integer getMid() {
-        return mid;
+    public Merchants getMerchants() {
+        return merchants;
     }
-
-    public void setMid(Integer mid) {
-        this.mid = mid;
+    public void setMerchants(Merchants merchants) {
+        this.merchants = merchants;
     }
 
     public String getAddress() {
@@ -107,7 +106,7 @@ public class User {
                 ", uimg='" + uimg + '\'' +
                 ", uname='" + uname + '\'' +
                 ", phone='" + phone + '\'' +
-                ", mid=" + mid +
+                ", merchants=" + merchants +
                 ", address='" + address + '\'' +
                 ", udele=" + udele +
                 '}';

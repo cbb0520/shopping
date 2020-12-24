@@ -53,5 +53,11 @@ public class UserServiceImpl implements UserService {
         return userDao.queryUserbyid(uid);
     }
 
+    //根据用户名修改头像
+    @Override
+    public int uplodauimgByuaccount(User user) {
+        return userDao.uplodauimgByuaccount(user);
+    }
+
 
 }
