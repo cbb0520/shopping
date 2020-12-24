@@ -109,4 +109,9 @@ public class GoodsServiceImpl implements GoodsService {
         int uid = user.getUid();
         return goodsDao.changeAllSelect(uid,select);
     }
+
+    @Override
+    public List<Goods> queryHotGoods() {
+        return goodsDao.queryHotGoods();
+    }
 }

@@ -154,4 +154,10 @@ public class GoodsController {
     public int selectAllShopping(Boolean select,String uaccount){
         return goodsService.changeAllSelect(uaccount,select);
     }
+
+    //查询销量前五的商品
+    @RequestMapping("queryHotGoods.action")
+    public List<Goods> queryHotGoods(){
+        return goodsService.queryHotGoods();
+    }
 }
