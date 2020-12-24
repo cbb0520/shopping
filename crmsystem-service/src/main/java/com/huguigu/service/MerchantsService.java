@@ -13,4 +13,5 @@ public interface MerchantsService {
     Merchants queryMerchantsuid(int uid);
     PageVo<Merchants> queryCountshengpiMerchants(Merchants merchants, int page, int rows);
     Merchants yanzheng(String uid);
+    int refuseMerchants(Merchants merchants);
 }

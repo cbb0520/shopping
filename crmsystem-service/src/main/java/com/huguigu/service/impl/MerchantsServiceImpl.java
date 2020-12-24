@@ -94,6 +94,12 @@ public class MerchantsServiceImpl implements MerchantsService {
     @Override
     public Merchants yanzheng(String uid) {
         User user = userDao.queryUserByUaccount(uid);
+
         return merchantsDao.yanzheng(user.getUid());
+    }
+
+    @Override
+    public int refuseMerchants(Merchants merchants) {
+        return merchantsDao.refuseMerchants(merchants);
     }
 }

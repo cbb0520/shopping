@@ -101,6 +101,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update shopping_car set `select`= #{select} where uid = #{uid}
     </update>
 
+    <select id="queryHotGoods" resultType="goods">
+        SELECT * FROM goods ORDER BY soid DESC LIMIT 0,5
+    </select>
+
     <insert id="addGoods" keyProperty="gid" useGeneratedKeys="true">
         insert into goods values (null,#{classify.fid},#{code},#{gname},#{gimgs},0,0,#{price},0)
     </insert>

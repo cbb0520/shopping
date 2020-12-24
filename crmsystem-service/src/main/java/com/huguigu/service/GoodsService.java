@@ -35,4 +35,7 @@ public interface GoodsService {
     int changeSelect(int gid,String uaccount,boolean select);
 
     int changeAllSelect(String uaccount,boolean select);
+
+    //查询销量前五的商品
+    List<Goods> queryHotGoods();
 }

@@ -41,8 +41,6 @@ public class UserController {
     @ResponseBody
     @CrossOrigin
     public Map loginUser(User user, HttpSession session){
-
-        System.out.println(user);
         Map<String,String> map =new HashMap<String,String>();
         User user1= userService.loginUser(user);
 
