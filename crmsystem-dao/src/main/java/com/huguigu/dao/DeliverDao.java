@@ -23,4 +23,10 @@ public interface DeliverDao {
     List<Deliver> queryAllDelivers(Deliver deliver);
     int queryCountDelivers(Deliver deliver);
     float querymonthlyincome(@Param("mothen")String mothen, @Param("year")String year,@Param("mid")int mid);
+
+    //支付完成，添加订单
+    int insertDeliver(Deliver deliver);
+
+    //添加订单详情
+    int addDelGoods(@Param("did")int did,@Param("gid")int gid,@Param("count")int count);
 }

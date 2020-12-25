@@ -160,4 +160,18 @@ public class GoodsController {
     public List<Goods> queryHotGoods(){
         return goodsService.queryHotGoods();
     }
+
+    //查根据用户id查询购物车选择的商品生成订单表
+    @RequestMapping("queryGoodsCarByUid.action")
+    public Map<String,Object> queryGoodsCarByUid(String uaccount){
+        //获取总价
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            map.put("list",goodsService.queryGoodsCarByUid(uaccount));
+            map.put("sum",goodsService.queryGoodsCarByUidBySum(uaccount));
+        }catch (Exception e){
+            map.put("list",null);
+        }
+        return map;
+    }
 }

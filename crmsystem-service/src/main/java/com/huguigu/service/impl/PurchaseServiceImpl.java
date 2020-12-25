@@ -44,7 +44,7 @@ public class PurchaseServiceImpl implements PurchaseService {
         good.setCode(year+purchase.getPid());
         good.setGname(purchase.getPname());
         good.setGimgs(purchase.getPimgs());
-        good.setPrice((float) (purchase.getPrice()+(purchase.getPrice()*0.2)));
+        good.setGprice((float) (purchase.getPrice()+(purchase.getPrice()*0.2)));
         if(goods==null){
             goodsDao.addGoods(good);
             warehouseDao.addWar_goods(Integer.parseInt(purchase.getUdele()),good.getGid(),purchase.getLiang());

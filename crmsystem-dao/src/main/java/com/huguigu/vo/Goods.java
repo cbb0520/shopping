@@ -14,7 +14,7 @@ public class Goods {
     private String gimgs;
     private Integer limit;
     private Integer soid;
-    private Float price;
+    private Float gprice;
     private Integer udele;
 
     private Integer count = 1;//默认值：商品选择默认唯一。设置值：购物车的商品数量或仓库的商品数量
@@ -23,7 +23,7 @@ public class Goods {
     public Goods() {
     }
 
-    public Goods(Integer gid, Classify classify, String code, String gname, String gimgs, Integer limit, Integer soid, Float price, Integer udele, Integer count) {
+    public Goods(Integer gid, Classify classify, String code, String gname, String gimgs, Integer limit, Integer soid, Float gprice, Integer udele, Integer count) {
         this.gid = gid;
         this.classify = classify;
         this.code = code;
@@ -31,7 +31,7 @@ public class Goods {
         this.gimgs = gimgs;
         this.limit = limit;
         this.soid = soid;
-        this.price = price;
+        this.gprice = gprice;
         this.udele = udele;
         this.count = count;
     }
@@ -46,7 +46,7 @@ public class Goods {
                 ", gimgs='" + gimgs + '\'' +
                 ", limit=" + limit +
                 ", soid=" + soid +
-                ", price=" + price +
+                ", gprice=" + gprice +
                 ", udele=" + udele +
                 ", count=" + count +
                 '}';
@@ -124,12 +124,12 @@ public class Goods {
         this.soid = soid;
     }
 
-    public Float getPrice() {
-        return price;
+    public Float getGprice() {
+        return gprice;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public void setGprice(Float gprice) {
+        this.gprice = gprice;
     }
 
     public Integer getUdele() {

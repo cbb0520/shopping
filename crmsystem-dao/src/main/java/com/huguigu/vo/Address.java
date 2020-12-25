@@ -6,8 +6,29 @@ public class Address {
     private Merchants merchants;
     private String name;
     private String phone;
+    private String isselect;
 
     public Address() {
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "aid=" + aid +
+                ", user=" + user +
+                ", merchants=" + merchants +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isselect='" + isselect + '\'' +
+                '}';
+    }
+
+    public String getIsselect() {
+        return isselect;
+    }
+
+    public void setIsselect(String isselect) {
+        this.isselect = isselect;
     }
 
     public Integer getAid() {
@@ -50,14 +71,4 @@ public class Address {
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "aid=" + aid +
-                ", user=" + user +
-                ", merchants=" + merchants +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
 }

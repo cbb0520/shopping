@@ -1,66 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huguigu.dao.UserDao">
 
-   <resultMap id="usermap" type="User">
+    <resultMap id="usermap" type="User">
+        <id property="uid" column="uid"></id>
         <association property="merchants" column="mid"
                      select="com.huguigu.dao.MerchantsDao.queryMerchantsBYId"
                      javaType="Merchants"/>
+        <collection property="addresss" column="aid" javaType="Address"
+                    select="com.huguigu.dao.AddressDao.queryAddrByUid2">
+        </collection>
     </resultMap>
 
     <!--查询所有用户信息-->
-	<select id="queryAlluser" parameterType="User" resultMap="usermap">
-		SELECT * FROM user
-		<where>
+    <select id="queryAlluser" parameterType="User" resultMap="usermap">
+        SELECT * FROM user
+        <where>
             <if test="uaccount!=null and uaccount!=''">and uaccount like concat('%',#{uaccount},'%')</if>
-            <if test="uname!=null and uname!=''">and uname like concat('%',#{uname},'%') </if>
-            <if test="address!=null">and address like concat('%',#{address},'%') </if>
+            <if test="uname!=null and uname!=''">and uname like concat('%',#{uname},'%')</if>
+            <if test="address!=null">and address like concat('%',#{address},'%')</if>
             and udele = 0
         </where>
-	</select>
+    </select>
 
     <!--查询所有用户信息的数量-->
     <select id="queryAlluserCount" parameterType="User" resultType="int">
         SELECT count(*) FROM user
         <where>
             <if test="uaccount!=null and uaccount!=''">and uaccount like concat('%',#{uaccount},'%')</if>
-            <if test="uname!=null and uname!=''">and uname like concat('%',#{uname},'%') </if>
-            <if test="phone!=null">and phone like concat('%',#{phone},'%') </if>
+            <if test="uname!=null and uname!=''">and uname like concat('%',#{uname},'%')</if>
+            <if test="phone!=null">and phone like concat('%',#{phone},'%')</if>
             and udele = 0
         </where>
     </select>
 
     <select id="queryUserbyid" parameterType="int" resultType="User">
-        select * from user where uid=#{uid}
+        select *
+        from user
+        where uid = #{uid}
     </select>
 
     <!--前端登录-->
     <select id="loginUser" parameterType="User" resultType="User">
-        SELECT * FROM user where uaccount=#{uaccount} and upassword=#{upassword} and udele=0;
+        SELECT *
+        FROM user
+        where uaccount = #{uaccount}
+          and upassword = #{upassword}
+          and udele = 0;
     </select>
 
     <!--前端注册-->
     <insert id="registerUser" parameterType="User">
-        insert into user values (null,#{uaccount},#{upassword},'img-5.jpg',#{uname},#{phone},#{mid},#{address},0)
-	</insert>
+        insert into user
+        values (null, #{uaccount}, #{upassword}, 'img-5.jpg', #{uname}, #{phone}, #{mid}, #{address}, 0)
+    </insert>
 
     <!--根据账号查询用户-->
     <select id="queryByuaccount" parameterType="User" resultMap="usermap">
-        SELECT * FROM user where uaccount=#{uaccount} and udele=0;
+        SELECT *
+        FROM user
+        where uaccount = #{uaccount}
+          and udele = 0;
     </select>
 
     <!--查询最大用户ID-->
     <select id="querymaxuid" resultType="int">
-        SELECT MAX(uid) FROM USER;
+        SELECT MAX(uid)
+        FROM USER;
     </select>
 
     <select id="queryUserByUaccount" parameterType="String" resultMap="usermap">
-        select * from user where uaccount = #{uaccount}
+        select *
+        from user
+        where uaccount = #{uaccount}
     </select>
     <!--根据用户名修改头像-->
     <update id="uplodauimgByuaccount" parameterType="User">
-        update user set uimg=#{uimg} where uaccount=#{uaccount};
+        update user
+        set uimg=#{uimg}
+        where uaccount = #{uaccount};
     </update>
 </mapper>

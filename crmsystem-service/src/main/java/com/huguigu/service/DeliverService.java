@@ -14,4 +14,7 @@ public interface DeliverService {
     PageVo<Deliver> queryCountDeliveryth(Deliver deliver, int page, int rows);
     PageVo<Deliver> queryCountDelivers(Deliver deliver, int page, int rows);
     List<Deliver> querymonthlyincome(int month, String year,int mid);
+
+    //支付完成，添加订单
+    int insertDeliver(String uaccount,float price,String text);
 }

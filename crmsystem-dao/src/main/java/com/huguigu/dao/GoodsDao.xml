@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="gname!=null"> gname = #{gname},</if>
             <if test="gimgs!=null"> gimgs = #{gimgs},</if>
             <if test="limit!=null"> `limit` = #{limit},</if>
-            <if test="price!=null"> price = #{price}</if>
+            <if test="gprice!=null"> gprice = #{gprice}</if>
         </set>
         where gid = #{gid}
     </update>
@@ -80,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <select id="queryGoodsByUid" resultMap="goodsmap">
-        SELECT g.gid, fid, CODE, gname, gimgs, `limit`, soid, price, udele,sc.count,sc.`select`
+        SELECT g.gid, fid, CODE, gname, gimgs, `limit`, soid, gprice, udele,sc.count,sc.`select`
         FROM goods g INNER JOIN shopping_car sc ON g.gid = sc.gid WHERE uid = #{uid}
     </select>
 
@@ -106,11 +106,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <insert id="addGoods" keyProperty="gid" useGeneratedKeys="true">
-        insert into goods values (null,#{classify.fid},#{code},#{gname},#{gimgs},0,0,#{price},0)
+        insert into goods values (null,#{classify.fid},#{code},#{gname},#{gimgs},0,0,#{gprice},0)
     </insert>
 
 
     <select id="queryGoodsgnmae"  resultMap="goodsmap">
         select * from goods where gname = #{gname}
     </select>
+
+    <select id="queryGoodsCarByUid" parameterType="int" resultType="goods">
+        SELECT g.*,sc.count FROM goods g INNER JOIN shopping_car sc ON g.gid=sc.gid
+        WHERE sc.uid = #{uid} AND `select` = 1
+    </select>
+
+    <select id="queryGoodsCarByUidBySum" parameterType="int" resultType="int">
+        SELECT SUM(g.gprice * sc.count) FROM goods g INNER JOIN shopping_car sc ON g.gid=sc.gid
+        WHERE sc.uid = 1 AND `select` = 1
+    </select>
+
+    <delete id="removeGoodsCarBySelect" parameterType="int">
+        delete from shopping_car where uid = #{uid} and `select` = 1
+    </delete>
+
+    <update id="addGoodsSoid">
+        update goods set soid = soid + #{count} where gid = #{gid}
+    </update>
 </mapper>

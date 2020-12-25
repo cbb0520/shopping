@@ -105,4 +105,17 @@ public class DeliverController {
         List<Deliver> querymonthlyincome = deliverService.querymonthlyincome(month,year,mid);
         return querymonthlyincome;
     }
+    
+    //支付完成，添加订单
+    @RequestMapping("/insertDeliver.action")
+    @ResponseBody
+    public Map<String,String> insertDeliver(String uaccount, float price, String text) {
+        Map<String,String> map = new HashMap<String, String>();
+        int i = deliverService.insertDeliver(uaccount,price,text);
+        if(i > 0){
+            map.put("msg","支付成功");
+            map.put("type","success");
+        }
+        return map;
+    }
 }
