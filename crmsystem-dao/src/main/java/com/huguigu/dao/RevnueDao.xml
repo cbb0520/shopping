@@ -6,15 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="querymothen" parameterType="revnue" resultType="float">
 
-		SELECT IFNULL(SUM(price),0) AS price FROM deliver WHERE MONTH(buytime)= #{mothen} AND YEAR(buytime)= #{year} AND ustate = 3 ;
+		SELECT IFNULL(SUM(price),0) AS price FROM deliver WHERE MONTH(fulfiltime)= #{mothen} AND YEAR(fulfiltime)= #{year} AND ustate = 3 ;
 	</select>
 	<select id="queryyear" parameterType="revnue" resultType="float">
 
-		SELECT IFNULL(SUM(price),0) AS price FROM deliver WHERE  YEAR(buytime)= #{year} AND ustate = 3 ;
+		SELECT IFNULL(SUM(price),0) AS price FROM deliver WHERE  YEAR(fulfiltime)= #{year} AND ustate = 3 ;
 	</select>
 
 	<select id="querysum" parameterType="revnue" resultType="float">
-		SELECT IFNULL(SUM(price),0) AS price FROM deliver
+		SELECT IFNULL(SUM(price),0) AS price FROM deliver where ustate = 3
 	</select>
 
 </mapper>

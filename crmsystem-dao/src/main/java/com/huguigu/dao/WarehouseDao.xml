@@ -68,4 +68,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="addWar_goods">
         insert into warehouse_goods values (null,#{wid},#{gid},#{count})
     </insert>
+
+    <update id="updateWar_goods">
+        update warehouse_goods set count = count+#{count}
+        where wid = #{wid} and gid = #{gid}
+    </update>
+
+    <select id="queryWar_goods" resultType="int">
+        select count(1) from warehouse_goods where wid = #{wid} and gid = #{gid}
+    </select>
+
+    <delete id="deleWar_Goods">
+        delete from  warehouse_goods where wid = #{wid} and gid = #{gid}
+    </delete>
 </mapper>

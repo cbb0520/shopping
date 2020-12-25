@@ -58,7 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="queryGoodsByWid" parameterType="int" resultMap="goodsmap">
         select g.*,wg.count from goods g inner join warehouse_goods wg on g.gid = wg.gid
-        where g.gid in (select gid from warehouse_goods where warehouse_goods.wid = #{wid})
+        WHERE wg.`wid` = #{wid}
     </select>
 
     <select id="queryCountByWarehouse" parameterType="java.lang.Integer" resultType="int">

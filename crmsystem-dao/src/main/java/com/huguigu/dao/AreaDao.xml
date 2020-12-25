@@ -10,6 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *FROM AREA WHERE CODE=#{code}
 	</select>
 	<select id="queryAreaName" parameterType="String" resultType="Area">
-		select * from AREA where name=#{name}
+		select * from AREA where `name`=#{name}
+	</select>
+	<select id="queryAreabynamecitycode" parameterType="Area" resultType="Area">
+		select * from AREA where `name`=#{name} and citycode=#{citycode};
+	</select>
+	<select id="queryCityName2" parameterType="String" resultType="City">
+		select * from city where `name`=#{name}
 	</select>
 </mapper>

@@ -1,10 +1,13 @@
 package com.huguigu.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.huguigu.dao.AreaDao;
+import com.huguigu.dao.CityDao;
+import com.huguigu.dao.ProvinceDao;
 import com.huguigu.dao.UserDao;
 import com.huguigu.service.UserService;
-import com.huguigu.vo.PageVo;
-import com.huguigu.vo.User;
+
+import com.huguigu.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,9 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
+    ProvinceDao provinceDao;
+    CityDao cityDao;
+    AreaDao areaDao;
 
     //查询所有用户信息
     @Override
@@ -57,6 +63,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public int uplodauimgByuaccount(User user) {
         return userDao.uplodauimgByuaccount(user);
+    }
+    //用户修改个人信息
+    @Override
+    public int updatauser(User user, String provincecode,String citycode, String areacode) {
+        Province province =userDao.queryProvincebyid2(provincecode);
+        System.out.println(province.getName());
+        String pname=province.getName();
+        City city= userDao.querycodeCity2(citycode);
+        String cname=city.getName();
+        Area area=userDao.querycodeArea2(areacode);
+        String aname=area.getName();
+        String useraddress=user.getAddress();
+        String address=pname+"/"+cname+"/"+aname+"/"+useraddress;
+        user.setAddress(address);
+        return userDao.updatauser(user);
     }
 
 

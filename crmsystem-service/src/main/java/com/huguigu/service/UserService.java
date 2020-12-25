@@ -1,5 +1,6 @@
 package com.huguigu.service;
 
+import com.huguigu.vo.Merchants;
 import com.huguigu.vo.PageVo;
 import com.huguigu.vo.User;
 
@@ -20,4 +21,6 @@ public interface UserService {
     User queryUserbyid(int uid);
     //根据用户名修改头像
     public int uplodauimgByuaccount(User user);
+    //用户修改个人信息
+    public int updatauser(User user, String provincecode,String citycode, String areacode);
 }
