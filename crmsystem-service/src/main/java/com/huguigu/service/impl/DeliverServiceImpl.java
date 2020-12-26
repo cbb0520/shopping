@@ -127,20 +127,34 @@ public class DeliverServiceImpl implements DeliverService {
         //拿到订单id，生成订单商品详情
         int did = deliver.getDid();
 
-        int flag = 1;
-        //获取用户订单的商品集合
+        //获取用户购物车的商品集合configconfig
         List<Goods> goods = goodsDao.queryGoodsCarByUid(user.getUid());
 
         for (int i = 0; i < goods.size(); i++) {
             //删除购物车里的数据--添加到订单详情表
-            flag *= deliverDao.addDelGoods(did,goods.get(i).getGid(),goods.get(i).getCount());
+            deliverDao.addDelGoods(did,goods.get(i).getGid(),goods.get(i).getCount());
+        }
+        //删除购物车的选中商品
+        goodsDao.removeGoodsCarBySelect(user.getUid());
+
+        //返回订单id  用于扫码支付完成
+        return did;
+    }
+
+    @Override
+    public int deliverPayOk(int did) {
+        int row = 1;
+        row *= deliverDao.deliverPayOk(did);
+        //获取用户订单表的商品集合
+        List<Goods> goods = goodsDao.queryGoodsByDid(did);
+        for (int i = 0; i < goods.size(); i++) {
             //添加商品的销量
+            System.out.println(goods.get(i).getGname());
             goodsDao.addGoodsSoid(goods.get(i).getGid(),goods.get(i).getCount());
             //减少该商品库存
             //
         }
-        flag *= goodsDao.removeGoodsCarBySelect(user.getUid());
-        return flag;
+        return row;
     }
 
 }

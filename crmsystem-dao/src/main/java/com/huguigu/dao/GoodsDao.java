@@ -63,6 +63,9 @@ public interface GoodsDao {
     //查根据用户id查询购物车选择的商品生成订单表
     List<Goods> queryGoodsCarByUid(int uid);
 
+    //根据订单id查询商品集合
+    List<Goods> queryGoodsByDid(int did);
+
     //查根据用户id查询购物车选择的商品生成订单表总价
     int queryGoodsCarByUidBySum(int uid);
 

@@ -145,4 +145,8 @@
     <insert id="addDelGoods">
         insert into del_goods values (null,#{did},#{gid},#{count})
     </insert>
+
+    <update id="deliverPayOk" parameterType="int">
+        update deliver set ustate = 2 where did = #{did}
+    </update>
 </mapper>

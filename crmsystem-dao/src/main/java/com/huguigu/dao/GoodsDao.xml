@@ -119,6 +119,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE sc.uid = #{uid} AND `select` = 1
     </select>
 
+    <select id="queryGoodsByDid" parameterType="int" resultType="goods">
+        SELECT g.*,dg.dcount FROM goods g INNER JOIN del_goods dg ON g.gid=dg.gid WHERE dg.did =#{did}
+    </select>
+
     <select id="queryGoodsCarByUidBySum" parameterType="int" resultType="int">
         SELECT SUM(g.gprice * sc.count) FROM goods g INNER JOIN shopping_car sc ON g.gid=sc.gid
         WHERE sc.uid = 1 AND `select` = 1

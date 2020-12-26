@@ -15,6 +15,9 @@ public interface DeliverService {
     PageVo<Deliver> queryCountDelivers(Deliver deliver, int page, int rows);
     List<Deliver> querymonthlyincome(int month, String year,int mid);
 
-    //支付完成，添加订单
+    //点击支付，添加订单(待付款)
     int insertDeliver(String uaccount,float price,String text);
+
+    //支付成功,将订单改为带提货
+    int deliverPayOk(int did);
 }

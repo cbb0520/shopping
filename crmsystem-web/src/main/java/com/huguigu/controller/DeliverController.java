@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @CrossOrigin
@@ -105,17 +104,32 @@ public class DeliverController {
         List<Deliver> querymonthlyincome = deliverService.querymonthlyincome(month,year,mid);
         return querymonthlyincome;
     }
-    
-    //支付完成，添加订单
-    @RequestMapping("/insertDeliver.action")
+
+    //将订单改为待提货,修改商品的销量,库存等
+    @RequestMapping("/insertDeliverOk.action")
     @ResponseBody
-    public Map<String,String> insertDeliver(String uaccount, float price, String text) {
-        Map<String,String> map = new HashMap<String, String>();
-        int i = deliverService.insertDeliver(uaccount,price,text);
-        if(i > 0){
-            map.put("msg","支付成功");
-            map.put("type","success");
-        }
-        return map;
+    public void insertDeliverOk() {
+        deliverService.deliverPayOk(did);
+    }
+
+    //设置一个全局订单id
+    public static int did = 0;
+
+    public int getDid() {
+        return did;
+    }
+
+    public void setDid(int did) {
+        this.did = did;
+    }
+
+    //点击立即付款,生成订单(待付款)
+    @RequestMapping("/insertDeliverPay.action")
+    @ResponseBody
+    public int insertDeliverPay(String uaccount, float price, String text) {
+        int id = deliverService.insertDeliver(uaccount,price,text);
+        //将返回的订单id设置到全局订单id
+        setDid(id);
+        return id;
     }
 }
