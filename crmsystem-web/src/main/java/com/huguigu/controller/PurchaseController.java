@@ -31,4 +31,14 @@ public class PurchaseController {
         purchaseService.addGoods_war(purchase);
         return "采购成功";
     }
+    @RequestMapping("zhuanGoods.action")
+    public String zhuanGoods(int gid,int lodwid,int noewid,int count) {
+        int i = purchaseService.zhuanGoods(gid, lodwid, noewid, count);
+        if(i<0){
+            return "转移失败";
+        }
+
+        return "转移成功";
+    }
+
 }

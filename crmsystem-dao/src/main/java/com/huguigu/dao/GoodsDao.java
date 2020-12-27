@@ -59,6 +59,21 @@ public interface GoodsDao {
     int addGoods(Goods goods);
     //判断此商品是否存在
     Goods queryGoodsgnmae(@Param("gname") String gname);
+
+    //查根据用户id查询购物车选择的商品生成订单表
+    List<Goods> queryGoodsCarByUid(int uid);
+
+    //根据订单id查询商品集合
+    List<Goods> queryGoodsByDid(int did);
+
+    //查根据用户id查询购物车选择的商品生成订单表总价
+    int queryGoodsCarByUidBySum(int uid);
+
+    //删除购物车选中的商品
+    int removeGoodsCarBySelect(int uid);
+
+    //添加商品的销量
+    int addGoodsSoid(@Param("gid") int gid,@Param("count") int count);
     //根据id查询商品2
     Goods queryGoodsById2(int gid);
 }

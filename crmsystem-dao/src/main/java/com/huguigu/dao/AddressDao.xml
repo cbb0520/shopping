@@ -12,7 +12,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 javaType="User"/>
 	</resultMap>
 
+	<resultMap id="addressmap2" type="Address">
+		<association property="merchants" column="mid"
+					 select="com.huguigu.dao.MerchantsDao.queryMerchantsBYId"
+					 javaType="Merchants"/>
+	</resultMap>
+
 	<select id="queryAddrByUid" parameterType="int" resultMap="addressmap">
 		select * from address where uid = #{uid}
 	</select>
+
+	<select id="queryAddrByUid2" parameterType="int" resultMap="addressmap2">
+		select * from address where aid = #{aid}
+	</select>
+
+	<update id="removeAddClass" parameterType="int">
+		update address set isselect = '' where uid = #{uid}
+	</update>
+
+	<update id="insertAddClass" parameterType="int">
+		update address set isselect = 'newUseressDiv' where aid = #{aid}
+	</update>
+
+	<update id="removeAddClassOfAid">
+		UPDATE address SET isselect = '' WHERE uid = #{uid} AND aid !=#{aid}
+	</update>
+
+	<insert id="insertAddress">
+		insert into address values (null,#{uid},#{mid},#{name},#{phone},'')
+	</insert>
+
+	<delete id="removeAddr" parameterType="int">
+		delete from address where aid = #{aid}
+	</delete>
 </mapper>

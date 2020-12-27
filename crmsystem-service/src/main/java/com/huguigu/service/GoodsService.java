@@ -38,4 +38,10 @@ public interface GoodsService {
 
     //查询销量前五的商品
     List<Goods> queryHotGoods();
+
+    //查根据用户id查询购物车选择的商品生成订单表
+    List<Goods> queryGoodsCarByUid(String uaccount);
+
+    //查根据用户id查询购物车选择的商品生成订单表总价
+    int queryGoodsCarByUidBySum(String uaccount);
 }

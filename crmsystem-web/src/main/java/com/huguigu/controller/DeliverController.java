@@ -111,4 +111,32 @@ public class DeliverController {
     public List<Deliver> queryDaiFuKuan(String uaccount) {
         return deliverService.queryDaiFuKuan(1);
     }
+
+    //将订单改为待提货,修改商品的销量,库存等
+    @RequestMapping("/insertDeliverOk.action")
+    @ResponseBody
+    public void insertDeliverOk() {
+        deliverService.deliverPayOk(did);
+    }
+
+    //设置一个全局订单id
+    public static int did = 0;
+
+    public int getDid() {
+        return did;
+    }
+
+    public void setDid(int did) {
+        this.did = did;
+    }
+
+    //点击立即付款,生成订单(待付款)
+    @RequestMapping("/insertDeliverPay.action")
+    @ResponseBody
+    public int insertDeliverPay(String uaccount, float price, String text) {
+        int id = deliverService.insertDeliver(uaccount,price,text);
+        //将返回的订单id设置到全局订单id
+        setDid(id);
+        return id;
+    }
 }

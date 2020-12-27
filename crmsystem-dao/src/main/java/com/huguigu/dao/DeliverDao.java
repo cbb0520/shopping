@@ -1,5 +1,6 @@
 package com.huguigu.dao;
 import com.huguigu.vo.Deliver;
+import com.huguigu.vo.Goods;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -25,4 +26,13 @@ public interface DeliverDao {
     float querymonthlyincome(@Param("mothen")String mothen, @Param("year")String year,@Param("mid")int mid);
     //查询待付款的订单信息
     List<Deliver> queryDaiFuKuan(Integer ustate);
+
+    //点击支付，添加订单(待付款)
+    int insertDeliver(Deliver deliver);
+
+    //添加订单详情
+    int addDelGoods(@Param("did")int did,@Param("gid")int gid,@Param("count")int count);
+
+    //支付成功,将订单改为带提货
+    int deliverPayOk(int did);
 }

@@ -161,4 +161,17 @@
         select * from deliver where ustate=#{ustate}
     </select>
 
+
+    <!--生成完订单后获取订单id，再去生成订单商品表  设置属性，可返回订单id-->
+    <insert id="insertDeliver" useGeneratedKeys="true" keyColumn="did" keyProperty="did">
+        insert into deliver values (null,#{uid},#{mid},#{price},1,0,now(),0,0,#{merchantrevenue},null,#{text})
+    </insert>
+
+    <insert id="addDelGoods">
+        insert into del_goods values (null,#{did},#{gid},#{count})
+    </insert>
+
+    <update id="deliverPayOk" parameterType="int">
+        update deliver set ustate = 2 where did = #{did}
+    </update>
 </mapper>

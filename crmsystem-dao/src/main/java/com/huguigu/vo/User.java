@@ -10,11 +10,12 @@ public class User {
     private Merchants merchants;
     private String address;
     private Integer udele;
+    private Address addresss;
 
     public User() {
     }
 
-    public User(Integer uid, String uaccount, String upassword, String uimg, String uname, String phone, Merchants merchants, String address, Integer udele) {
+    public User(Integer uid, String uaccount, String upassword, String uimg, String uname, String phone, Merchants merchants, String address, Integer udele, Address addresss) {
         this.uid = uid;
         this.uaccount = uaccount;
         this.upassword = upassword;
@@ -24,6 +25,15 @@ public class User {
         this.merchants = merchants;
         this.address = address;
         this.udele = udele;
+        this.addresss = addresss;
+    }
+
+    public Address getAddresss() {
+        return addresss;
+    }
+
+    public void setAddresss(Address addresss) {
+        this.addresss = addresss;
     }
 
     public Integer getUid() {
@@ -109,6 +119,7 @@ public class User {
                 ", merchants=" + merchants +
                 ", address='" + address + '\'' +
                 ", udele=" + udele +
+                ", addresss=" + addresss +
                 '}';
     }
 }

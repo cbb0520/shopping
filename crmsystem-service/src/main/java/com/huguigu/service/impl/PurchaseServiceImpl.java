@@ -44,13 +44,29 @@ public class PurchaseServiceImpl implements PurchaseService {
         good.setCode(year+purchase.getPid());
         good.setGname(purchase.getPname());
         good.setGimgs(purchase.getPimgs());
-        good.setPrice((float) (purchase.getPrice()+(purchase.getPrice()*0.2)));
+        good.setGprice((float) (purchase.getPrice()+(purchase.getPrice()*0.2)));
         if(goods==null){
             goodsDao.addGoods(good);
             warehouseDao.addWar_goods(Integer.parseInt(purchase.getUdele()),good.getGid(),purchase.getLiang());
         }else {
-            warehouseDao.addWar_goods(Integer.parseInt(purchase.getUdele()),goods.getGid(),purchase.getLiang());
+            int i = warehouseDao.queryWar_goods(Integer.parseInt(purchase.getUdele()), goods.getGid());
+            if (i > 0) {
+                warehouseDao.updateWar_goods(Integer.parseInt(purchase.getUdele()), goods.getGid(), purchase.getLiang());
+            } else {
+                warehouseDao.addWar_goods(Integer.parseInt(purchase.getUdele()), goods.getGid(), purchase.getLiang());
+            }
         }
         return 1;
+    }
+
+    @Override
+    public int zhuanGoods(int gid, int lodwid,int noewid,int count) {
+        int i = warehouseDao.queryWar_goods(noewid, gid);
+        if (i > 0) {
+            warehouseDao.updateWar_goods(noewid, gid,count);
+        } else {
+            warehouseDao.addWar_goods(noewid, gid,count);
+        }
+        return warehouseDao.deleWar_Goods(lodwid,gid);
     }
 }

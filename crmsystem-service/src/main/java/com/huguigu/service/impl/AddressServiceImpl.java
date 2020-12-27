@@ -22,4 +22,26 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> queryAddrByUid(String uaccount) {
         return addressDao.queryAddrByUid(userDao.queryUserByUaccount(uaccount).getUid());
     }
+
+    @Override
+    public int removeAddClass(String uaccount) {
+        return addressDao.removeAddClass(userDao.queryUserByUaccount(uaccount).getUid());
+    }
+
+    @Override
+    public int insertAddClass(int aid,String uaccount) {
+        addressDao.removeAddClassOfAid(userDao.queryUserByUaccount(uaccount).getUid(),aid);
+        return addressDao.insertAddClass(aid);
+    }
+
+    @Override
+    public int insertAddress(String uaccount, int mid, String name, String phone) {
+        int uid = userDao.queryUserByUaccount(uaccount).getUid();
+        return addressDao.insertAddress(uid,mid,name,phone);
+    }
+
+    @Override
+    public int removeAddr(int aid) {
+        return addressDao.removeAddr(aid);
+    }
 }

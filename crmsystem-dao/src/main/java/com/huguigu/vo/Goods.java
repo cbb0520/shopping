@@ -14,58 +14,14 @@ public class Goods {
     private String gimgs;
     private Integer limit;
     private Integer soid;
-    private Float price;
+    private Float gprice;
     private Integer udele;
 
     private Integer count = 1;//默认值：商品选择默认唯一。设置值：购物车的商品数量或仓库的商品数量
+    private String wid = "0";//默认值：设置该商品的仓库储存地
     private Boolean select;//默认购物车不选中
 
     public Goods() {
-    }
-
-    public Goods(Integer gid, Classify classify, String code, String gname, String gimgs, Integer limit, Integer soid, Float price, Integer udele, Integer count) {
-        this.gid = gid;
-        this.classify = classify;
-        this.code = code;
-        this.gname = gname;
-        this.gimgs = gimgs;
-        this.limit = limit;
-        this.soid = soid;
-        this.price = price;
-        this.udele = udele;
-        this.count = count;
-    }
-
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "gid=" + gid +
-                ", classify=" + classify +
-                ", code='" + code + '\'' +
-                ", gname='" + gname + '\'' +
-                ", gimgs='" + gimgs + '\'' +
-                ", limit=" + limit +
-                ", soid=" + soid +
-                ", price=" + price +
-                ", udele=" + udele +
-                ", count=" + count +
-                '}';
-    }
-
-    public Boolean getSelect() {
-        return select;
-    }
-
-    public void setSelect(Boolean select) {
-        this.select = select;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
     }
 
     public Integer getGid() {
@@ -124,12 +80,12 @@ public class Goods {
         this.soid = soid;
     }
 
-    public Float getPrice() {
-        return price;
+    public Float getGprice() {
+        return gprice;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public void setGprice(Float gprice) {
+        this.gprice = gprice;
     }
 
     public Integer getUdele() {
@@ -138,5 +94,62 @@ public class Goods {
 
     public void setUdele(Integer udele) {
         this.udele = udele;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public String getWid() {
+        return wid;
+    }
+
+    public void setWid(String wid) {
+        this.wid = wid;
+    }
+
+    public Boolean getSelect() {
+        return select;
+    }
+
+    public void setSelect(Boolean select) {
+        this.select = select;
+    }
+
+    public Goods(Integer gid, Classify classify, String code, String gname, String gimgs, Integer limit, Integer soid, Float gprice, Integer udele, Integer count, String wid, Boolean select) {
+        this.gid = gid;
+        this.classify = classify;
+        this.code = code;
+        this.gname = gname;
+        this.gimgs = gimgs;
+        this.limit = limit;
+        this.soid = soid;
+        this.gprice = gprice;
+        this.udele = udele;
+        this.count = count;
+        this.wid = wid;
+        this.select = select;
+    }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "gid=" + gid +
+                ", classify=" + classify +
+                ", code='" + code + '\'' +
+                ", gname='" + gname + '\'' +
+                ", gimgs='" + gimgs + '\'' +
+                ", limit=" + limit +
+                ", soid=" + soid +
+                ", gprice=" + gprice +
+                ", udele=" + udele +
+                ", count=" + count +
+                ", wid=" + wid +
+                ", select=" + select +
+                '}';
     }
 }

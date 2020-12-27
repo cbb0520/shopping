@@ -1,9 +1,14 @@
 package com.huguigu.service.impl;
+
 import com.github.pagehelper.PageHelper;
 import com.huguigu.dao.DeliverDao;
+import com.huguigu.dao.GoodsDao;
+import com.huguigu.dao.UserDao;
 import com.huguigu.service.DeliverService;
 import com.huguigu.vo.Deliver;
+import com.huguigu.vo.Goods;
 import com.huguigu.vo.PageVo;
+import com.huguigu.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +19,7 @@ import java.util.List;
 public class DeliverServiceImpl implements DeliverService {
     @Autowired
     DeliverDao deliverDao;
+
     @Override
     public PageVo<Deliver> queryCountDeliver(Deliver deliver, int page, int rows) {
         PageVo<Deliver> pageVo=new PageVo<>();
@@ -104,4 +110,56 @@ public class DeliverServiceImpl implements DeliverService {
     public List<Deliver> queryDaiFuKuan(Integer ustate) {
         return deliverDao.queryDaiFuKuan(ustate);
     }
+
+    @Autowired
+    UserDao userDao;
+
+    @Autowired
+    GoodsDao goodsDao;
+
+    @Override
+    public int insertDeliver(String uaccount, float price, String text) {
+        //组装数据，生成订单表
+        Deliver deliver = new Deliver();
+        User user = userDao.queryUserByUaccount(uaccount);
+        deliver.setUid(user.getUid());
+        deliver.setMid(user.getMerchants().getMid());
+        deliver.setPrice(price);
+        deliver.setMerchantrevenue(price * 0.1);
+        deliver.setText(text);
+        deliverDao.insertDeliver(deliver);
+
+        //拿到订单id，生成订单商品详情
+        int did = deliver.getDid();
+
+        //获取用户购物车的商品集合configconfig
+        List<Goods> goods = goodsDao.queryGoodsCarByUid(user.getUid());
+
+        for (int i = 0; i < goods.size(); i++) {
+            //删除购物车里的数据--添加到订单详情表
+            deliverDao.addDelGoods(did,goods.get(i).getGid(),goods.get(i).getCount());
+        }
+        //删除购物车的选中商品
+        goodsDao.removeGoodsCarBySelect(user.getUid());
+
+        //返回订单id  用于扫码支付完成
+        return did;
+    }
+
+    @Override
+    public int deliverPayOk(int did) {
+        int row = 1;
+        row *= deliverDao.deliverPayOk(did);
+        //获取用户订单表的商品集合
+        List<Goods> goods = goodsDao.queryGoodsByDid(did);
+        for (int i = 0; i < goods.size(); i++) {
+            //添加商品的销量
+            System.out.println(goods.get(i).getGname());
+            goodsDao.addGoodsSoid(goods.get(i).getGid(),goods.get(i).getCount());
+            //减少该商品库存
+            //
+        }
+        return row;
+    }
+
 }

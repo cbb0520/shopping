@@ -28,7 +28,6 @@ public class RevnueServiceImpl implements RevnueService {
         Revnue me = new Revnue();
         float querynianji = revnueDao.queryyear(year);//年和
         float querysum = revnueDao.querysum();//总和
-        System.out.println(querynianji);
         int yongjin = (int) (querynianji*0.1);
         int sumyongjin = (int) (querysum*0.1);
         me1.setMothen("年度总收入");

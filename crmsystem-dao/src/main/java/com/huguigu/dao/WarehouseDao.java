@@ -36,4 +36,10 @@ public interface WarehouseDao {
     //商品仓库表添加
     int addWar_goods (@Param("wid") int wid, @Param("gid") int gid , @Param("count") int count);
 
+    //修改仓库商品数量
+    int updateWar_goods (@Param("wid") int wid, @Param("gid") int gid , @Param("count") int count);
+    //判断该仓库是否存在该商品
+    int queryWar_goods (@Param("wid") int wid, @Param("gid") int gid);
+    //删除仓库的商品
+    int deleWar_Goods(@Param("wid") int wid, @Param("gid") int gid);
 }
