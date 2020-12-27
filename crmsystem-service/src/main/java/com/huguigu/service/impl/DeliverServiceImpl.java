@@ -107,8 +107,8 @@ public class DeliverServiceImpl implements DeliverService {
     }
     //查询待付款的订单信息
     @Override
-    public List<Deliver> queryDaiFuKuan(Integer ustate) {
-        return deliverDao.queryDaiFuKuan(ustate);
+    public List<Deliver> queryDaiFuKuan(Integer uid) {
+        return deliverDao.queryDaiFuKuan(uid);
     }
 
     @Autowired
@@ -160,6 +160,16 @@ public class DeliverServiceImpl implements DeliverService {
             //
         }
         return row;
+    }
+    //查询待提货的订单信息
+    @Override
+    public List<Deliver> queryDaiTiHuo(Integer uid) {
+        return deliverDao.queryDaiTiHuo(uid);
+    }
+    //查询已完成的订单信息
+    @Override
+    public List<Deliver> queryYiWanCheng(Integer uid) {
+        return deliverDao.queryYiWanCheng(uid);
     }
 
 }

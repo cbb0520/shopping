@@ -158,9 +158,8 @@
     </select>
     <!--查询待付款的订单信息-->
     <select id="queryDaiFuKuan" parameterType="int" resultMap="DeliverMap2">
-        select * from deliver where ustate=#{ustate}
+        select * from deliver where ustate=1 and uid=#{uid}
     </select>
-
 
     <!--生成完订单后获取订单id，再去生成订单商品表  设置属性，可返回订单id-->
     <insert id="insertDeliver" useGeneratedKeys="true" keyColumn="did" keyProperty="did">
@@ -174,4 +173,14 @@
     <update id="deliverPayOk" parameterType="int">
         update deliver set ustate = 2 where did = #{did}
     </update>
+
+    <!--查询待提货的订单信息-->
+    <select id="queryDaiTiHuo" parameterType="int" resultMap="DeliverMap2">
+        select * from deliver where ustate=2 and uid=#{uid}
+    </select>
+
+    <!--查询已完成的订单信息-->
+    <select id="queryYiWanCheng" parameterType="int" resultMap="DeliverMap2">
+        select * from deliver where ustate=3 and uid=#{uid}
+    </select>
 </mapper>

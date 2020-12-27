@@ -108,8 +108,8 @@ public class DeliverController {
     //查询待付款的订单信息
     @RequestMapping("/queryDaiFuKuan.action")
     @ResponseBody
-    public List<Deliver> queryDaiFuKuan(String uaccount) {
-        return deliverService.queryDaiFuKuan(1);
+    public List<Deliver> queryDaiFuKuan(Integer uid) {
+        return deliverService.queryDaiFuKuan(uid);
     }
 
     //将订单改为待提货,修改商品的销量,库存等
@@ -138,5 +138,18 @@ public class DeliverController {
         //将返回的订单id设置到全局订单id
         setDid(id);
         return id;
+    }
+    //查询待付款的订单信息
+    @RequestMapping("/queryDaiTiHuo.action")
+    @ResponseBody
+    public List<Deliver> queryDaiTiHuo(Integer uid) {
+        return deliverService.queryDaiTiHuo(uid);
+    }
+
+    //查询已完成的订单信息
+    @RequestMapping("/queryYiWanCheng.action")
+    @ResponseBody
+    public List<Deliver> queryYiWanCheng(Integer uid) {
+        return deliverService.queryYiWanCheng(uid);
     }
 }

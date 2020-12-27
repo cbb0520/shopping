@@ -25,9 +25,10 @@ public class Deliver {
     private String mothen;
     private float total;
     private List<Del_goods> del_goods;
+    private Goods goods;
     public Deliver(){}
 
-    public Deliver(int did, int uid, int mid, double price, int ustate, Date buytime, int mstate, int hstate, int udele, double merchantrevenue, Date fulfiltime, String text, User user, Merchants merchants, String mothen, float total, List<Del_goods> del_goods) {
+    public Deliver(int did, int uid, int mid, double price, int ustate, Date buytime, int mstate, int hstate, int udele, double merchantrevenue, Date fulfiltime, String text, User user, Merchants merchants, String mothen, float total, List<Del_goods> del_goods, Goods goods) {
         this.did = did;
         this.uid = uid;
         this.mid = mid;
@@ -45,6 +46,7 @@ public class Deliver {
         this.mothen = mothen;
         this.total = total;
         this.del_goods = del_goods;
+        this.goods = goods;
     }
 
     public int getDid() {
@@ -183,6 +185,14 @@ public class Deliver {
         this.del_goods = del_goods;
     }
 
+    public Goods getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+
     @Override
     public String toString() {
         return "Deliver{" +
@@ -203,6 +213,7 @@ public class Deliver {
                 ", mothen='" + mothen + '\'' +
                 ", total=" + total +
                 ", del_goods=" + del_goods +
+                ", goods=" + goods +
                 '}';
     }
 }
