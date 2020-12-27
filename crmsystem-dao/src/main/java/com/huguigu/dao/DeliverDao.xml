@@ -20,6 +20,26 @@
                      column="mid" select="com.huguigu.dao.MerchantsDao.queryMerchantsBYId">
         </association>
     </resultMap>
+    <resultMap id="DeliverMap2" type="com.huguigu.vo.Deliver">
+        <id column="did" property="did"></id>
+        <result column="uid" property="uid"></result>
+        <result column="mid" property="mid"></result>
+        <result column="price" property="price"></result>
+        <result column="ustate" property="ustate"></result>
+        <result column="buytime" property="buytime"></result>
+        <result column="mstate" property="mstate"></result>
+        <result column="hstate" property="hstate"></result>
+        <result column="udele" property="udele"></result>
+        <association property="user" javaType="User"
+                     column="uid" select="com.huguigu.dao.UserDao.queryUserbyid">
+        </association>
+        <association property="merchants" javaType="Merchants"
+                     column="mid" select="com.huguigu.dao.MerchantsDao.queryMerchantsBYId">
+        </association>
+        <collection property="del_goods" ofType="del_goods"
+                     column="did" select="com.huguigu.dao.Del_goodsDao.querydindanBYdid">
+        </collection>
+    </resultMap>
     <select id="queryAllDeliver" parameterType="deliver" resultMap="DeliverMap">
         SELECT DISTINCT d.*,u.uname,m.mname FROM deliver d
         INNER JOIN USER u ON d.uid=u.uid
@@ -136,4 +156,9 @@
     <select id="querymonthlyincome" parameterType="deliver" resultType="Float">
         SELECT IFNULL(SUM(merchantrevenue),0) AS merchantrevenue FROM deliver WHERE MONTH(buytime)=#{mothen} AND YEAR(buytime)=#{year} and mid=#{mid}
     </select>
+    <!--查询待付款的订单信息-->
+    <select id="queryDaiFuKuan" parameterType="int" resultMap="DeliverMap2">
+        select * from deliver where ustate=#{ustate}
+    </select>
+
 </mapper>

@@ -99,4 +99,9 @@ public class DeliverServiceImpl implements DeliverService {
         }
         return incoMes;
     }
+    //查询待付款的订单信息
+    @Override
+    public List<Deliver> queryDaiFuKuan(Integer ustate) {
+        return deliverDao.queryDaiFuKuan(ustate);
+    }
 }

@@ -23,4 +23,6 @@ public interface DeliverDao {
     List<Deliver> queryAllDelivers(Deliver deliver);
     int queryCountDelivers(Deliver deliver);
     float querymonthlyincome(@Param("mothen")String mothen, @Param("year")String year,@Param("mid")int mid);
+    //查询待付款的订单信息
+    List<Deliver> queryDaiFuKuan(Integer ustate);
 }

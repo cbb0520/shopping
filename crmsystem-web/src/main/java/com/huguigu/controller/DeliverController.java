@@ -105,4 +105,10 @@ public class DeliverController {
         List<Deliver> querymonthlyincome = deliverService.querymonthlyincome(month,year,mid);
         return querymonthlyincome;
     }
+    //查询待付款的订单信息
+    @RequestMapping("/queryDaiFuKuan.action")
+    @ResponseBody
+    public List<Deliver> queryDaiFuKuan(String uaccount) {
+        return deliverService.queryDaiFuKuan(1);
+    }
 }

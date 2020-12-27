@@ -113,4 +113,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="queryGoodsgnmae"  resultMap="goodsmap">
         select * from goods where gname = #{gname}
     </select>
+
+    <select id="queryGoodsById2" parameterType="int" resultType="goods">
+        select * from goods where gid = #{gid}
+    </select>
 </mapper>

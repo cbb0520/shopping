@@ -111,7 +111,6 @@ public class UserController {
     @ResponseBody
     @CrossOrigin
     public User queryByuaccount(User user){
-        System.out.println(user);
         return userService.queryByuaccount(user);
     }
 

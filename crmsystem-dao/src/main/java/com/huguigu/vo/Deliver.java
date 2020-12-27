@@ -3,6 +3,7 @@ package com.huguigu.vo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
+import java.util.List;
 
 public class Deliver {
     private int did;
@@ -23,9 +24,10 @@ public class Deliver {
     private Merchants merchants;
     private String mothen;
     private float total;
+    private List<Del_goods> del_goods;
     public Deliver(){}
 
-    public Deliver(int did, int uid, int mid, double price, int ustate, Date buytime, int mstate, int hstate, int udele, double merchantrevenue, Date fulfiltime, String text, User user, Merchants merchants, String mothen, float total) {
+    public Deliver(int did, int uid, int mid, double price, int ustate, Date buytime, int mstate, int hstate, int udele, double merchantrevenue, Date fulfiltime, String text, User user, Merchants merchants, String mothen, float total, List<Del_goods> del_goods) {
         this.did = did;
         this.uid = uid;
         this.mid = mid;
@@ -42,6 +44,7 @@ public class Deliver {
         this.merchants = merchants;
         this.mothen = mothen;
         this.total = total;
+        this.del_goods = del_goods;
     }
 
     public int getDid() {
@@ -172,6 +175,14 @@ public class Deliver {
         this.total = total;
     }
 
+    public List<Del_goods> getDel_goods() {
+        return del_goods;
+    }
+
+    public void setDel_goods(List<Del_goods> del_goods) {
+        this.del_goods = del_goods;
+    }
+
     @Override
     public String toString() {
         return "Deliver{" +
@@ -191,6 +202,7 @@ public class Deliver {
                 ", merchants=" + merchants +
                 ", mothen='" + mothen + '\'' +
                 ", total=" + total +
+                ", del_goods=" + del_goods +
                 '}';
     }
 }

@@ -59,4 +59,6 @@ public interface GoodsDao {
     int addGoods(Goods goods);
     //判断此商品是否存在
     Goods queryGoodsgnmae(@Param("gname") String gname);
+    //根据id查询商品2
+    Goods queryGoodsById2(int gid);
 }
