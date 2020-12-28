@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.GoodsCommentDao">
+    <resultMap id="goodsCommentMap" type="GoodsComment">
+        <id column="id" property="id"></id>
+        <association property="user" javaType="User"
+                     column="uid" select="com.huguigu.dao.UserDao.queryUserbyid">
+        </association>
+    </resultMap>
+
+
+    <select id="queryGoodsComment" parameterType="int" resultMap="goodsCommentMap">
+        SELECT id,uid,score,TEXT,DATE,anonymity,
+               (SELECT COUNT(1) FROM goods_praise WHERE gcid = goods_comment.id) AS praise,
+               (SELECT COUNT(1) FROM goods_comment g WHERE parentgcid = goods_comment.id) AS `count`
+        FROM goods_comment WHERE gid = #{gid}
+    </select>
+
+    <insert id="insertGoodsComment">
+        insert into goods_comment values (null,#{user.uid},#{gid},#{score},#{text},now(),#{anonymity},0)
+    </insert>
+
+    <select id="queryGoodsCommentScore" parameterType="int" resultType="java.lang.Float">
+        select AVG(score) from goods_comment where gid = #{gid}
+    </select>
+
+    <delete id="removeComment" parameterType="int">
+        delete from goods_comment where id = #{id}
+    </delete>
+
+    <select id="isPraise" resultType="String">
+        SELECT count(1) FROM goods_praise WHERE uid = #{uid} AND gcid = #{gcid}
+    </select>
+
+    <insert id="praiseBtnOk">
+        insert into goods_praise values (null,#{uid},#{gcid})
+    </insert>
+
+    <delete id="praiseBtnNo">
+        delete from goods_praise where uid = #{uid} and gcid = #{gcid}
+    </delete>
+
+    <insert id="sendReplyChild">
+        insert into goods_comment values (null,#{user.uid},null,null,#{text},now(),null,#{count})
+    </insert>
+
+    <select id="queryAllReplyChild" parameterType="int" resultMap="goodsCommentMap">
+        SELECT * FROM goods_comment WHERE parentgcid = #{gcid}
+    </select>
+
+    <delete id="removeReplyChildByGCId" parameterType="int">
+        delete from goods_comment where parentgcid = #{gcid}
+    </delete>
+</mapper>

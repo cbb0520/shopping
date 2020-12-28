@@ -125,7 +125,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="queryGoodsCarByUidBySum" parameterType="int" resultType="int">
         SELECT SUM(g.gprice * sc.count) FROM goods g INNER JOIN shopping_car sc ON g.gid=sc.gid
-        WHERE sc.uid = 1 AND `select` = 1
+        WHERE sc.uid = #{uid} AND `select` = 1
     </select>
 
     <delete id="removeGoodsCarBySelect" parameterType="int">

@@ -17,7 +17,7 @@ public class Goods {
     private Float gprice;
     private Integer udele;
 
-    private Integer count = 1;//默认值：商品选择默认唯一。设置值：购物车的商品数量或仓库的商品数量
+    private Integer count = 1;//默认值：商品选择默认为1。设置值：购物车的商品数量或仓库的商品数量
     private String wid = "0";//默认值：设置该商品的仓库储存地
     private Boolean select;//默认购物车不选中
 

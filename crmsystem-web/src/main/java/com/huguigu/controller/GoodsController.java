@@ -1,8 +1,10 @@
 package com.huguigu.controller;
 
+import com.huguigu.service.GoodsCommentService;
 import com.huguigu.service.GoodsService;
 import com.huguigu.vo.Classify;
 import com.huguigu.vo.Goods;
+import com.huguigu.vo.GoodsComment;
 import com.huguigu.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -57,10 +59,16 @@ public class GoodsController {
         return map;
     }
 
+    @Autowired
+    GoodsCommentService goodsCommentService;
+
     //根据id查询商品queryGoodsById
     @RequestMapping("queryGoodsById.action")
-    public Goods queryGoodsById(int gid) {
-        return goodsService.queryGoodsById(gid);
+    public Map<String, Object> queryGoodsById(int gid) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("list",goodsService.queryGoodsById(gid));
+        map.put("score",goodsCommentService.queryGoodsCommentScore(gid));
+        return map;
     }
 
     //修改商品
