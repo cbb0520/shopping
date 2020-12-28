@@ -23,7 +23,7 @@ public class Goods {
 
     public Goods() {
     }
-
+    
     public Integer getGid() {
         return gid;
     }

@@ -80,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <select id="queryGoodsByUid" resultMap="goodsmap">
-        SELECT g.gid, fid, CODE, gname, gimgs, `limit`, soid, price, udele,sc.count,sc.`select`
+        SELECT g.gid, fid, CODE, gname, gimgs, `limit`, soid, gprice, udele,sc.count,sc.`select`
         FROM goods g INNER JOIN shopping_car sc ON g.gid = sc.gid WHERE uid = #{uid}
     </select>
 

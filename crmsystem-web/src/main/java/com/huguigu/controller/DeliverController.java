@@ -1,22 +1,28 @@
 package com.huguigu.controller;
+import com.huguigu.service.Del_goodsService;
 import com.huguigu.service.DeliverService;
+import com.huguigu.service.Warehouse_goodsService;
+import com.huguigu.vo.Del_goods;
 import com.huguigu.vo.Deliver;
 import com.huguigu.vo.PageVo;
+import com.huguigu.vo.Warehouse_goods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @CrossOrigin
 public class DeliverController {
     @Autowired
     DeliverService deliverService;
+    @Autowired
+    Warehouse_goodsService warehouse_goodsService;
+    @Autowired
+    Del_goodsService del_goodsService;
     @RequestMapping("/queryCountDeliver.action")
     @ResponseBody
     public PageVo<Deliver> queryCountDeliver(Deliver deliver,
@@ -29,7 +35,21 @@ public class DeliverController {
     public Map updateDeliverState(int did){
         Map<String,String> map=new HashMap<>();
         int num=deliverService.updateDeliverState(did);
-        if(num==1){
+       if(num==1){
+        int sum=0;
+            List<Del_goods> del_goods=del_goodsService.queryAllDel_goods(did);
+            for (Del_goods d:del_goods) {
+                List<Warehouse_goods> warehouse_goods= warehouse_goodsService.queryWarehouse_goodsGname(d.getGoods().getGname());
+                for (Warehouse_goods w: warehouse_goods) {
+                    if(w.getGoods().getGname().equals(d.getGoods().getGname())){
+                        sum=w.getCount()-d.getDcount();
+                            Warehouse_goods warehouse_goods1=new Warehouse_goods();
+                            warehouse_goods1.setWgid(w.getWgid());
+                            warehouse_goods1.setCount(sum);
+                        warehouse_goodsService.updateWarehouse_goodsCount(warehouse_goods1);
+                    }
+                }
+            }
             map.put("msg","发货成功");
             map.put("code","1");
         }else {
