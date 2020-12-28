@@ -20,6 +20,26 @@
                      column="mid" select="com.huguigu.dao.MerchantsDao.queryMerchantsBYId">
         </association>
     </resultMap>
+    <resultMap id="DeliverMap2" type="com.huguigu.vo.Deliver">
+        <id column="did" property="did"></id>
+        <result column="uid" property="uid"></result>
+        <result column="mid" property="mid"></result>
+        <result column="price" property="price"></result>
+        <result column="ustate" property="ustate"></result>
+        <result column="buytime" property="buytime"></result>
+        <result column="mstate" property="mstate"></result>
+        <result column="hstate" property="hstate"></result>
+        <result column="udele" property="udele"></result>
+        <association property="user" javaType="User"
+                     column="uid" select="com.huguigu.dao.UserDao.queryUserbyid">
+        </association>
+        <association property="merchants" javaType="Merchants"
+                     column="mid" select="com.huguigu.dao.MerchantsDao.queryMerchantsBYId">
+        </association>
+        <collection property="del_goods" ofType="del_goods"
+                     column="did" select="com.huguigu.dao.Del_goodsDao.querydindanBYdid">
+        </collection>
+    </resultMap>
     <select id="queryAllDeliver" parameterType="deliver" resultMap="DeliverMap">
         SELECT DISTINCT d.*,u.uname,m.mname FROM deliver d
         INNER JOIN USER u ON d.uid=u.uid
@@ -57,17 +77,19 @@
             <if test="user!=null">
                 <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
             </if>
+            ORDER BY d.buytime desc
         </where>
     </select>
     <select id="queryDeliver" parameterType="deliver" resultType="int">
             SELECT COUNT(*)  FROM deliver d
-            INNER JOIN USER u ON d.uid=u.uid
-            INNER JOIN merchants m ON d.mid=m.mid
+        INNER JOIN USER u ON d.uid=u.uid
+        INNER JOIN merchants m ON d.mid=m.mid
         <where>
             d.hstate!=0
             <if test="user!=null">
                 <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
             </if>
+            ORDER BY d.buytime desc
         </where>
     </select>
     <select id="queryAllDeliverdsh" parameterType="deliver"  resultMap="DeliverMap">
@@ -75,24 +97,28 @@
         <if test="user!=null">
             <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
         </if>
+        ORDER BY d.buytime desc
     </select>
     <select id="queryCountDeliverdsh" parameterType="deliver" resultType="int">
         SELECT  COUNT(1)FROM deliver d INNER JOIN USER u ON d.uid = u.uid INNER JOIN merchants m ON m.mid = d.mid WHERE d.mid  = ( SELECT MID FROM merchants WHERE uid =#{uid})AND d.mstate=1
         <if test="user!=null">
             <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
         </if>
+        ORDER BY d.buytime desc
     </select>
     <select id="queryAllDeliverdfh" parameterType="deliver"  resultMap="DeliverMap">
         SELECT d.*,u.uname,m.mname FROM deliver d INNER JOIN USER u ON d.uid = u.uid INNER JOIN merchants m ON m.mid = d.mid WHERE d.mid  = ( SELECT MID FROM merchants WHERE uid =#{uid})AND d.mstate=0
         <if test="user!=null">
             <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
         </if>
+        ORDER BY d.buytime desc
     </select>
     <select id="queryCountDeliverdfh" parameterType="deliver" resultType="int">
         SELECT  COUNT(1) FROM deliver d INNER JOIN USER u ON d.uid = u.uid INNER JOIN merchants m ON m.mid = d.mid WHERE d.mid  = ( SELECT MID FROM merchants WHERE uid =#{uid})AND d.mstate=0
         <if test="user!=null">
             <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
         </if>
+        ORDER BY d.buytime desc
     </select>
     <update id="updateDeliverStatesh" parameterType="int">
         update deliver set mstate=2 where did=#{did}
@@ -102,39 +128,49 @@
         <if test="user!=null">
             <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
         </if>
+        ORDER BY d.buytime desc
     </select>
     <select id="queryCountDeliverdth" parameterType="deliver" resultType="int">
         SELECT  COUNT(1) FROM deliver d INNER JOIN USER u ON d.uid = u.uid INNER JOIN merchants m ON m.mid = d.mid WHERE d.mid  = ( SELECT MID FROM merchants WHERE uid =#{uid})AND d.mstate=2
         <if test="user!=null">
             <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
         </if>
+        ORDER BY d.buytime desc
     </select>
     <select id="queryAllDeliveryth" parameterType="deliver"  resultMap="DeliverMap">
         SELECT d.*,u.uname,m.mname FROM deliver d INNER JOIN USER u ON d.uid = u.uid INNER JOIN merchants m ON m.mid = d.mid WHERE d.mid  = ( SELECT MID FROM merchants WHERE uid =#{uid})AND d.mstate=3
         <if test="user!=null">
             <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
         </if>
+        ORDER BY d.buytime desc
     </select>
     <select id="queryCountDeliveryth" parameterType="deliver" resultType="int">
         SELECT  COUNT(1) FROM deliver d INNER JOIN USER u ON d.uid = u.uid INNER JOIN merchants m ON m.mid = d.mid WHERE d.mid  = ( SELECT MID FROM merchants WHERE uid =#{uid})AND d.mstate=3
         <if test="user!=null">
             <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
         </if>
+        ORDER BY d.buytime desc
     </select>
     <select id="queryAllDelivers" parameterType="deliver"  resultMap="DeliverMap">
         SELECT d.*,u.uname,m.mname FROM deliver d INNER JOIN USER u ON d.uid = u.uid INNER JOIN merchants m ON m.mid = d.mid WHERE d.mid  = ( SELECT MID FROM merchants WHERE uid =#{uid})AND d.mstate!=0
         <if test="user!=null">
             <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
         </if>
+        ORDER BY d.buytime desc
     </select>
     <select id="queryCountDelivers" parameterType="deliver" resultType="int">
         SELECT  COUNT(1) FROM deliver d INNER JOIN USER u ON d.uid = u.uid INNER JOIN merchants m ON m.mid = d.mid WHERE d.mid  = ( SELECT MID FROM merchants WHERE uid =#{uid})AND d.mstate!=0
         <if test="user!=null ">
             <if test="user.uname!=null and user.uname!=''">and u.uname like concat ('%',#{user.uname},'%')</if>
         </if>
+        ORDER BY d.buytime desc
     </select>
     <select id="querymonthlyincome" parameterType="deliver" resultType="Float">
         SELECT IFNULL(SUM(merchantrevenue),0) AS merchantrevenue FROM deliver WHERE MONTH(buytime)=#{mothen} AND YEAR(buytime)=#{year} and mid=#{mid}
+    </select>
+    <!--查询待付款的订单信息-->
+    <select id="queryDaiFuKuan" parameterType="int" resultMap="DeliverMap2">
+        select * from deliver where ustate=1 and uid=#{uid}
     </select>
 
     <!--生成完订单后获取订单id，再去生成订单商品表  设置属性，可返回订单id-->
@@ -149,4 +185,14 @@
     <update id="deliverPayOk" parameterType="int">
         update deliver set ustate = 2 where did = #{did}
     </update>
+
+    <!--查询待提货的订单信息-->
+    <select id="queryDaiTiHuo" parameterType="int" resultMap="DeliverMap2">
+        select * from deliver where ustate=2 and uid=#{uid}
+    </select>
+
+    <!--查询已完成的订单信息-->
+    <select id="queryYiWanCheng" parameterType="int" resultMap="DeliverMap2">
+        select * from deliver where ustate=3 and uid=#{uid}
+    </select>
 </mapper>

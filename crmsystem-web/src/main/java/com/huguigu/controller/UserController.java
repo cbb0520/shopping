@@ -2,7 +2,6 @@ package com.huguigu.controller;
 import com.huguigu.controller.pinyin.Pinyin;
 import com.huguigu.service.ProvinceService;
 import com.huguigu.service.UserService;
-import com.huguigu.vo.Merchants;
 import com.huguigu.vo.PageVo;
 import com.huguigu.vo.Province;
 import com.huguigu.vo.User;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -111,7 +109,6 @@ public class UserController {
     @ResponseBody
     @CrossOrigin
     public User queryByuaccount(User user){
-        System.out.println(user);
         return userService.queryByuaccount(user);
     }
 

@@ -74,4 +74,6 @@ public interface GoodsDao {
 
     //添加商品的销量
     int addGoodsSoid(@Param("gid") int gid,@Param("count") int count);
+    //根据id查询商品2
+    Goods queryGoodsById2(int gid);
 }

@@ -16,10 +16,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 column="did" select="com.huguigu.dao.DeliverDao.queryDeliverByid">
 		</association>
 	</resultMap>
+	<resultMap id="Del_goodsMap2" type="com.huguigu.vo.Del_goods">
+		<id column="dgid" property="dgid"></id>
+		<result column="did" property="did"></result>
+		<result column="gid" property="gid"></result>
+		<result column="dcount" property="dcount"></result>
+		<result column="state" property="state"></result>
+		<association property="goods" javaType="Goods"
+					 column="gid" select="com.huguigu.dao.GoodsDao.queryGoodsById2">
+		</association>
+	</resultMap>
 	<select id="queryAllDel_goods" parameterType="int" resultMap="Del_goodsMap">
       SELECT * FROM del_goods dg
         INNER JOIN goods g ON g.gid=dg.gid
         INNER JOIN deliver d ON d.did=dg.did
          WHERE dg.did=#{did}
+	</select>
+
+	<select id="querydindanBYdid" parameterType="int" resultMap="Del_goodsMap2">
+      SELECT * FROM del_goods WHERE did=#{did}
 	</select>
 </mapper>

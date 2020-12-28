@@ -114,6 +114,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from goods where gname = #{gname}
     </select>
 
+    <select id="queryGoodsById2" parameterType="int" resultType="goods">
+        select * from goods where gid = #{gid}
+    </select>
+
     <select id="queryGoodsCarByUid" parameterType="int" resultType="goods">
         SELECT g.*,sc.count FROM goods g INNER JOIN shopping_car sc ON g.gid=sc.gid
         WHERE sc.uid = #{uid} AND `select` = 1

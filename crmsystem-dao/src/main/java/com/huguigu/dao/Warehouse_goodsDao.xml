@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huguigu.dao.Warehouse_goodsDao">
+	<resultMap id="Warehouse_goodsMap" type="Warehouse_goods">
+		<id column="wgid" property="wgid"></id>
+		<result column="wid" property="wid"></result>
+		<result column="gid" property="gid"></result>
+		<result column="count" property="count"></result>
+		<association property="warehouse" column="wid"
+					 select="com.huguigu.dao.WarehouseDao.queryWarehouseById"
+					 javaType="Warehouse"/>
+		<association property="goods" column="gid"
+		select="com.huguigu.dao.GoodsDao.queryGoodsById" javaType="Goods"/>
+	</resultMap>
+	<select id="queryWarehouse_goodsGname" parameterType="String" resultMap="Warehouse_goodsMap">
+				SELECT *FROM warehouse_goods w
+				INNER JOIN warehouse w1 ON w.wid=w1.wid
+				INNER JOIN goods g ON g.gid=w.gid
+				WHERE g.gname=#{gname}
+	</select>
+	<update id="updateWarehouse_goodsCount" parameterType="warehouse_goods">
+		update warehouse_goods set count=#{count} where wgid=#{wgid}
+	</update>
+</mapper>
