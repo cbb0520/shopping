@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.*;
-
 @Controller
 @CrossOrigin
 public class DeliverController {
@@ -34,28 +33,33 @@ public class DeliverController {
     @ResponseBody
     public Map updateDeliverState(int did){
         Map<String,String> map=new HashMap<>();
-        int num=deliverService.updateDeliverState(did);
-       if(num==1){
         int sum=0;
             List<Del_goods> del_goods=del_goodsService.queryAllDel_goods(did);
             for (Del_goods d:del_goods) {
                 List<Warehouse_goods> warehouse_goods= warehouse_goodsService.queryWarehouse_goodsGname(d.getGoods().getGname());
                 for (Warehouse_goods w: warehouse_goods) {
                     if(w.getGoods().getGname().equals(d.getGoods().getGname())){
-                        sum=w.getCount()-d.getDcount();
+                        if(d.getDcount()>w.getCount()){
+                            map.put("msg","库存不足,请去采购!");
+                            return map;
+                        }else {
+                            sum=w.getCount()-d.getDcount();
                             Warehouse_goods warehouse_goods1=new Warehouse_goods();
                             warehouse_goods1.setWgid(w.getWgid());
                             warehouse_goods1.setCount(sum);
-                        warehouse_goodsService.updateWarehouse_goodsCount(warehouse_goods1);
+                            warehouse_goodsService.updateWarehouse_goodsCount(warehouse_goods1);
+                            int num=deliverService.updateDeliverState(did);
+                            if(num==1){
+                                map.put("msg","发货成功");
+                                map.put("code","1");
+                            }else {
+                                map.put("msg","发货失败");
+                                map.put("code","0");
+                            }
+                        }
                     }
                 }
             }
-            map.put("msg","发货成功");
-            map.put("code","1");
-        }else {
-            map.put("msg","发货失败");
-            map.put("code","0");
-        }
         return map;
     }
     @RequestMapping("/queryDeliverstate.action")
