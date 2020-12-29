@@ -48,7 +48,7 @@ public class MerchantsController {
                             @RequestParam("img") MultipartFile img) throws IOException {
         merchants.setMimgs(img.getOriginalFilename());  //保存到数据库的【相对路径】
         //将上传的文件保存到服务器上的前端项目的【绝对路径】
-        img.transferTo(new File("E:\\s3zuoye\\shopping_after\\src\\assets\\shanghu\\"+img.getOriginalFilename()));
+        img.transferTo(new File("E:\\s3\\1905ja\\shopping_xm\\shopping_after\\src\\assets\\shanghu\\"+img.getOriginalFilename()));
         Map<String,String> map=new HashMap<>();
         int num=merchantsService.addMerchants(merchants,provincecode,citycode,areacode);
         if(num==1){
@@ -96,7 +96,7 @@ public class MerchantsController {
             //System.out.println("String");
         } else {
             MultipartFile multipartFile = (MultipartFile) img;
-            multipartFile.transferTo(new File("E:\\s3zuoye\\shopping_after\\src\\assets\\shanghu\\"+multipartFile.getOriginalFilename()));
+            multipartFile.transferTo(new File("E:\\s3\\1905ja\\shopping_xm\\shopping_after\\src\\assets\\shanghu\\"+multipartFile.getOriginalFilename()));
             merchants.setMimgs(multipartFile.getOriginalFilename());  //保存到数据库的【相对路径】
         }
         Map<String,String> map=new HashMap<>();
@@ -140,7 +140,7 @@ public class MerchantsController {
         Map<String, String> map = new HashMap<String, String>();
         //将上传的文件保存到服务器上的前端项目的【绝对路径】
         try {
-            img.transferTo(new File("E:\\s3zuoye\\shopping_after\\src\\assets\\shanghu\\" + img.getOriginalFilename()));
+            img.transferTo(new File("E:\\s3\\1905ja\\shopping_xm\\shopping_after\\src\\assets\\shanghu\\" + img.getOriginalFilename()));
             map.put("imgurl", img.getOriginalFilename());
         } catch (IOException e) {
             e.printStackTrace();
@@ -153,7 +153,7 @@ public class MerchantsController {
         Map<String, String> map = new HashMap<String, String>();
         //将上传的文件保存到服务器上的前端项目的【绝对路径】
         try {
-            img.transferTo(new File("E:\\s3zuoye\\shopping_vue\\images\\shanghuimg\\" + img.getOriginalFilename()));
+            img.transferTo(new File("E:\\s3\\1905ja\\shopping_xm\\shopping_vue\\images\\shanghuimg\\" + img.getOriginalFilename()));
             System.out.println(img.getOriginalFilename());
             map.put("imgurl", img.getOriginalFilename());
         } catch (IOException e) {
@@ -168,7 +168,7 @@ public class MerchantsController {
             //System.out.println("String");
         } else {
             MultipartFile multipartFile = (MultipartFile) img;
-            multipartFile.transferTo(new File("E:\\s3zuoye\\shopping_vue\\images\\shanghuimg\\"+multipartFile.getOriginalFilename()));
+            multipartFile.transferTo(new File("E:\\s3\\1905ja\\shopping_xm\\shopping_vue\\images\\shanghuimg\\"+multipartFile.getOriginalFilename()));
             merchants.setMimgs(multipartFile.getOriginalFilename());  //保存到数据库的【相对路径】
         }
         Map<String,String> map=new HashMap<>();

@@ -42,7 +42,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="gname!=null"> gname = #{gname},</if>
             <if test="gimgs!=null"> gimgs = #{gimgs},</if>
             <if test="limit!=null"> `limit` = #{limit},</if>
-            <if test="gprice!=null"> gprice = #{gprice}</if>
+            <if test="gprice!=null"> gprice = #{gprice},</if>
+            <if test="gdetails!=null"> gdetails = #{gdetails}</if>
         </set>
         where gid = #{gid}
     </update>

@@ -54,7 +54,7 @@
     <!--前端注册-->
     <insert id="registerUser" parameterType="User">
         insert into user
-        values (null, #{uaccount}, #{upassword}, 'img-5.jpg', #{uname}, #{phone}, #{mid}, #{address}, 0)
+        values (null, #{uaccount}, #{upassword}, 'img-5.jpg', #{uname}, #{phone}, #{merchants.mid}, #{address}, 0,0)
     </insert>
 
     <!--根据账号查询用户-->

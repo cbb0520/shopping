@@ -16,14 +16,15 @@ public class Goods {
     private Integer soid;
     private Float gprice;
     private Integer udele;
-
+    private String gdetails;
+    
     private Integer count = 1;//默认值：商品选择默认为1。设置值：购物车的商品数量或仓库的商品数量
     private String wid = "0";//默认值：设置该商品的仓库储存地
     private Boolean select;//默认购物车不选中
 
     public Goods() {
     }
-    
+
     public Integer getGid() {
         return gid;
     }
@@ -96,6 +97,14 @@ public class Goods {
         this.udele = udele;
     }
 
+    public String getGdetails() {
+        return gdetails;
+    }
+
+    public void setGdetails(String gdetails) {
+        this.gdetails = gdetails;
+    }
+
     public Integer getCount() {
         return count;
     }
@@ -120,7 +129,7 @@ public class Goods {
         this.select = select;
     }
 
-    public Goods(Integer gid, Classify classify, String code, String gname, String gimgs, Integer limit, Integer soid, Float gprice, Integer udele, Integer count, String wid, Boolean select) {
+    public Goods(Integer gid, Classify classify, String code, String gname, String gimgs, Integer limit, Integer soid, Float gprice, Integer udele, String gdetails, Integer count, String wid, Boolean select) {
         this.gid = gid;
         this.classify = classify;
         this.code = code;
@@ -130,6 +139,7 @@ public class Goods {
         this.soid = soid;
         this.gprice = gprice;
         this.udele = udele;
+        this.gdetails = gdetails;
         this.count = count;
         this.wid = wid;
         this.select = select;
@@ -147,8 +157,9 @@ public class Goods {
                 ", soid=" + soid +
                 ", gprice=" + gprice +
                 ", udele=" + udele +
+                ", gdetails='" + gdetails + '\'' +
                 ", count=" + count +
-                ", wid=" + wid +
+                ", wid='" + wid + '\'' +
                 ", select=" + select +
                 '}';
     }

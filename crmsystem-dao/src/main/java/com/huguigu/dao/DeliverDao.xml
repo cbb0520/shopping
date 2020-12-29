@@ -197,7 +197,7 @@
     </select>
     <!--用户确认收货-->
     <update id="queRengShouHuo" parameterType="deliver">
-        update deliver set ustate=3, fulfiltime=#{fulfiltime} where did=#{did};
+        update deliver set ustate=3,mstate=3,fulfiltime=#{fulfiltime} where did=#{did};
     </update>
     <!--用户取消订单-->
     <delete id="quXiaoDinDan" parameterType="int">
