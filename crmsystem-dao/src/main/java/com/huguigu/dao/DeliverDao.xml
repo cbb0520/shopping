@@ -41,7 +41,7 @@
         </collection>
     </resultMap>
     <select id="queryAllDeliver" parameterType="deliver" resultMap="DeliverMap">
-        SELECT DISTINCT d.*,u.uname,m.mname FROM deliver d
+        SELECT d.*,u.uname,m.mname FROM deliver d
         INNER JOIN USER u ON d.uid=u.uid
         INNER JOIN merchants m ON d.mid=m.mid
         <where>
@@ -52,7 +52,7 @@
         </where>
     </select>
     <select id="queryCountDeliver" parameterType="deliver" resultType="int">
-        SELECT COUNT(DISTINCT d.uid) FROM deliver d
+        SELECT COUNT(1) FROM deliver d
         INNER JOIN USER u ON d.uid=u.uid
         INNER JOIN merchants m ON d.mid=m.mid
         <where>
