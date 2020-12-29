@@ -1,7 +1,9 @@
 package com.huguigu.controller;
 
+import com.huguigu.dao.UserDao;
 import com.huguigu.service.AddressService;
 import com.huguigu.vo.Address;
+import com.huguigu.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,9 @@ public class AddressController {
     @Autowired
     AddressService addressService;
 
+    @Autowired
+    UserDao userDao;
+
     @RequestMapping("queryAddByUid.action")
     public List<Address> queryAddByUid(String uaccount){
         return addressService.queryAddrByUid(uaccount);
@@ -31,7 +36,10 @@ public class AddressController {
 
     //添加地址class
     @RequestMapping("insertAddClass.action")
-    public int insertAddClass(int aid,String uaccount){
+    public int insertAddClass(int aid,String uaccount,int mid){
+        System.out.println(aid+uaccount+mid);
+        User user = new User();
+        userDao.uptUserMid(mid,userDao.queryUserByUaccount(uaccount).getUid());
         return addressService.insertAddClass(aid,uaccount);
     }
 
