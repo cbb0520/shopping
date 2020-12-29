@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 @Controller
@@ -135,9 +139,10 @@ public class DeliverController {
     //将订单改为待提货,修改商品的销量,库存等
     @RequestMapping("/insertDeliverOk.action")
     @ResponseBody
-    public void insertDeliverOk() {
-
+    public void insertDeliverOk(HttpServletResponse response) throws IOException {
         deliverService.deliverPayOk(did);
+        PrintWriter out = response.getWriter();
+        out.print("<script>location.href = \"http://localhost:8082/#/index\"</script>");
     }
 
     //设置一个全局订单id
@@ -160,6 +165,14 @@ public class DeliverController {
         setDid(id);
         return id;
     }
+
+    //待付款订单支付  设置订单id
+    @RequestMapping("/setPayDid.action")
+    @ResponseBody
+    public void setPayDid(int id) {
+        setDid(id);
+    }
+
     //查询待付款的订单信息
     @RequestMapping("/queryDaiTiHuo.action")
     @ResponseBody

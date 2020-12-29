@@ -67,7 +67,7 @@
     //调用支付完成方法地址
     location.href = "http://localhost:8080/crmsystem_web/insertDeliverOk.action"
     //返回首页
-    location.href = "http://localhost:8082/#/index"
+    //location.href = "http://localhost:8082/#/index"
 </script>
 <%}%>
 </body>
