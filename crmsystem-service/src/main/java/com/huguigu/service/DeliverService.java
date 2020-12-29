@@ -28,4 +28,13 @@ public interface DeliverService {
 
     //查询已完成的订单信息
     List<Deliver> queryYiWanCheng(Integer uid);
+
+    //用户确认收货
+    int queRengShouHuo(Deliver deliver);
+
+    //用户取消订单
+    int quXiaoDinDan(Integer did);
+
+    //用户查看订单详情
+    Deliver queryDdXq(Integer did);
 }

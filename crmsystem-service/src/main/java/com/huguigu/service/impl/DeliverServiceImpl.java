@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -172,4 +173,22 @@ public class DeliverServiceImpl implements DeliverService {
         return deliverDao.queryYiWanCheng(uid);
     }
 
+    //用户确认收货
+    @Override
+    public int queRengShouHuo(Deliver deliver) {
+        Date date=new Date();
+        deliver.setFulfiltime(date);
+        System.out.println(deliver.getFulfiltime());
+        return deliverDao.queRengShouHuo(deliver);
+    }
+    //用户取消订单
+    @Override
+    public int quXiaoDinDan(Integer did) {
+        return deliverDao.quXiaoDinDan(did);
+    }
+    //用户查看订单详情
+    @Override
+    public Deliver queryDdXq(Integer did) {
+        return deliverDao.queryDdXq(did);
+    }
 }

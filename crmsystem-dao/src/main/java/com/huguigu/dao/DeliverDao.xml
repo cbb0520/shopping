@@ -195,4 +195,19 @@
     <select id="queryYiWanCheng" parameterType="int" resultMap="DeliverMap2">
         select * from deliver where ustate=3 and uid=#{uid}
     </select>
+    <!--用户确认收货-->
+    <update id="queRengShouHuo" parameterType="deliver">
+        update deliver set ustate=3, fulfiltime=#{fulfiltime} where did=#{did};
+    </update>
+    <!--用户取消订单-->
+    <delete id="quXiaoDinDan" parameterType="int">
+        DELETE deliver,del_goods
+        FROM deliver INNER JOIN del_goods
+                                ON deliver.did=del_goods.did
+        WHERE deliver.did=#{did}
+    </delete>
+    <!--用户查看订单详情-->
+    <select id="queryDdXq" parameterType="int" resultMap="DeliverMap2">
+        select * from deliver where did=#{did}
+    </select>
 </mapper>

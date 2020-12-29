@@ -173,4 +173,45 @@ public class DeliverController {
     public List<Deliver> queryYiWanCheng(Integer uid) {
         return deliverService.queryYiWanCheng(uid);
     }
+
+    //用户确认收货
+    @RequestMapping("/QueRengShouHuo.action")
+    @ResponseBody
+    public Map queRengShouHuo(Deliver deliver){
+        Map<String,String> map=new HashMap<>();
+        int num=deliverService.queRengShouHuo(deliver);
+        if(num==1){
+            map.put("msg","收货成功");
+            map.put("code","1");
+        }else {
+            map.put("msg","收货失败");
+            map.put("code","0");
+        }
+        return map;
+    }
+
+    //用户取消订单
+    @RequestMapping("/quXiaoDinDan.action")
+    @ResponseBody
+    public Map quXiaoDinDan(Integer did){
+        Map<String,String> map=new HashMap<>();
+        int num=deliverService.quXiaoDinDan(did);
+        System.out.println(num);
+        if(num!=0){
+            map.put("msg","订单取消成功");
+            map.put("code","1");
+        }else {
+            map.put("msg","订单取消失败");
+            map.put("code","0");
+        }
+        return map;
+    }
+
+    //用户查看订单详情
+    @RequestMapping("/queryDdXq.action")
+    @ResponseBody
+    public Deliver queryDdXq(Integer did) {
+        System.out.println(did);
+        return deliverService.queryDdXq(did);
+    }
 }
