@@ -3,6 +3,8 @@ import com.huguigu.vo.Area;
 import com.huguigu.vo.City;
 import com.huguigu.vo.Province;
 import com.huguigu.vo.User;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface UserDao {
@@ -28,4 +30,7 @@ public interface UserDao {
     Province queryProvincebyid2(String code);
     City querycodeCity2(String code);
     Area querycodeArea2(String code);
+
+    //修改用户mid
+    int uptUserMid(@Param("mid") int mid,@Param("uid") int uid);
 }

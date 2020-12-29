@@ -96,4 +96,8 @@
     <select id="querycodeArea2" parameterType="String" resultType="Area">
 		SELECT *FROM AREA WHERE CODE=#{code}
 	</select>
+
+    <update id="uptUserMid" parameterType="int">
+        update user set mid = #{mid} where uid = #{uid}
+    </update>
 </mapper>
